@@ -1,7 +1,5 @@
 /* WVGA resolution */
 #geoworld {
   border: 1px solid black;
-  width: 800px;
-  height: 480px;
-  overflow: hidden;
+  width:800px;
 }

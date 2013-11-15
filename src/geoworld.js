@@ -1,5 +1,4 @@
 
-
 Geoworld = function() {
 
   // Global variables (limited to the scope of 
@@ -12,9 +11,9 @@ Geoworld = function() {
   var game = document.getElementById("geoworld");
   
   // The gameplay canvas & context
-  var gameWidth = 800;
-  var gameHeight = 480;
   var gameplayCanvas = document.getElementById("gameplay-canvas");
+  this.gameWidth = gameplayCanvas.clientWidth;
+  this.gameHeight = gameplayCanvas.clientHeight;
   var gameplayCtx = gameplayCanvas.getContext('2d');
   
   // The input object
@@ -28,6 +27,9 @@ Geoworld = function() {
   // The player object
   var player = new Player(game);
   
+  // Set up physics globals
+  this.physics = new Object();
+  this.physics.gravityConstant = 100;
   
   // Keypress handling
   document.addEventListener("keydown", function(event) {
@@ -74,7 +76,7 @@ Geoworld = function() {
   
   // Render the updated game
   function render(timeStep){
-    gameplayCtx.clearRect(0, 0, gameWidth, gameHeight);
+    gameplayCtx.clearRect(0, 0, this.gameWidth, this.gameHeight);
     
     // Draw the player sprite
     player.render(timeStep, gameplayCtx);
@@ -94,7 +96,16 @@ Geoworld = function() {
     // Loop by requesting the next animation frame
     window.requestAnimationFrame(gameLoop);
   }
-  
-  // Start the game loop
-  gameLoop(0);
-}();
+
+  this.startGame = function () {
+    gameLoop(0);
+  }
+
+  this.setDebugString = function (str) {
+    document.getElementById("debug").innerHTML = str;
+  }
+};
+
+Game = new Geoworld();
+// Start the game loop
+Game.startGame();

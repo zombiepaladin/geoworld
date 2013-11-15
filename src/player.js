@@ -1,6 +1,6 @@
 // Construct a new player object
+//TODO: Make a child of dynamicPhysicsObject? (We need to agree on an OOP strategy / library if we do that.)
 Player = function(game) {
-
   // To use spritesheet data in the canvas, we need to load it
   // into javascript
   this.spritesheet = new Image();
@@ -11,18 +11,20 @@ Player = function(game) {
   this.spriteHeight = 100;
   this.spriteHalfWidth = this.spriteWidth / 2;
   this.spriteHalfHeight = this.spriteHeight / 2;
+
+  this.facingLeft = false;
   
-  // Player state variables
-  this.position = new Vector(300, 100);  // in pixels
-  this.velocity = new Vector(0, 0);      // in pixels per second
-  
-  // Movement constants
-  this.maxVelocity = 5;     // in pixels per second
-  this.acceleration = 150;  // in pixels per second^2  
-  
-  // Vertical and Horizontal states
-  this.verticalState = "OnGround"; // {OnGround, Falling, Jumping}
-  this.horizontalState = "Stationary"; // {Stationary, MovingLeft, MovingRight}
+  // Physics constants:
+  this.instantaneousJumpImpulse = -100;
+  this.acceleration = 200;  // in pixels per second^2  
+
+  // Create physics object:
+  this.physics = new DynamicPhysicsObject(
+    new Vector(300, 100) //Initial position (In pixels)
+  );
+
+  this.physics.maxVelocity = new Vector(200, 400);
+  this.physics.frictionConstant = 200;
   
   // Current animation frame to render
   this.frame = {
@@ -36,25 +38,30 @@ Player = function(game) {
 
 // Update the player's sprite given the provided input
 Player.prototype.update = function(timeStep, input) {
-  var seconds = timeStep / 1000; // Convert timestep to s
-  if(input.up) console.log(this.animationState);
+  var seconds = timeStep / 1000; // Convert timestep to seconds
   
-  // Update horizontal state
-  if(input.left) { 
-    this.horizontalState = "MovingLeft";
-    this.velocity.x -= this.acceleration * seconds; 
+  // Handle user input
+  if(input.left) {
+    this.physics.accelerate(new Vector(-this.acceleration, 0), seconds);
+    this.facingLeft = true;
   }
+
   if(input.right) {
-    this.horizontalState = "MovingRight";
-    this.velocity.x += this.acceleration * seconds; 
+    this.physics.accelerate(new Vector(this.acceleration, 0), seconds);
+    this.facingLeft = false;
   }
-  Math.clamp(this.velocity.x, -this.maxVelocity, this.maxVelocity);
+
+  if (input.up && this.physics.isOnGround()) {
+    this.physics.accelerate(new Vector(0, this.instantaneousJumpImpulse));
+    console.log("JUMP!");
+  }
+
+  // Update physics:
+  this.physics.update(timeStep);
   
-  // Apply horizontal velocity
-  this.position.x += this.velocity.x * seconds;
-  
-  // Update vertical state
- 
+  // Wrap around edges of screen:
+  if (this.physics.position.x > Game.gameWidth + this.spriteWidth / 2) { this.physics.position.x = -this.spriteWidth / 2; }
+  if (this.physics.position.x < -this.spriteWidth / 2) { this.physics.position.x = Game.gameWidth + this.spriteWidth / 2; }
   
   // Determine the current frame of animation
   // Start with a "default" frame
@@ -65,58 +72,72 @@ Player.prototype.update = function(timeStep, input) {
     height: this.spriteHeight
   };
   
-  if(this.verticalState === "OnGround") {
+  if(this.physics.isOnGround()) {
   
     // Determine the amount of "lean" based on the direction
     // and velocity of the sprite
-    if(this.horizontalState === "MovingLeft") {
+    if (this.physics.velocity < -Math.EPSILON) {
     
       // All ground-based moving animations 
       // fall in the second row
       this.frame.y = this.spriteHeight;
       
       // Determine the frame based on velocity
-      if(this.velocity.x > 0.5) 
+      if(this.physics.velocity.x > -0.5) 
         this.frame.x = this.spriteWidth;      // Second Column
-      else if (this.velocity.x > -0.5)
+      else if (this.physics.velocity.x > -0.5)
         this.frame.x = 2 * this.spriteWidth;  // Third Column
-      else if (this.velocity.x > -8)
+      else if (this.physics.velocity.x > -8)
         this.frame.x = 3 * this.spriteWidth;   // Foruth Column
       else
         this.frame.x = 4 * this.spriteWidth;  // Fifth Column
     
-    }else if(this.horizontalState === "MovingRight") {
+    } else if (this.physics.velocity > Math.EPSILON) {
       
       // All ground-based moving animations 
       // fall in the second row
       this.frame.y = this.spriteHeight;
       
       // Determine the frame based on velocity
-      if(this.velocity.x < -0.5) 
+      if (this.physics.velocity.x < 0.5)
         this.frame.x = this.spriteWidth;      // Second Column
-      else if (this.velocity.x < 0.5)
+      else if (this.physics.velocity.x < 0.5)
         this.frame.x = 2 * this.spriteWidth;  // Third Column
-      else if (this.velocity.x < 8)
+      else if (this.physics.velocity.x < 8)
         this.frame.x = 3 * this.spriteWidth;   // Foruth Column
       else
         this.frame.x = 4 * this.spriteWidth;  // Fifth Column
     }
     
-  } else if (this.verticalState === "Jumping") {
-  } else if (this.verticalState === "Falling") {
-  }  
+  } else {//Not on ground
+
+    // Determine the frame based on velocity
+    if (Math.abs(this.physics.velocity.y) < 0.5)
+        this.frame.x = this.spriteWidth;      // Second Column
+    else if (Math.abs(this.physics.velocity.y) < 8)
+        this.frame.x = 2 * this.spriteWidth;  // Third Column
+    else if (Math.abs(this.physics.velocity.y) < 50)
+        this.frame.x = 3 * this.spriteWidth;   // Foruth Column
+    else
+        this.frame.x = 4 * this.spriteWidth;  // Fifth Column
+    
+    if (this.physics.velocity.y < 0.0)//If jumping, rather than falling
+    { this.frame.y = 2 * this.spriteHeight; }
+    else
+    { this.frame.y = 3 * this.spriteHeight; }
+  }
 }
 
 // Render the player's sprite using the provided context
 Player.prototype.render = function(timeStep, ctx) {
   ctx.save();
-  
+
   // Translate sprite to on-screen position
-  ctx.translate(this.position.x, this.position.y);
+  ctx.translate(this.physics.position.x, this.physics.position.y);
   
   // Flip direction sprite faces when moving left 
   // (animations are all drawn facing right)
-  if(this.horizontalState == "MovingLeft") ctx.scale(-1, 1);
+  if (this.facingLeft) ctx.scale(-1, 1);
   
   // Draw the sprite's current frame of animation
   ctx.drawImage(this.spritesheet, 
