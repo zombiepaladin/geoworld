@@ -16,7 +16,7 @@ Player = function(game) {
   
   // Physics constants:
   this.instantaneousJumpImpulse = -200;
-  this.acceleration = 200;  // in pixels per second^2  
+  this.acceleration = 200;  // in pixels per second^2
 
   // Create physics object:
   this.physics = new DynamicPhysicsObject(
@@ -26,9 +26,12 @@ Player = function(game) {
   this.physics.maxVelocity = new Vector(200, 400);
   this.physics.frictionConstant = 200;
 
-  this.physics.hangTimeEnabled = true;
+  this.physics.hangTimeEnabled = false;
   this.physics.hangTimeVelocityThreshold = 30;
   this.physics.hangTimeMinimum = 0.1;
+
+  // Multi-jump:
+  this.jumpsLeft = 1;
   
   // Current animation frame to render
   this.frame = {
@@ -44,6 +47,17 @@ Player = function(game) {
 Player.prototype.update = function(timeStep, input) {
   var seconds = timeStep / 1000; // Convert timestep to seconds
   
+  //Apply physics demo properties:
+  //(Later on this would be done dynamically based on collisions, level attributes, etc.)
+  this.physics.hangTimeEnabled = Game.enableHangTime();
+
+  //TODO: This could be made more generic and added to the dynamicPhysicsObject once level stuff is in.
+  if (this.isUnderWater()) {
+    this.physics.gravityScale = 0.5;//Half gravity under water
+  } else {
+    this.physics.gravityScale = 1.0;//Full gravity above water
+  }
+
   // Handle user input
   if(input.left) {
     this.physics.accelerate(new Vector(-this.acceleration, 0), seconds);
@@ -55,9 +69,23 @@ Player.prototype.update = function(timeStep, input) {
     this.facingLeft = false;
   }
 
-  if (input.up && this.physics.isOnGround()) {
-    this.physics.accelerate(new Vector(0, this.instantaneousJumpImpulse));
+  if (input.up &&
+    (
+     this.physics.isOnGround() ||
+     this.jumpsLeft > 0 || //For double (triple, etc) jumping
+     this.isUnderWater() //Infinite mario-style jumping under water.
+    )) {
     console.log("JUMP!");
+    if (this.physics.isOnGround()) {
+      this.jumpsLeft = Game.enableDoubleJump() ? 1 : 0;
+    } else {
+      this.jumpsLeft--;
+    }
+
+    input.up = false;//HACK: Should probably modify the input system so we can check if it was just pressed instead.
+
+    //HACK: Using gravity scale to reduce jump impulse under water. Should add something more specific later.
+    this.physics.accelerate(new Vector(0, this.instantaneousJumpImpulse * this.physics.gravityScale));
   }
 
   // Update physics:
@@ -130,6 +158,20 @@ Player.prototype.update = function(timeStep, input) {
     else
     { this.frame.y = 3 * this.spriteHeight; }
   }
+}
+
+// Check if the player is under water
+// This will be more complex once level stuff is added.
+Player.prototype.isUnderWater = function () {
+  if (Game.enableWaterOnLeft() && this.physics.position.x <= Game.gameWidth / 2) {
+    return true;
+  }
+
+  if (Game.enableWaterOnRight() && this.physics.position.x > Game.gameWidth / 2) {
+    return true;
+  }
+
+  return false;
 }
 
 // Render the player's sprite using the provided context
