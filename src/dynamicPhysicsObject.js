@@ -7,6 +7,12 @@ DynamicPhysicsObject = function (initialPosition, initialVelocity) {
   this.frictionConstant = 0;
   this.lastAcceleration = new Vector(0, 0);//Used to apply friction
 
+  this.gravityScale = 1.0;
+
+  this.hangTimeEnabled = false;
+  this.hangTimeVelocityThreshold = 0;//The crossover of the Y velocity to start applying hang time
+  this.hangTimeMinimum = 1.0;//As a percentage of world gravity
+
   if (this.position === undefined) {
     this.position = new Vector(0, 0);
   }
@@ -59,7 +65,16 @@ DynamicPhysicsObject.prototype.update = function (timeStep) {
 
   // Apply gravity:
   if (!this.isOnGround()) {
-    this.velocity.y += Game.physics.gravityConstant * seconds;
+    gravity = Game.physics.gravityConstant * this.gravityScale;
+
+    if (this.hangTimeEnabled &&
+      Math.abs(this.velocity.y) < this.hangTimeVelocityThreshold &&// If we've passed the threshold
+      this.velocity.y < 0) {// If we are rising (not falling)
+      gravity = Math.lerp(gravity, gravity * this.hangTimeMinimum,
+        1.0 - this.velocity.y / -this.hangTimeVelocityThreshold);
+    }
+
+    this.velocity.y += gravity * seconds;
   }
 
   // Apply velocity:

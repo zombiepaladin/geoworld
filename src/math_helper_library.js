@@ -11,3 +11,6 @@ Math.almostEqual = function (x, y) {
   return Math.abs(x - y) < Math.EPSILON;
 }
 
+Math.lerp = function (start, end, percent) {
+  return start + (end - start) * percent;
+}

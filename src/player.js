@@ -15,7 +15,7 @@ Player = function(game) {
   this.facingLeft = false;
   
   // Physics constants:
-  this.instantaneousJumpImpulse = -100;
+  this.instantaneousJumpImpulse = -200;
   this.acceleration = 200;  // in pixels per second^2  
 
   // Create physics object:
@@ -25,6 +25,10 @@ Player = function(game) {
 
   this.physics.maxVelocity = new Vector(200, 400);
   this.physics.frictionConstant = 200;
+
+  this.physics.hangTimeEnabled = true;
+  this.physics.hangTimeVelocityThreshold = 30;
+  this.physics.hangTimeMinimum = 0.1;
   
   // Current animation frame to render
   this.frame = {
