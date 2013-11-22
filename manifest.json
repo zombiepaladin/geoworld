@@ -1,0 +1,14 @@
+{
+	"javascripts": [
+		"src/js/utilities.js",
+		"src/js/animation_polyfill.js",
+		"src/js/math_helper_library.js",
+		"src/js/vector_library.js",
+		"src/js/dynamicPhysicsObject.js",
+		"src/js/player.js",
+		"src/js/geoworld.js"
+	],
+	"stylesheets": [
+		"src/css/geoworld.css"
+	]
+}
