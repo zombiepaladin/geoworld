@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="20" tilewidth="24" tileheight="24">
+ <tileset firstgid="1" name="skyland" tilewidth="24" tileheight="24">
+  <image source="skyland.png" width="168" height="168"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="100" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztl1tvwyAMheluWnffumWX0MdN+/+/cI4UJGTZxg7g7oGHT42SNJzj4wDZhRB2g3/NNbCv+P9ZdnwD3K7cNXpmD7TPz/3UetLW/BF4ErRgDVfCOM/Ay8qhc00XzoEL4JK5Rp23kPuxepIyz2uu7Y2kxaOuE6L3eNL43mN7g3t4zq79AL/AEdG77vh8y7FPme1svH/RGIUcqJrUrm9U3Uv3UWNq32GPvuKIRs1c/aU8uPVN26dbfFFjer3DJfB6k3zOax7Lsfe8w+01Et8dNNR6uwceUD25vUiNLm2fbyF5wOelvUaeRa5B2ot58Aq8Ge7XrgUt88A1wvW3esBZlDTg+bVmjivl/Ql8ER45IpGJ9z4B1z952JpFKY9e77WUh7bHYuDXA688cA9p8+Cy8NCu/Z5LXjSeJD8aT9Rct+X7GPeQh3bvXss9UXNlyc8x8HNrOheZZ1v0ToTm9MvN8xrtp86B8zYptFvX6NK97wZaaKvV0Ite3qx5fBjopdeioRcjj5HHyGPkMfIYebTM4w/avV7L
+  </data>
+ </layer>
+</map>
