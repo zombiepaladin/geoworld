@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="150" height="40" tilewidth="24" tileheight="24">
+ <tileset firstgid="1" name="grassy_plains" tilewidth="24" tileheight="24" spacing="2">
+  <image source="../tilesets/dead_plains.png" width="180" height="102"/>
+  <tile id="5">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="24"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="12"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="left" value="12"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="left" value="12"/>
+    <property name="right" value="24"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="12"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="20">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="water"/>
+   </properties>
+  </tile>
+  <tile id="21">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="24"/>
+    <property name="type" value="ceiling"/>
+   </properties>
+  </tile>
+  <tile id="22">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ceiling"/>
+   </properties>
+  </tile>
+  <tile id="23">
+   <properties>
+    <property name="left" value="12"/>
+    <property name="right" value="24"/>
+    <property name="type" value="ceiling"/>
+   </properties>
+  </tile>
+  <tile id="24">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="12"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="25">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="12"/>
+    <property name="type" value="ceiling"/>
+   </properties>
+  </tile>
+  <tile id="26">
+   <properties>
+    <property name="left" value="12"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ceiling"/>
+   </properties>
+  </tile>
+  <tile id="27">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="portal"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Sky" width="150" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztwwENAAAAwqBnsH9Yi8DGqqmqqqqqqqqqqqqqqqqqqqqqqqqqqqqq2gGUqaXw
+  </data>
+ </layer>
+ <layer name="Ground" width="150" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztmc1uwjAQBn2q+seBEy3t+z8niUSlCEWus9r1Zy8z0ohbcOwhJM65lHI2CmNiXc9RhDFRd0FXOVF3QVc5UXdBVzlRd0FXOVF3QVc5UXdBVzlRd0FXOVF3QVc5UXdBVzlRd0FXOVF3YfV78SdgPsAHdR8WLyEzAZ6oG7H4GTIT4Im6EasvFd8L7alR9xEpfelQr/1qxP33dfHrfnzoj7qp6HW/Bh8f9lE3xfXkGKfFj1K/v4zw6D2Fuim6auOvJ/VatfalHidd1Rmlp0e317K9NVSPr1dXLf8fIz4/qtfGuobq8UR3Zfm9j9hXFNvnZrpqZz3+kXeJz7o/sZ43XbVj3Rt7xv0JuoIIsnXltcfyenQiHXmrjGuW8/C8Pqib8jZqTf57npzlPGp4dhVxfLWea6LcP+r9XBrdVcR39tbrP0l9Hr36OjmPuRX13GLs+7/IcddQzynO7x7qMeH8bvm9f6rHhPO7h3pMiIiIiIio9QZ0AMo+
+  </data>
+ </layer>
+ <layer name="Plants" width="150" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzt2EsOgCAMBUBuoIne/6zu0QUx1CLMHIBP+ppQSgEAAAAAAAAAAGpH9gFYluwRSb4AYB5n4t7eFPPJzFNNvv5vpDxx11ofvUiLt/0uXwAApWyJe+8d18q8B8+iavL1vC9b4+lZk+z/I3MpkaLzld0/AAAAALCaC9K+Aac=
+  </data>
+ </layer>
+</map>

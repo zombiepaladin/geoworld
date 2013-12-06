@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="250" height="40" tilewidth="24" tileheight="24">
+ <tileset firstgid="1" name="grassy_plains" tilewidth="24" tileheight="24" spacing="2">
+  <image source="../tilesets/grassy_plains.png" width="180" height="102"/>
+  <tile id="5">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="24"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="12"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="left" value="12"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="left" value="12"/>
+    <property name="right" value="24"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="12"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="20">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="water"/>
+   </properties>
+  </tile>
+  <tile id="21">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="24"/>
+    <property name="type" value="ceiling"/>
+   </properties>
+  </tile>
+  <tile id="22">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ceiling"/>
+   </properties>
+  </tile>
+  <tile id="23">
+   <properties>
+    <property name="left" value="12"/>
+    <property name="right" value="24"/>
+    <property name="type" value="ceiling"/>
+   </properties>
+  </tile>
+  <tile id="24">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="12"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="25">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="12"/>
+    <property name="type" value="ceiling"/>
+   </properties>
+  </tile>
+  <tile id="26">
+   <properties>
+    <property name="left" value="12"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ceiling"/>
+   </properties>
+  </tile>
+  <tile id="27">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="portal"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Sky" width="250" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzt07EJADAMBDHPYMj+q2YFQ4rgR4X6a66rqgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA9c7A70bgjc8hn88hn88hn88hn88hn88h3+TzC+zfwBc=
+  </data>
+ </layer>
+ <layer name="Ground" width="250" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztmstuwyAQRb2qmrZZZFH1+f/f2XhhybUcBwhwh5lzpLvpQwLPnIAhl2maLoUBm5TWs2VAC7Xzh9ppesUe1M4faqfpFXtQO3+onaZX7EHt/KF2ml6xB7Xzh9ppesUe1M4faqfpFXtQO3+onaZX7EHt/KF2ml6xB7Xzh9ppesYe1MwfapfpHXtQK3+oHaZ/7FFSn69rfhSDhSTU/uK6PXLr8qEZJmSgdhfP7ZFblzfNMCEDtbu4bo+Sujwd5GXis0CN2ls8t0er2uG7DrW30Tw/Tcdr3630pMV52vc1n5OPGo6I2ttonufO19s59rd6AEFRexvNdW/eRud8zetUtkd7JLnvQKWu3bpLWf8Oz8Eri9/qNS/V9x6uLe9lI3ue8l7NOZN/rPi9zboP9xxRubY+l9lm2duu/0a53z3tjLHGZ2xkUva7Fp+j2udSP0daUxXkOo7vx5Ssh5Ge49H6p/A8guuPOB61T+8xP4+cvVnU+7h53lY89+x+Lce3vken9N0r4n2cZc89uN7CcS/PBvph3fPUfrboRkvHR/G81h3vc++Bryj93qGledTsNUU/W3WkteOjeF5zvq0cuXdeX7tuCtdb95pFx1t70sPxiJ7XdkR5f937PFXRaxYcb+VKL8ejej6n1h5a4bfC93PlMadixfHarvR0fM4I92tqj0ZJy++vtxz3ES3/V/mMvfVHjfMktT+kT2qingv5n/eEqMdI+qQG6jmQ/eA5WVKKetzkfvCcEP/ZOv278zP1GAkhj4X1nBD/wXNC/AfPCfGfFM//AIExGG8=
+  </data>
+ </layer>
+ <layer name="Plants" width="250" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzt2ttOg0AUBVC0Nb5ZE/3/b7WkIcHGlotnzsCwVjJPTQozsOdK1wEAAAAAAAAAAAAAAABAvtO1vD0pwP59Tfz+3t36AjiSZ2Nfq2Ni3xfIO0fxWvsGKpsa+6EFn7VvgCLWzNH+U4A852v5qHBda6By9LEMhnx/V7yH8Z6H9zDGnHW1Pna5vfWbW8j3PXseMfqMz11X21eeZ858d4vtuKV8E2dJxsfk/W9Lx0PtSGlrMz7mPf1t7XhobkoJERkfG/IObEN0xvemlTPeVupBvKNnPNJLwjUeZTPyu8OMepBHxmNdunIZmdqvj3yOJetBLhkvY8hI1By61vl1Xw/7qfsm42VdAv+r9vn1o2/Qoss5q0IbF9We2Rkv/X7YT8pR+pyvdn/WmuxxvOY5sDUmtC9y/gwAAAAAAABH9wNHYQfV
+  </data>
+ </layer>
+</map>
