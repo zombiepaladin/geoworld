@@ -1,6 +1,7 @@
 // Construct a new player object
 //TODO: Make a child of dynamicPhysicsObject? (We need to agree on an OOP strategy / library if we do that.)
 Player = function(game) {
+  Entity.call(this, game);
   // To use spritesheet data in the canvas, we need to load it
   // into javascript
   this.spritesheet = new Image();
@@ -42,6 +43,8 @@ Player = function(game) {
   };
   
 }
+Player.prototype = new Entity();
+Player.prototype.constructor = Player;
 
 // Update the player's sprite given the provided input
 Player.prototype.update = function(timeStep, input) {
