@@ -1,8 +1,11 @@
+// Handles the rendering of the level
+
 TileEngine = function(tileMapObject) {
   var engine = this;
   this.tilemap = tileMapObject;
+  // TODO: HANDLE MULTIPLE LAYERS ON A SINGLE LEVEL (NECESSARY?)
   this.tilesheets = [];
-  this.layers = this.tilemap.layers;  // Number of layers
+  this.layers = this.tilemap.layers.count;  // Number of layers
   this.scrollPosition = {x: 0, y: 0};
 
   // Load the tileset images
@@ -21,7 +24,6 @@ TileEngine = function(tileMapObject) {
       image.src = tileset.image;
     }
   );
-  
 }
 
 // Set the current scrolling position for the tile engine
@@ -51,7 +53,7 @@ TileEngine.prototype.getGroundLevelAt = function(x) {
     //var flippedDiagonally = currTile & 0x20000000;
 	
 	// Ground tile
-	if (currTile === 5 || currTile >= 9) {
+	if (this.tilemap.tilesets[0].tileproperties[currTile - 1].type === "ground") {
 		//console.log(this.tilemap.tilesets[0].tileproperties);
 		var y0 = parseFloat(this.tilemap.tilesets[0].tileproperties[currTile - 1].left);
 		var y1 = parseFloat(this.tilemap.tilesets[0].tileproperties[currTile - 1].right);
@@ -78,17 +80,7 @@ TileEngine.prototype.isWaterAt = function(x, y) {
   var tileY = Math.floor((y + this.scrollPosition.y + 20) / this.tilemap.tileheight);
   var currTile = this.tilemap.layers[0].data[tileX + tileY * this.tilemap.layers[0].width];
   currTile = currTile & ~(0x80000000 | 0x40000000 | 0x20000000);
-  if (currTile === 15 || currTile === 16) return true;
-  return false;
-}
-
-// Checks if the ground tile at the specified location contains mud
-TileEngine.prototype.isMudAt = function(x, y) {
-  var tileX = Math.floor((x + this.scrollPosition.x) / this.tilemap.tilewidth);
-  var tileY = Math.floor((y + this.scrollPosition.y + 23) / this.tilemap.tileheight);
-  var currTile = this.tilemap.layers[0].data[tileX + tileY * this.tilemap.layers[0].width];
-  currTile = currTile & ~(0x80000000 | 0x40000000 | 0x20000000);
-  if (currTile === 13 || currTile === 14) return true;	
+  if (this.tilemap.tilesets[0].tileproperties[currTile - 1].type === "water") return true;
   return false;
 }
 
