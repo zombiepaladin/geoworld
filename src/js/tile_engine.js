@@ -30,7 +30,11 @@ TileEngine = function(tileMapObject) {
       image.onload = function() {
         engine.tilesheets[index] = this;
       }
-      image.src = tileset.image.substring(tileset.image.lastIndexOf('/')+1);
+	  
+	  // !!!! IMPORTANT: USE THIS IN DEPLOYMENT
+      //image.src = tileset.image.substring(tileset.image.lastIndexOf('/')+1);
+	  // USED TEMPORARILY FOR LOCAL TESTING
+	  image.src = "../../resources/levels/" + tileset.image;
     }
   );
 }

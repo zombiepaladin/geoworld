@@ -1,1 +1,1 @@
-Geoworld is an eudcational platformer game under development as a partnership between the Computing and Information Sciences department and the Geology Department of Kansas State University.
+Geoworld is an educational platformer game under development as a partnership between the Computing and Information Sciences department and the Geology Department of Kansas State University.
