@@ -6,9 +6,15 @@
 		"src/js/vector_library.js",
 		"src/js/dynamicPhysicsObject.js",
 		"src/js/player.js",
+        "src/js/level.js",
+        "src/js/tile_engine.js",
+        "src/js/entity.js",
 		"src/js/geoworld.js"
 	],
 	"stylesheets": [
 		"src/css/geoworld.css"
-	]
+	],
+    "levels": [
+        "lev_5_3_grassy_plains.json"
+    ]
 }

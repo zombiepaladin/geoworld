@@ -183,12 +183,10 @@ Player.prototype.render = function(timeStep, ctx) {
   if (this.facingLeft) ctx.scale(-1, 1);
   
   // Draw the sprite's current frame of animation
-  this.spritesheet.onload = function () {
-    ctx.drawImage(this.spritesheet, 
-	  this.frame.x, this.frame.y, this.frame.width, this.frame.height,
-	  -this.spriteHalfWidth, -this.spriteHeight, this.spriteWidth, this.spriteHeight
-    );
-  };
+  ctx.drawImage(this.spritesheet, 
+    this.frame.x, this.frame.y, this.frame.width, this.frame.height,
+    -this.spriteHalfWidth, -this.spriteHeight, this.spriteWidth, this.spriteHeight
+  );
   
   ctx.restore();
 }
