@@ -118,6 +118,7 @@ TileEngine.prototype.render = function(timestep, ctx) {
 		  var rowWidth = Math.floor(tileset.imagewidth / tileset.tilewidth);
 		  
 		  if(tilesheet) {
+			var spacing = tileset.spacing;
 			var flippedHorizontally = tileId & 0x80000000;
 			var flippedVertically = tileId & 0x40000000;
 			var flippedDiagonally = tileId & 0x20000000;
@@ -133,8 +134,8 @@ TileEngine.prototype.render = function(timestep, ctx) {
 			  ctx.translate(-x * tilewidth - tilewidth / 2, 0);
 			  ctx.drawImage(tilesheet, 
 				//tileX, tileY, tilewidth, tileheight,
-				(tileX * tilewidth) + 1, (tileY * tileheight) + 1, tilewidth - 2, tileheight - 1,
-				(x * tilewidth) - 1, y * tileheight, tilewidth + 1, tileheight + 2
+				(tileX * tilewidth) + (spacing * tileX), (tileY * tileheight) + (spacing * tileY), tilewidth, tileheight,
+				(x * tilewidth), y * tileheight, tilewidth, tileheight
 			  );
 			  ctx.restore();
 			} else if(flippedVertically) {
@@ -144,7 +145,7 @@ TileEngine.prototype.render = function(timestep, ctx) {
 			  ctx.translate(0, -y * tileheight - tileheight / 2);
 			  ctx.drawImage(tilesheet, 
 				//tileX, tileY, tilewidth, tileheight,
-				tileX * tilewidth, (tileY + 1) * tileheight, tilewidth, -tileheight,
+				tileX * tilewidth + (spacing * tileX), (tileY + 1) * tileheight + (spacing * tileY), tilewidth, -tileheight,
 				x * tilewidth, y * tileheight, tilewidth, tileheight
 			  );         
 			  ctx.restore();
@@ -155,15 +156,15 @@ TileEngine.prototype.render = function(timestep, ctx) {
 			  ctx.translate(-x * tilewidth - tilewidth, -y * tileheight - tileheight / 2);
 			  ctx.drawImage(tilesheet, 
 				//tileX, tileY, tilewidth, tileheight,
-				tileX * tilewidth, tileY * tileheight, tilewidth, tileheight,
+				tileX * tilewidth  + (spacing * tileX), tileY * tileheight + (spacing * tileY), tilewidth, tileheight,
 				x * tilewidth, y * tileheight, tilewidth + 1, tileheight
 			  );
 			  ctx.restore();
 			} else {
 			  ctx.drawImage(tilesheet, 
 				//tileX, tileY, tilewidth, tileheight,
-				(tileX * tilewidth) + 1, (tileY * tileheight) + 1, tilewidth - 1, tileheight - 1,
-				x  * tilewidth, y * tileheight, tilewidth + 1, tileheight + 1
+				(tileX * tilewidth) + (spacing * tileX), (tileY * tileheight) + (spacing * tileY), tilewidth, tileheight,
+				x  * tilewidth, y * tileheight, tilewidth, tileheight
 			  );
 			}
 		  }      

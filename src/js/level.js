@@ -3,7 +3,7 @@
 Level = function(tileMapObject) {
 	this.tileEngine = new TileEngine(tileMapObject);
 	// TODO: GENERALIZE SO THAT INITIALPOSITION CAN BE SET DEPENDING ON LEVEL
-	var initialPosition = new Vector(300, 100);
+	var initialPosition = new Vector(100, 100);
 	this.player = new Player(this, initialPosition);
 }
 
