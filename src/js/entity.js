@@ -1,9 +1,12 @@
 // Construct a new player object
 Entity = function(game){console.log(this);
-	this.id = Entity.nextId;
-	Entity[this.id] = this; // Store for getting any made entity by id.
-	Entity.nextId ++;
-	return this.id;
+	if(game){
+        this.id = Entity.nextId;
+        Entity[this.id] = this; // Store for getting any made entity by id.
+        Entity.nextId ++;
+        return this.id;
+    }
+    return 0;
 }
 Entity.nextId = 0;// Static variable to get next id when creating a Entity.
 
