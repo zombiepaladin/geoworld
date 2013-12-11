@@ -4,7 +4,7 @@
 		"src/js/animation_polyfill.js",
 		"src/js/math_helper_library.js",
 		"src/js/vector_library.js",
-		"src/js/dynamicPhysicsObject.js",
+        "src/js/rect.js",
 		"src/js/player.js",
         "src/js/level.js",
         "src/js/tile_engine.js",

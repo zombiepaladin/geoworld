@@ -31,10 +31,8 @@ TileEngine = function(tileMapObject) {
         engine.tilesheets[index] = this;
       }
 	  
-	  // !!!! IMPORTANT: USE THIS IN DEPLOYMENT
-      //image.src = tileset.image.substring(tileset.image.lastIndexOf('/')+1);
-	  // USED TEMPORARILY FOR LOCAL TESTING
-	  image.src = "../../resources/levels/" + tileset.image;
+	    //Don't change this to use a specific path, use node make!!!
+      image.src = tileset.image.substring(tileset.image.lastIndexOf('/')+1);
     }
   );
 }
@@ -100,7 +98,7 @@ TileEngine.prototype.isWaterAt = function(x, y) {
 // Render the tilemap
 //  timestep - the time between frames
 //  ctx - the rendering context
-TileEngine.prototype.render = function(timestep, ctx) {  
+TileEngine.prototype.render = function (timestep, ctx) {
   ctx.save();
   ctx.translate(-1 * this.scrollPosition.x, -1 * this.scrollPosition.y);
   

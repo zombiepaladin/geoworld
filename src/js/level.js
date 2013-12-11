@@ -21,19 +21,19 @@ Level.prototype.update = function(timeStep, input) {
 	var bottomClamp = (this.tileEngine.tilemap.layers[0].height - 1) * this.tileEngine.tilemap.tileheight - canvasHeight;
 	
 	// Handles the camera on the x-axis
-	if (this.player.physics.position.x <= midCanvasX || (this.tileEngine.scrollPosition.x != 0 && this.tileEngine.scrollPosition.x != rightClamp))
+	if (this.player.position.x <= midCanvasX || (this.tileEngine.scrollPosition.x != 0 && this.tileEngine.scrollPosition.x != rightClamp))
 		// Clamp the camera position to prevent going off screen on the left side of map
-		this.tileEngine.scrollPosition.x = Math.clamp(this.player.physics.position.x, 0, rightClamp);	
-	else if (this.player.physics.position.x >= midCanvasX || (this.tileEngine.scrollPosition.x != 0 && this.tileEngine.scrollPosition.x != rightClamp)) 
+		this.tileEngine.scrollPosition.x = Math.clamp(this.player.position.x, 0, rightClamp);	
+	else if (this.player.position.x >= midCanvasX || (this.tileEngine.scrollPosition.x != 0 && this.tileEngine.scrollPosition.x != rightClamp)) 
 		// Clamp the camera position to prevent going off screen on the right side of map
-		this.tileEngine.scrollPosition.x = Math.clamp(this.player.physics.position.x, 0, rightClamp);	
+		this.tileEngine.scrollPosition.x = Math.clamp(this.player.position.x, 0, rightClamp);	
 		
 	// TODO: HANDLE THE CAMERA ON THE Y-AXIS
 }
 
 Level.prototype.render = function(timeStep, ctx) {
-	this.tileEngine.render(timeStep, ctx);
-	this.player.render(timeStep, ctx);
+  this.tileEngine.render(timeStep, ctx);
+  this.player.render(timeStep, ctx);
 }
 
 Level.prototype.getGroundLevelAt = function(x) {
