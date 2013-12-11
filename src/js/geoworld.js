@@ -10,6 +10,10 @@ Geoworld = function() {
   // The game's containing div
   var game = document.getElementById("geoworld");
   
+  // The game's levels
+  var levels = [new Level(level_5_3)];
+  var currLevel = 0;
+  
   // The gameplay canvas & context
   var gameplayCanvas = document.getElementById("gameplay-canvas");
   this.gameWidth = gameplayCanvas.clientWidth;
@@ -23,9 +27,6 @@ Geoworld = function() {
     right: false,
     down: false
   };
-  
-  // The player object
-  var player = new Player(game);
   
   // Set up physics globals
   this.physics = new Object();
@@ -71,16 +72,17 @@ Geoworld = function() {
   // Update the game simualation by the timestep
   function update(timeStep) {
     // Update the player sprite
-    player.update(timeStep, input);
+    levels[currLevel].update(timeStep, input);
   }
   
   // Render the updated game
   function render(timeStep){
     gameplayCtx.clearRect(0, 0, Game.gameWidth, Game.gameHeight);
     
-    // Draw the player sprite
-    player.render(timeStep, gameplayCtx);
+    // Draw the level (and player)
+    levels[currLevel].render(timeStep, gameplayCtx);
     
+	/*
     // Draw water for physics demo:
     if (Game.enableWaterOnLeft() || Game.enableWaterOnRight()) {
       gameplayCtx.save();
@@ -96,6 +98,7 @@ Geoworld = function() {
 
       gameplayCtx.restore();
     }
+	*/
   }
 
   // The main game loop for the game
@@ -120,10 +123,12 @@ Geoworld = function() {
     document.getElementById("debug").innerHTML = str;
   }
 
+  /*
   this.enableHangTime = function () { return document.getElementById("hangTime").checked; }
   this.enableWaterOnLeft = function () { return document.getElementById("waterOnLeft").checked; }
   this.enableWaterOnRight = function () { return document.getElementById("waterOnRight").checked; }
   this.enableDoubleJump = function () { return document.getElementById("doubleJump").checked; }
+  */
 };
 
 Game = new Geoworld();

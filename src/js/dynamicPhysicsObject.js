@@ -1,8 +1,9 @@
 // Construct a dynamic physics object
 //TODO: Create base class for static physics objects?
-DynamicPhysicsObject = function (initialPosition, initialVelocity) {
-  this.position = initialPosition;
+DynamicPhysicsObject = function (initialPosition, initialVelocity, level) {
+  this.position = initialPosition;  // Absolute position on level
   this.velocity = initialVelocity;
+  this.level = level;
   this.maxVelocity = undefined;
   this.frictionConstant = 0;
   this.lastAcceleration = new Vector(0, 0);//Used to apply friction
@@ -101,5 +102,9 @@ DynamicPhysicsObject.prototype.accelerate = function (accelerationVector, scale)
 }
 
 DynamicPhysicsObject.prototype.isOnGround = function () {
-  return this.position.y >= Game.gameHeight;
+  return this.position.y >= this.level.getGroundLevelAt(this.position.x);
+}
+
+DynamicPhysicsObject.prototype.isUnderWater = function () {
+  return this.level.isWaterAt(this.position.x);
 }

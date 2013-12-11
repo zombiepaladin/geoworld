@@ -1,7 +1,8 @@
 // Construct a new player object
 //TODO: Make a child of dynamicPhysicsObject? (We need to agree on an OOP strategy / library if we do that.)
-Player = function(game) {
-  Entity.call(this, game);
+Player = function(level, initialPosition) {
+  this.level = level;
+
   // To use spritesheet data in the canvas, we need to load it
   // into javascript
   this.spritesheet = new Image();
@@ -21,7 +22,9 @@ Player = function(game) {
 
   // Create physics object:
   this.physics = new DynamicPhysicsObject(
-    new Vector(300, 100) //Initial position (In pixels)
+    initialPosition, //Initial position (In pixels)
+	new Vector(0, 0), //Initial velocity
+	level
   );
 
   this.physics.maxVelocity = new Vector(200, 400);
@@ -32,6 +35,7 @@ Player = function(game) {
   this.physics.hangTimeMinimum = 0.1;
 
   // Multi-jump:
+  this.jumpsMax = 1;
   this.jumpsLeft = 1;
   
   // Current animation frame to render
@@ -43,19 +47,21 @@ Player = function(game) {
   };
   
 }
-Player.prototype = new Entity();
-Player.prototype.constructor = Player;
+//Player.prototype = new Entity();
+//Player.prototype.constructor = Player;
 
 // Update the player's sprite given the provided input
 Player.prototype.update = function(timeStep, input) {
   var seconds = timeStep / 1000; // Convert timestep to seconds
   
+  /*
   //Apply physics demo properties:
   //(Later on this would be done dynamically based on collisions, level attributes, etc.)
   this.physics.hangTimeEnabled = Game.enableHangTime();
-
+  */
+  
   //TODO: This could be made more generic and added to the dynamicPhysicsObject once level stuff is in.
-  if (this.isUnderWater()) {
+  if (this.physics.isUnderWater()) {
     this.physics.gravityScale = 0.5;//Half gravity under water
   } else {
     this.physics.gravityScale = 1.0;//Full gravity above water
@@ -76,11 +82,11 @@ Player.prototype.update = function(timeStep, input) {
     (
      this.physics.isOnGround() ||
      this.jumpsLeft > 0 || //For double (triple, etc) jumping
-     this.isUnderWater() //Infinite mario-style jumping under water.
+     this.physics.isUnderWater() //Infinite mario-style jumping under water.
     )) {
     console.log("JUMP!");
     if (this.physics.isOnGround()) {
-      this.jumpsLeft = Game.enableDoubleJump() ? 1 : 0;
+      this.jumpsLeft = this.jumpsMax;
     } else {
       this.jumpsLeft--;
     }
@@ -94,9 +100,11 @@ Player.prototype.update = function(timeStep, input) {
   // Update physics:
   this.physics.update(timeStep);
   
+  /*
   // Wrap around edges of screen:
   if (this.physics.position.x > Game.gameWidth + this.spriteWidth / 2) { this.physics.position.x = -this.spriteWidth / 2; }
   if (this.physics.position.x < -this.spriteWidth / 2) { this.physics.position.x = Game.gameWidth + this.spriteWidth / 2; }
+  */
   
   // Determine the current frame of animation
   // Start with a "default" frame
@@ -163,20 +171,6 @@ Player.prototype.update = function(timeStep, input) {
   }
 }
 
-// Check if the player is under water
-// This will be more complex once level stuff is added.
-Player.prototype.isUnderWater = function () {
-  if (Game.enableWaterOnLeft() && this.physics.position.x <= Game.gameWidth / 2) {
-    return true;
-  }
-
-  if (Game.enableWaterOnRight() && this.physics.position.x > Game.gameWidth / 2) {
-    return true;
-  }
-
-  return false;
-}
-
 // Render the player's sprite using the provided context
 Player.prototype.render = function(timeStep, ctx) {
   ctx.save();
@@ -189,10 +183,12 @@ Player.prototype.render = function(timeStep, ctx) {
   if (this.facingLeft) ctx.scale(-1, 1);
   
   // Draw the sprite's current frame of animation
-  ctx.drawImage(this.spritesheet, 
-    this.frame.x, this.frame.y, this.frame.width, this.frame.height,
-    -this.spriteHalfWidth, -this.spriteHeight, this.spriteWidth, this.spriteHeight
-  );
+  this.spritesheet.onload = function () {
+    ctx.drawImage(this.spritesheet, 
+	  this.frame.x, this.frame.y, this.frame.width, this.frame.height,
+	  -this.spriteHalfWidth, -this.spriteHeight, this.spriteWidth, this.spriteHeight
+    );
+  };
   
   ctx.restore();
 }

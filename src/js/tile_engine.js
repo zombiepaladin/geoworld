@@ -3,13 +3,22 @@
 TileEngine = function(tileMapObject) {
   var engine = this;
   this.tilemap = tileMapObject;
-  // TODO: HANDLE MULTIPLE LAYERS ON A SINGLE LEVEL (NECESSARY?)
+  // TODO: HANDLE MULTIPLE TILESHEETS ON A SINGLE LEVEL (NECESSARY?)
   this.tilesheets = [];
-  this.layers = this.tilemap.layers.count;  // Number of layers
+  this.layers = this.tilemap.layers.length;  // Number of layers
   this.scrollPosition = {x: 0, y: 0};
 
+  // Find the ground layer
+  for (var i = 0; i < this.layers; i++) {
+	if (this.tilemap.layers[i].name === "Ground") {
+	  this.groundLayer = i;
+	  break;
+	}
+  } 
+  
+  // TODO: FIX THIS SO THAT IT ACTUALLY LOADS
   // Load the tileset images
-  tilemapObject.tilesets.forEach(
+  tileMapObject.tilesets.forEach(
   
     // For every tileset in array, we will load the corresponding
     // image and place it in the tilesheets array.
@@ -21,7 +30,7 @@ TileEngine = function(tileMapObject) {
       image.onload = function() {
         engine.tilesheets[index] = this;
       }
-      image.src = tileset.image;
+      image.src = "../../resources/levels/" + tileset.image;
     }
   );
 }
@@ -35,8 +44,8 @@ TileEngine.prototype.setScrollPosition = function(position) {
 
 // Calculate height based on x position
 TileEngine.prototype.getGroundLevelAt = function(x) {
-  var mapWidth = this.tilemap.layers[0].width;
-  var mapHeight = this.tilemap.layers[0].height;
+  var mapWidth = this.tilemap.layers[this.groundLayer].width;
+  var mapHeight = this.tilemap.layers[this.groundLayer].height;
   var tileHeight = this.tilemap.tileheight;
   var groundLevel = mapHeight * tileHeight;
   var tileX = Math.floor((x + this.scrollPosition.x) / this.tilemap.tilewidth);
@@ -44,7 +53,7 @@ TileEngine.prototype.getGroundLevelAt = function(x) {
   
   // Loop down through the current x below the player until a ground tile is reached
   for (y = Math.floor(this.scrollPosition.y / tileHeight); y < mapHeight; y++) {
-	var currTile = this.tilemap.layers[0].data[tileX + y * mapWidth];
+	var currTile = this.tilemap.layers[this.groundLayer].data[tileX + y * mapWidth];
 	var flippedHorizontally = currTile & 0x80000000;
 	currTile = currTile & ~(0x80000000 | 0x40000000 | 0x20000000);
     
@@ -53,7 +62,7 @@ TileEngine.prototype.getGroundLevelAt = function(x) {
     //var flippedDiagonally = currTile & 0x20000000;
 	
 	// Ground tile
-	if (this.tilemap.tilesets[0].tileproperties[currTile - 1].type === "ground") {
+	if (currTile !== 0 && this.tilemap.tilesets[0].tileproperties[currTile - 1].type === "Ground") {
 		//console.log(this.tilemap.tilesets[0].tileproperties);
 		var y0 = parseFloat(this.tilemap.tilesets[0].tileproperties[currTile - 1].left);
 		var y1 = parseFloat(this.tilemap.tilesets[0].tileproperties[currTile - 1].right);
@@ -78,9 +87,9 @@ TileEngine.prototype.getGroundLevelAt = function(x) {
 TileEngine.prototype.isWaterAt = function(x, y) {
   var tileX = Math.floor((x + this.scrollPosition.x) / this.tilemap.tilewidth);
   var tileY = Math.floor((y + this.scrollPosition.y + 20) / this.tilemap.tileheight);
-  var currTile = this.tilemap.layers[0].data[tileX + tileY * this.tilemap.layers[0].width];
+  var currTile = this.tilemap.layers[0].data[tileX + tileY * this.tilemap.layers[this.groundLayer].width];
   currTile = currTile & ~(0x80000000 | 0x40000000 | 0x20000000);
-  if (this.tilemap.tilesets[0].tileproperties[currTile - 1].type === "water") return true;
+  if (currTile !== 0 && this.tilemap.tilesets[0].tileproperties[currTile - 1].type === "Water") return true;
   return false;
 }
 
@@ -91,7 +100,7 @@ TileEngine.prototype.render = function(timestep, ctx) {
   ctx.save();
   ctx.translate(-1 * this.scrollPosition.x, -1 * this.scrollPosition.y);
   
-  var canvas = document.getElementById("game");  
+  var canvas = document.getElementById("geoworld");  
   var tilewidth = this.tilemap.tilewidth;
   var tileheight = this.tilemap.tileheight;
   var width = Math.floor(canvas.scrollWidth / tilewidth) + 2;
