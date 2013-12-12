@@ -127,11 +127,11 @@ Entity.prototype.accelerate = function (accelerationVector, scale) {
 }
 
 Entity.prototype.isOnGround = function () {
-  return this.position.y >= this.level.getGroundLevelAt(this.position.x, this.position.y );
+  return this.position.y >= this.level.getGroundLevelAt(this.position.x, this.position.y);
 }
 
 Entity.prototype.isUnderWater = function () {
-  return this.level.isWaterAt(this.position.x);
+  return this.level.isWaterAt(this.position.x, this.position.y);
 }
 
 

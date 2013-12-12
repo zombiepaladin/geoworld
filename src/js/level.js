@@ -2,9 +2,12 @@
 
 Level = function(game, tileMapObject) {
 	this.tileEngine = new TileEngine(tileMapObject);
-	// TODO: GENERALIZE SO THAT INITIALPOSITION CAN BE SET DEPENDING ON LEVEL
-	var initialPosition = new Vector(100, 100);
+
+	var startX = parseInt(tileMapObject.properties.startX);
+	var startY = parseInt(tileMapObject.properties.startY);
+	var initialPosition = new Vector(startX, startY);
 	var initialVelocity = new Vector(0, 0);
+	
 	this.player = new Player(game, initialPosition, initialVelocity, this);
 }
 
@@ -24,17 +27,12 @@ Level.prototype.update = function(timeStep, input) {
 	
 	
 	// Handles the camera on the x-axis
-	if ((this.player.position.x <= midCanvasX || (this.tileEngine.scrollPosition.x != 0 && this.tileEngine.scrollPosition.x != rightClamp)) ||
-	    (this.player.position.x >= midCanvasX || (this.tileEngine.scrollPosition.x != 0 && this.tileEngine.scrollPosition.x != rightClamp)))
-		// Clamp the camera position to prevent going off screen on the right and left side of map
-		this.tileEngine.scrollPosition.x = Math.clamp(this.player.position.x - midCanvasX, 0, rightClamp);	
+	// Clamp the camera position to prevent going off screen on the left and right of the map
+	this.tileEngine.scrollPosition.x = Math.clamp(this.player.position.x - midCanvasX, 0, rightClamp);	
 		
-	// TODO: HANDLE THE CAMERA ON THE Y-AXIS
 	// Handles the camera on the y-axis
-	if ((this.player.position.y <= midCanvasY || (this.tileEngine.scrollPosition.y != 0 && this.tileEngine.scrollPosition.y != bottomClamp)) ||
-	    (this.player.position.y >= midCanvasY || (this.tileEngine.scrollPosition.y != 0 && this.tileEngine.scrollPosition.y != bottomClamp)))
-		// Clamp the camera position to prevent going off screen on the top and bottom of the map
-		this.tileEngine.scrollPosition.y = Math.clamp(this.player.position.y - midCanvasY, 0, bottomClamp);
+	// Clamp the camera position to prevent going off screen on the top and bottom of the map
+	this.tileEngine.scrollPosition.y = Math.clamp(this.player.position.y - midCanvasY, 0, bottomClamp);
 }
 
 Level.prototype.render = function(timeStep, ctx) {

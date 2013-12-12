@@ -92,6 +92,9 @@ Player.prototype.update = function (timeStep, input) {
 
     //HACK: Using gravity scale to reduce jump impulse under water. Should add something more specific later.
     this.accelerate(new Vector(0, this.instantaneousJumpImpulse * this.gravityScale));
+	
+	console.log(this.position.x);
+	console.log(this.position.y);
   }
   
   /*

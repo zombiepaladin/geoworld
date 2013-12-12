@@ -86,9 +86,9 @@ TileEngine.prototype.getGroundLevelAt = function(absX, absY) {
 
 // Checks if the ground tile at the specified location contains water
 TileEngine.prototype.isWaterAt = function(x, y) {
-  var tileX = Math.floor((x + this.scrollPosition.x) / this.tilemap.tilewidth);
-  var tileY = Math.floor((y + this.scrollPosition.y + 20) / this.tilemap.tileheight);
-  var currTile = this.tilemap.layers[0].data[tileX + tileY * this.tilemap.layers[this.groundLayer].width];
+  var tileX = Math.floor(x) / this.tilemap.tilewidth;
+  var tileY = Math.floor(y) / this.tilemap.tileheight;
+  var currTile = this.tilemap.layers[this.groundLayer].data[tileX + tileY * this.tilemap.layers[this.groundLayer].width];
   currTile = currTile & ~(0x80000000 | 0x40000000 | 0x20000000);
   if (currTile !== 0 && this.tilemap.tilesets[0].tileproperties[currTile - 1].type === "water") return true;
   return false;
