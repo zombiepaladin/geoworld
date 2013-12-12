@@ -22,6 +22,8 @@ Geoworld = function() {
   
   // The input object
   var input = {
+    enter: false,
+	spacebar: false,
     left: false,
     up: false,
     right: false,
@@ -36,6 +38,12 @@ Geoworld = function() {
   document.addEventListener("keydown", function(event) {
     var key = event.keyCode || event.which;
     switch(key) {
+	  case 13: // enter key
+	    input.enter = true;
+		break;
+	  case 32: // spacebar key
+	    input.spacebar = true;
+		break;
       case 37: // left key
         input.left = true;
         break;
@@ -54,6 +62,12 @@ Geoworld = function() {
   document.addEventListener("keyup", function(event) {
     var key = event.keyCode || event.which;
     switch(key) {
+	  case 13: // enter key
+	    input.enter = false;
+		break;
+	  case 32: // spacebar key
+	    input.spacebar = false;
+		break;
       case 37: // left key
         input.left = false;
         break;

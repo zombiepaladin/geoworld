@@ -9,6 +9,7 @@ Level = function(game, tileMapObject) {
 	var initialVelocity = new Vector(0, 0);
 	
 	this.player = new Player(game, initialPosition, initialVelocity, this);
+	this.finished = false;
 }
 
 // Updates player and camera position on the level
@@ -46,4 +47,8 @@ Level.prototype.getGroundLevelAt = function(x, y) {
 
 Level.prototype.isWaterAt = function(x, y) {
 	return this.tileEngine.isWaterAt(x, y);
+}
+
+Level.prototype.isFinished = function() {
+	return this.finished;
 }
