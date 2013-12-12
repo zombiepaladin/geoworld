@@ -96,6 +96,11 @@ Entity.prototype.update = function (timeStep) {
   if (this.isOnGround()) {
     this.velocity.y = 0.0;
   }
+  
+  // Apply current ground level in case of slopes
+  if (this.isOnGround()) {
+    this.position.y = this.level.getGroundLevelAt(this.position.x, this.position.y);
+  }
 
   //Reset values that are only valid in-between calls to update:
   this.lastAcceleration = new Vector(0, 0);

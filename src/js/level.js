@@ -44,6 +44,6 @@ Level.prototype.getGroundLevelAt = function(x, y) {
 	return this.tileEngine.getGroundLevelAt(x, y);
 }
 
-Level.prototype.isWaterAt = function(x) {
-	return this.tileEngine.isWaterAt(x);
+Level.prototype.isWaterAt = function(x, y) {
+	return this.tileEngine.isWaterAt(x, y);
 }

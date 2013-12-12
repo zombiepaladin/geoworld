@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="150" height="40" tilewidth="24" tileheight="24">
+ <properties>
+  <property name="startX" value="72"/>
+  <property name="startY" value="648"/>
+ </properties>
  <tileset firstgid="1" name="grassy_plains" tilewidth="24" tileheight="24" spacing="2">
   <image source="../tilesets/dead_plains.png" width="180" height="102"/>
   <tile id="5">

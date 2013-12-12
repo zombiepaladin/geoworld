@@ -52,8 +52,8 @@ TileEngine.prototype.getGroundLevelAt = function(absX, absY) {
   var groundLevel = mapHeight * tileHeight;
   var tileX = Math.floor(absX / this.tilemap.tilewidth); 
   
-  // Loop down through the current x below the player until a ground tile is reached
-  for (y = Math.floor(absY / tileHeight); y < mapHeight; y++) {
+  // Loop down through the current x that player is on until a ground tile is reached
+  for (y = Math.floor(absY / tileHeight) - 1; y < mapHeight; y++) {
 	var currTile = this.tilemap.layers[this.groundLayer].data[tileX + y * mapWidth];
 	var flippedHorizontally = currTile & 0x80000000;
 	currTile = currTile & ~(0x80000000 | 0x40000000 | 0x20000000);
@@ -77,7 +77,7 @@ TileEngine.prototype.getGroundLevelAt = function(absX, absY) {
 		  xHeight = y1 + (y0 - y1) * ((xWidth - x0)/(x1 - x0));
 		else xHeight = y0 + (y1 - y0) * ((xWidth - x0)/(x1 - x0));
 
-		groundLevel = y * tileHeight - xHeight;
+		groundLevel = y * tileHeight + xHeight;
 		break;
 	}
   }
@@ -86,8 +86,8 @@ TileEngine.prototype.getGroundLevelAt = function(absX, absY) {
 
 // Checks if the ground tile at the specified location contains water
 TileEngine.prototype.isWaterAt = function(x, y) {
-  var tileX = Math.floor(x) / this.tilemap.tilewidth;
-  var tileY = Math.floor(y) / this.tilemap.tileheight;
+  var tileX = Math.floor(x / this.tilemap.tilewidth);
+  var tileY = Math.floor(y / this.tilemap.tileheight);
   var currTile = this.tilemap.layers[this.groundLayer].data[tileX + tileY * this.tilemap.layers[this.groundLayer].width];
   currTile = currTile & ~(0x80000000 | 0x40000000 | 0x20000000);
   if (currTile !== 0 && this.tilemap.tilesets[0].tileproperties[currTile - 1].type === "water") return true;

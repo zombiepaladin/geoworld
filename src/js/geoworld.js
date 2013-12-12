@@ -30,7 +30,7 @@ Geoworld = function() {
   
   // Set up physics globals
   this.physics = new Object();
-  this.physics.gravityConstant = 100;
+  this.physics.gravityConstant = 200;
   
   // Keypress handling
   document.addEventListener("keydown", function(event) {
