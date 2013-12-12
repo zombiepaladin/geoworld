@@ -1,6 +1,6 @@
 // Construct a new player object
 //TODO: Make a child of dynamicPhysicsObject? (We need to agree on an OOP strategy / library if we do that.)
-Player = function (game, initialPosition, initialVelocity) {
+Player = function (game, initialPosition, initialVelocity, level) {
 
   // To use spritesheet data in the canvas, we need to load it
   // into javascript
@@ -8,7 +8,7 @@ Player = function (game, initialPosition, initialVelocity) {
   spritesheet.src = "robot.png";
 
   //Call base class constructor:
-  Entity.call(this, game, initialPosition, initialVelocity, spritesheet);
+  Entity.call(this, game, initialPosition, initialVelocity, spritesheet, level);
   
   // Sprite size constants
   this.spriteWidth = 80;
@@ -170,7 +170,7 @@ Player.prototype.render = function(timeStep, ctx) {
   ctx.save();
 
   // Translate sprite to on-screen position
-  ctx.translate(this.position.x, this.position.y);
+  ctx.translate(this.position.x - this.level.tileEngine.scrollPosition.x, this.position.y - this.level.tileEngine.scrollPosition.y);
   
   // Flip direction sprite faces when moving left 
   // (animations are all drawn facing right)

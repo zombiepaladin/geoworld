@@ -11,7 +11,7 @@ Geoworld = function() {
   var game = document.getElementById("geoworld");
   
   // The game's levels
-  var levels = [new Level(level_5_3)];
+  var levels = [new Level(game, level_5_3)];
   var currLevel = 0;
   
   // The gameplay canvas & context
