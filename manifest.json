@@ -9,6 +9,7 @@
         "src/js/level.js",
         "src/js/tile_engine.js",
         "src/js/entity.js",
+		"src/js/fossil.js",
 		"src/js/geoworld.js"
 	],
 	"stylesheets": [
