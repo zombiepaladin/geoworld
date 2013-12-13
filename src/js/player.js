@@ -30,8 +30,8 @@ Player = function (game, initialPosition, initialVelocity, level) {
   this.hangTimeMinimum = 0.1;
 
   // Multi-jump:
-  this.jumpsMax = 1;
-  this.jumpsLeft = 1;
+  this.jumpsMax = 2;
+  this.jumpsLeft = 2;
   
   // Current animation frame to render
   this.frame = {
@@ -83,7 +83,7 @@ Player.prototype.update = function (timeStep, input) {
      this.isUnderWater() //Infinite mario-style jumping under water.
     )) {
     if (this.isOnGround()) {
-      this.jumpsLeft = this.jumpsMax;
+      this.jumpsLeft = this.jumpsMax - 1;
     } else {
       this.jumpsLeft--;
     }
@@ -92,9 +92,6 @@ Player.prototype.update = function (timeStep, input) {
 
     //HACK: Using gravity scale to reduce jump impulse under water. Should add something more specific later.
     this.accelerate(new Vector(0, this.instantaneousJumpImpulse * this.gravityScale));
-	
-	console.log(this.position.x);
-	console.log(this.position.y);
   }
   
   /*

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="257" height="80" tilewidth="24" tileheight="24">
+ <properties>
+  <property name="endTileX" value="252"/>
+  <property name="endTileY" value="63"/>
+  <property name="startX" value="1512"/>
+  <property name="startY" value="50"/>
+ </properties>
+ <tileset firstgid="1" name="lava_night" tilewidth="24" tileheight="24" spacing="2">
+  <image source="../tilesets/lava_night.png" width="154" height="102"/>
+  <tile id="0">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="24"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="12"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="left" value="12"/>
+    <property name="right" value="24"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="12"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="left" value="12"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="18">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="24"/>
+    <property name="type" value="ceiling"/>
+   </properties>
+  </tile>
+  <tile id="19">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ceiling"/>
+   </properties>
+  </tile>
+  <tile id="20">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="12"/>
+    <property name="type" value="ceiling"/>
+   </properties>
+  </tile>
+  <tile id="21">
+   <properties>
+    <property name="left" value="12"/>
+    <property name="right" value="24"/>
+    <property name="type" value="ceiling"/>
+   </properties>
+  </tile>
+  <tile id="22">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="12"/>
+    <property name="type" value="ceiling"/>
+   </properties>
+  </tile>
+  <tile id="23">
+   <properties>
+    <property name="left" value="12"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ceiling"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Sky" width="257" height="80">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DAQkAAAwEoeP7h16OgYKrpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqrPH3DtM2xAQQEA
+  </data>
+ </layer>
+ <layer name="Ground" width="257" height="80">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2c2W7bMBQFaaBF17cuyf9/aR0URhRaorhd3kNqBhggdVKFoXiOKcVOCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgyWdnAcAH7+zTCwDj8c42fQApjtbAzXNQC/E2j955pgcgBR1gyy3M3QP0wfoc5Z8OaGeV/NMJa0MH2HALa3cAfbAOdIANV8k/XTA/R+eTDmjjih1AP8wJHWADHUBHzAIdYAMdQDfMAh1gA/mnE2bhKP90QD3sAeiDmaAD+kL+6YLZOJpXOqAO8k8PzIZaB8x8vtkD+MrzVh1Hc+k1n2cZUj7PdIC/yutDFcUOSOVI9RyTfx1V14gqavN4ln/V80sH6Ki8ThRRm0P2AXme8WvgWBSlB/JRm79Z7weM3gPk4J1Db+mBPNSyNuO1gMd1QCve+RzZA5BGLWuzdsDotd2KdzbpAR3U5m3GawGle4G5eI9zdAcorhsV1OYsta9WPJfevw+oxTuX9IAOavM1YwfMlP0H3pn06gF4Ri1rR3+HTzH/b4zugJe7r5lj886coopryBvVuaIDnv2dMR7vjKmruo48ae2AH3d/ho/P3ym/ZB537/8qMqIDcrIfBoxjFVXXkhe1XVma/dYeUMWyA9j30wEjKJ2nOPu15yC3B9Sx6ICS7G/xztZM0gPvlMzR13Ce/ZfE5+Ljf7v73ebHGo5n9nuP4wrSAe8czU88R4/856zfnD3Cdp+/Qhe0vEenR/ZjvDOmLh3wjsUcleyPV+qC0h6wyH6vsa2u+n2mkaTmqPaavfReQXzPcPUu6HG9b0XPnFkcs3cPwHkua3qg9fWzNb9rSHk0vp7HtCYna6PHsX1s22vxmLyzfrbOrs7Zc1bN83Kve+V0wH9y5koZ76yfrTEI4c/dv+E8i7ld0LoPsOj62B7HtkZtPLV4rwE6IJ+cPUFOF6jkP9UDyh2gNp5WlO9Hcj3wTO6eINUFah1gbSvKY+tFaQ88Xh89yzlckdIu2KJ0LaC8frzHPfpnz+2B7fsjSr425+t7n0PY52odsLee4o9Dp2Or2YpVBkf/HPCRq3fAlZyBWcc9Iz3eT4RzC9dk733E3msR6QCw5+hvCHivQ6QDwBayj7mCPZ92Hst9vWvpa4BTfzvIe62hpj3oeayr0Ot19md6ry/UNyb1uT16fa+to/Lhacm8kXn0ckv8mOX39c6nWgcgXk3vfNIBiL5655MOQNTRM5/xx7fo8Vt4HuPZv8k/Yp08lyIiIiIiIiIiIiIiIiIiIiIi4kz+A9QRS2NAQQEA
+  </data>
+ </layer>
+ <layer name="Ash" width="257" height="80">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3cyxKCIBQAUF3kruf/f2yycMYcxDKTkHNm7qIkhg03L4hNAwAAAAAAAAAAAAAAAAAAAAAAAAAAAADwW20fp0S0+YYG7KBt5vPAcA04LjkA6pbKAWoBOD7rAVA3tQDUzX0A1M16ANRNDoC6pea49QCow1IeAAAAAAAAAAAAAAD2043ik2tA2e65BwBkEeb+Y+Vvz1sOBNjVVv/78gCU57Jxf9c+bhv3CZRJLgCuuQcAvMhVs09rhC4Sse9Tbcdi7ef6i7WBmli7AwL1OgAQ2NMDArkACOzpAQAAa88SAuX65hwxUDZzH/5T7Ln5pefo3+XdQXAMw55e7MzM9HMI9/wAAAAAAAAAAAAAAAAAAACwnyd99IXtQEEBAA==
+  </data>
+ </layer>
+</map>
