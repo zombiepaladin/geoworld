@@ -27,6 +27,7 @@ EventController.prototype.update = function(timeStep, input) {
 			this.currEvent.update(timeStep, input);
 			var selection = this.currEvent.selection;
 			if (selection !== null) {
+				this.currEvent.selection = null;  // Reset selection
 				this.handleSelection(selection);
 			}
 		}
@@ -84,6 +85,7 @@ EventController.prototype.render = function(timeStep, ctx) {
 	}
 }
 
+
 //======================================
 // Title Screen
 //--------------------------------------
@@ -100,7 +102,9 @@ TitleScreen = function() {
 	// Used to know when to draw logos, only enterText for now
 	this.clock = 0;
 	
-	//TODO: MAKE A MORE INTERESTING TITLE SCREEN
+	//TODO: MAKE A MORE INTERESTING TITLE SCREEN; SHOULD ALSO WAIT
+	// A CERTAIN AMOUNT OF TIME BEFORE ACCEPTING INPUT TO AVOID RAPID 
+	// OSCILLATION BETWEEN EVENTS
 }
 
 TitleScreen.prototype.update = function(timeStep, input) {
@@ -127,6 +131,7 @@ TitleScreen.prototype.render = function(timeStep, ctx) {
         );
 	}
 }
+
 
 //======================================
 // Pause Screen
@@ -172,6 +177,7 @@ PauseScreen.prototype.render = function(timeStep, ctx) {
 }
 
 
+
 //======================================
 // Finish Level Screen
 //--------------------------------------
@@ -187,10 +193,35 @@ FinishLevelScreen.prototype.render = function() {
 
 }
 
+
 //======================================
 // Level Select Screen
 //--------------------------------------
-LevelSelectScreen = function() {
+LevelSelectScreen = function(levels) {
+	this.selection = null;
+	this.levels = levels;
+	this.levelsFinished = {"Phase1": 0, "Phase2": 0, "Phase3": 0, "Phase4": 0, "Phase5": 0, 
+						   "Phase6": 0, "Phase7": 0, "Phase8": 0 };
+	// Will needed to be updated for number of levels made for each phase
+	this.numLevels = {"Phase1": 0, "Phase2": 0, "Phase3": 0, "Phase4": 0, "Phase5": 3, 
+					  "Phase6": 0, "Phase7": 0, "Phase8": 0 };
+}
+
+// Takes a level and increases the number of levels completed not completed before
+LevelSelectScreen.prototype.completeLevel = function(level) {
+	var phase = "Phase" + level.substring(level.indexOf('_')+1, level.lastIndexOf('_'));
+	var levelNum = parseInt(level.substring(level.lastIndexOf('_')+1));
+	
+	if (this.levelsFinished[phase] < levelNum) {
+		this.levelsFinished[phase]++;
+	}
+}
+
+LevelSelectScreen.prototype.update = function(timeStep, input) {
+
+}
+
+LevelSelectScreen.prototype.render = function(timeStep, ctx) {
 
 }
 

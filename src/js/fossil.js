@@ -18,7 +18,7 @@ Fossil.prototype.update = function(timeStep, input) {
 	//Update the fossil object
 }
 
-Fossil.prototype.retrieve(time) {
+Fossil.prototype.retrieve = function(time) {
 	this.retrievedAt = time;
 	this.retrieved = true;
 }

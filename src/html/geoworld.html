@@ -13,14 +13,10 @@
     </div>
     <div id="debug">NULL</div>
     <div id="physicsDemoSettings">
-	  <!--
-      <strong>Physics Demo Settings</strong><br>
-	  <input type="checkbox" id="hangTime" /><label for="hangTime">Hang Time</label><br>
-      <input type="checkbox" id="waterOnLeft" /><label for="waterOnLeft">Water On Left</label><br>
-      <input type="checkbox" id="waterOnRight" /><label for="waterOnRight">Water On Right</label><br>
-      <input type="checkbox" id="doubleJump" /><label for="doubleJump">Double Jump</label><br>
-	  -->
     </div>
+	
+	<!-- All audio files will be done like this -->
+	<audio id="multiaudio1" src="" preload="auto"></audio>
 	
 	<!-- Load JSON files as javascript tags - note this is a bit hackish -->
 	<script type="text/javascript" src="lev_5_1_dead_plains.json"></script>
@@ -32,7 +28,9 @@
     <script type="text/javascript" src="math_helper_library.js"></script>
     <script type="text/javascript" src="vector_library.js"></script>
     <script type="text/javascript" src="rect.js"></script>
-    
+    <script type="text/javascript" src="sounds.js"></script>
+	
+	<script type="text/javascript" src="fossil.js"></script>
     <script type="text/javascript" src="entity.js"></script>
     <script type="text/javascript" src="game_events.js"></script>
     <script type="text/javascript" src="player.js"></script>
