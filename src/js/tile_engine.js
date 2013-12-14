@@ -16,7 +16,6 @@ TileEngine = function(tileMapObject) {
 	}
   } 
   
-  // TODO: FIX THIS SO THAT IT ACTUALLY LOADS
   // Load the tileset images
   tileMapObject.tilesets.forEach(
   
@@ -82,6 +81,16 @@ TileEngine.prototype.getGroundLevelAt = function(absX, absY) {
 	}
   }
   return groundLevel;
+}
+
+// Checks if the tile at the specified location is the end (portal)
+TileEngine.prototype.isEndAt = function(x, y) {
+  var tileX = Math.floor(x / this.tilemap.tilewidth);
+  var tileY = Math.floor(y / this.tilemap.tileheight);
+  var currTile = this.tilemap.layers[this.groundLayer].data[tileX + tileY * this.tilemap.layers[this.groundLayer].width];
+  currTile = currTile & ~(0x80000000 | 0x40000000 | 0x20000000);
+  if (currTile !== 0 && this.tilemap.tilesets[0].tileproperties[currTile - 1].type === "portal") return true;
+  return false;
 }
 
 // Checks if the ground tile at the specified location contains water

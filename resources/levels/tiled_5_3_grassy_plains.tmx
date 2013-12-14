@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="250" height="40" tilewidth="24" tileheight="24">
  <properties>
-  <property name="endTileX" value="245"/>
-  <property name="endTileY" value="35"/>
   <property name="startX" value="72"/>
   <property name="startY" value="648"/>
  </properties>

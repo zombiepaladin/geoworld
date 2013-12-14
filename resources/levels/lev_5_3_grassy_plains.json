@@ -36,8 +36,6 @@ level_5_3 = { "height":40,
  "orientation":"orthogonal",
  "properties":
     {
-     "endTileX":"245",
-     "endTileY":"35",
      "startX":"72",
      "startY":"648"
     },

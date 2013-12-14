@@ -21,6 +21,7 @@ Geoworld = function() {
   
   // The input object
   var input = {
+    escape: false,
     enter: false,
 	spacebar: false,
     left: false,
@@ -39,6 +40,9 @@ Geoworld = function() {
     switch(key) {
 	  case 13: // enter key
 	    input.enter = true;
+		break;
+	  case 27: // escape key
+	    input.escape = true;
 		break;
 	  case 32: // spacebar key
 	    input.spacebar = true;
@@ -63,6 +67,9 @@ Geoworld = function() {
     switch(key) {
 	  case 13: // enter key
 	    input.enter = false;
+		break;
+      case 27: // escape key
+	    input.escape = true;
 		break;
 	  case 32: // spacebar key
 	    input.spacebar = false;
