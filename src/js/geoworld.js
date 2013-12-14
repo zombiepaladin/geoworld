@@ -101,24 +101,6 @@ Geoworld = function() {
     
     // Draw the level (and player)
     eventController.render(timeStep, gameplayCtx);
-    
-	/*
-    // Draw water for physics demo:
-    if (Game.enableWaterOnLeft() || Game.enableWaterOnRight()) {
-      gameplayCtx.save();
-      gameplayCtx.fillStyle = "rgba(52, 179, 247, 0.5)";
-      
-      if (Game.enableWaterOnLeft()) {
-        gameplayCtx.fillRect(0, 0, Game.gameWidth / 2, Game.gameHeight);
-      }
-
-      if (Game.enableWaterOnRight()) {
-        gameplayCtx.fillRect(Game.gameWidth / 2, 0, Game.gameWidth / 2, Game.gameHeight);
-      }
-
-      gameplayCtx.restore();
-    }
-	*/
   }
 
   // The main game loop for the game
@@ -142,13 +124,6 @@ Geoworld = function() {
   this.setDebugString = function (str) {
     document.getElementById("debug").innerHTML = str;
   }
-
-  /*
-  this.enableHangTime = function () { return document.getElementById("hangTime").checked; }
-  this.enableWaterOnLeft = function () { return document.getElementById("waterOnLeft").checked; }
-  this.enableWaterOnRight = function () { return document.getElementById("waterOnRight").checked; }
-  this.enableDoubleJump = function () { return document.getElementById("doubleJump").checked; }
-  */
 };
 
 Game = new Geoworld();
