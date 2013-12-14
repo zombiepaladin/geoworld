@@ -10,9 +10,8 @@ Geoworld = function() {
   // The game's containing div
   var game = document.getElementById("geoworld");
   
-  // The game's levels
-  var levels = [new Level(game, level_5_3)];
-  var currLevel = 0;
+  // Dictates the events or flow of the game
+  var eventController = new EventController(game);
   
   // The gameplay canvas & context
   var gameplayCanvas = document.getElementById("gameplay-canvas");
@@ -86,7 +85,7 @@ Geoworld = function() {
   // Update the game simualation by the timestep
   function update(timeStep) {
     // Update the player sprite
-    levels[currLevel].update(timeStep, input);
+    eventController.update(timeStep, input);
   }
   
   // Render the updated game
@@ -94,7 +93,7 @@ Geoworld = function() {
     gameplayCtx.clearRect(0, 0, Game.gameWidth, Game.gameHeight);
     
     // Draw the level (and player)
-    levels[currLevel].render(timeStep, gameplayCtx);
+    eventController.render(timeStep, gameplayCtx);
     
 	/*
     // Draw water for physics demo:

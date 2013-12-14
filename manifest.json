@@ -4,6 +4,7 @@
 		"src/js/animation_polyfill.js",
 		"src/js/math_helper_library.js",
 		"src/js/vector_library.js",
+		"src/js/game_events.js",
         "src/js/rect.js",
 		"src/js/player.js",
         "src/js/level.js",
@@ -16,6 +17,8 @@
 		"src/css/geoworld.css"
 	],
     "levels": [
-        "lev_5_3_grassy_plains.json"
+		"lev_5_1_dead_plains.json",
+        "lev_5_3_grassy_plains.json",
+		"lev_5_4_lava_mountain.json"
     ]
 }

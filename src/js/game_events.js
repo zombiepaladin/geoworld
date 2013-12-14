@@ -1,7 +1,9 @@
 EventController = function(game) {
-	this.specialEvents = {"titlescreen":  new TitleScreen(),
+	this.specialEvents = {"none": new EmptyEvent(),
+						 "titlescreen":  new TitleScreen(),
 						 "pausescreen":  new PauseScreen(),
-						 "levelfinished": new FinishLevel()
+						 "levelfinishedscreen": new FinishLevelScreen(),
+						 "levelselectscreen": new LevelSelectScreen()
 						 };
 						
 	this.levels = {"level_5_1": new Level(game, level_5_1),
@@ -9,38 +11,31 @@ EventController = function(game) {
 				   "level_5_4": new Level(game, level_5_4)
 				  };
 				 
-	this.currEvent = specialEvents["titlescreen"];
+	this.currEvent = this.specialEvents["titlescreen"];
 	this.currLevel = null;
 }				 
 
 EventController.prototype.update = function(timeStep, input) {
 
 	// Handle special events
-	if (this.currEvent !== null) {
+	if (this.currEvent.getSelection() !== "noevent") {
 		this.currEvent.update(timeStep, input);
 		var selection = this.currEvent.getSelection();
 		if (selection !== null) {
-			handleSelection(selection);
+			this.handleSelection(selection);
 		}
-		if (this.currEvent.isFinished()) {
-			this.currEvent = null;
-		}
-	}
-	// Set current level to default if not set; will probably be lab later on
-	else if (this.currLevel  === null) {
-		this.currLevel = this.levels["level_5_1"];
 	}
 	// Handle level
 	else {
 		// Pause the game
 		if (input.enter) {
-			this.currEvent = specialEvents["pausescreen"];
+			this.currEvent = this.specialEvents["pausescreen"];
 		}
 		else {
 			this.currLevel.update(timeStep, input);
 			// Handle the end of a level
 			if (this.currLevel.isFinished()) {
-				this.currEvent = specialEvents["levelfinished"];
+				this.currEvent = this.specialEvents["levelfinishedscreen"];
 			}
 		}
 	}
@@ -48,11 +43,19 @@ EventController.prototype.update = function(timeStep, input) {
 
 // Takes a selection from an event (e.g. "resume" or "quitgame" in PauseScreen) and handles it
 EventController.prototype.handleSelection = function(selection) {
-
+	if (selection === "startgame") {
+		this.currEvent = this.specialEvents["none"];
+		this.currLevel = this.levels["level_5_1"];
+	}
 }
 
 EventController.prototype.render = function(timeStep, ctx) {
-	this.currEvent.render(timeStep, ctx);
+	if (this.currEvent.getSelection() !== "noevent") {
+		this.currEvent.render(timeStep, ctx);
+	}
+	else if (this.currLevel !== null) {
+		this.currLevel.render(timeStep, ctx);
+	}
 }
 
 TitleScreen = function() {
@@ -79,7 +82,7 @@ TitleScreen.prototype.update = function(timeStep, input) {
 	}
 }
 
-TitleScreen.prototype.getSelection() {
+TitleScreen.prototype.getSelection = function() {
 	return this.selection;
 }
 
@@ -87,14 +90,31 @@ TitleScreen.prototype.render = function(timeStep, ctx) {
 	// Draw logo
 	ctx.drawImage(this.logo, 
 	              0, 0, 514, 101,
-	             100, 0, 514, 101
+	             120, 40, 514, 101
     );
 	
 	// Draw enterText after certain amount of time
-	if (this.clock > 3000) {
+	if (this.clock > 1500) {
         ctx.drawImage(this.enterText, 
 	                  0, 0, 156, 18,
-	                  400, 130, 156, 18
+	                  400, 160, 156, 18
         );
 	}
 }
+
+PauseScreen = function() {
+
+}
+
+FinishLevelScreen = function() {
+
+}
+
+LevelSelectScreen = function() {
+
+}
+
+EmptyEvent = function() {}
+EmptyEvent.prototype.update = function(timeStep, input) {}
+EmptyEvent.prototype.render= function(timeStep, ctx) {}
+EmptyEvent.prototype.getSelection = function() { return "noevent"; }
