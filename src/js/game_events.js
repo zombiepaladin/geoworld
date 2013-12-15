@@ -20,18 +20,13 @@ EventController = function(game) {
 }				 
 
 EventController.prototype.update = function(timeStep, input) {
-	//try {
-		// Handle events
-		this.currEvent.update(timeStep, input);
-		var selection = this.currEvent.selection;
-		if (selection !== null) {
-			this.currEvent.selection = null;  // Reset selection
-			this.handleSelection(selection);
-		}
-	//}
-	//catch(e) { 
-	//	console.log(e);  
-	//}
+	// Handle events
+	this.currEvent.update(timeStep, input);
+	var selection = this.currEvent.selection;
+	if (selection !== null) {
+		this.currEvent.selection = null;  // Reset selection
+		this.handleSelection(selection);
+	}
 }
 
 // Takes a selection from an event (e.g. "resume" or "quitgame" in PauseScreen) and handles it
@@ -46,8 +41,11 @@ EventController.prototype.handleSelection = function(selection) {
 		this.currEvent = this.events["level"];
 	}
 	else if (selection === "quit") {
-		this.events["level"].level = null;  // Reset level
+		//this.events["level"].level = null;  // Reset level
 		this.currEvent = this.events["titlescreen"];
+	}
+	else if (selection === "finishlevel") {
+		this.currEvent = this.events["levelfinishedscreen"];
 	}
 	else if (selection.indexOf("level") != -1) {
 		this.currEvent = this.events["level"];
@@ -56,12 +54,7 @@ EventController.prototype.handleSelection = function(selection) {
 }
 
 EventController.prototype.render = function(timeStep, ctx) {
-	//try {
-		this.currEvent.render(timeStep, ctx);
-	//}
-	//catch(e) {
-	//	console.log(this.currEvent + ": " + e);
-	//}
+	this.currEvent.render(timeStep, ctx);
 }
 
 
@@ -199,15 +192,34 @@ PauseScreen.prototype.render = function(timeStep, ctx) {
 //--------------------------------------
 FinishLevelScreen = function() {
 	this.selection = null;
+	this.clock = 0;
+	this.displayTime = 1500;  // Amount of time to display each fossil message
+	this.collectedFossils = [];
+	this.currFossil = 0;
+}
+
+FinishLevelScreen.prototype.update = function(timeStep, input) {
+	this.clock += timeStep;
 	
+	// Change each collected fossil to draw after certain amount of time
+	if (this.clock > this.displayTime * (this.currFossil+2)) {
+		// If there are no more fossils to display, then go back to level select
+		if (this.collectedFossils.length >= this.currFossil + 1 || this.collectedFossils == undefined) {
+			this.selection = "startgame";
+		}
+		else this.currFossil++;
+	}
 }
 
-FinishLevelScreen.prototype.update = function() {
-
-}
-
-FinishLevelScreen.prototype.render = function() {
-
+FinishLevelScreen.prototype.render = function(timeStep, ctx) {
+	ctx.save();
+	ctx.fillStyle = "red";
+	ctx.font = "bold 30px Arial";
+	ctx.fillText("Level Completed!", 280, 100);	
+	if (this.collectedFossils[this.currFossil] !== undefined) {
+		ctx.fillText("You collected the " + this.collectedFossils[this.currFossil] + " fossil!", 150, 300);
+	}
+	ctx.restore();
 }
 
 
@@ -271,7 +283,6 @@ LevelSelectScreen.prototype.update = function(timeStep, input) {
 		}
 	}
 }
-
 
 LevelSelectScreen.prototype.render = function(timeStep, ctx) {
 	ctx.save();

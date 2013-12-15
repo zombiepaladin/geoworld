@@ -9,7 +9,6 @@ Level = function(game, tileMapObject) {
 	var initialVelocity = new Vector(0, 0);
 	
 	this.player = new Player(game, initialPosition, initialVelocity, this);
-	this.finished = false;
 }
 
 // Updates player and camera position on the level
@@ -24,8 +23,6 @@ Level.prototype.update = function(timeStep, input) {
 	var rightClamp = (this.tileEngine.tilemap.layers[0].width - 1) * this.tileEngine.tilemap.tilewidth - canvasWidth;
 	// Bottom of the map
 	var bottomClamp = (this.tileEngine.tilemap.layers[0].height - 1) * this.tileEngine.tilemap.tileheight - canvasHeight;
-	
-	
 	
 	// Handles the camera on the x-axis
 	// Clamp the camera position to prevent going off screen on the left and right of the map
@@ -50,5 +47,5 @@ Level.prototype.isWaterAt = function(x, y) {
 }
 
 Level.prototype.isFinished = function() {
-	return this.finished;
+	return this.tileEngine.isEndAt(this.player.position.x, this.player.position.y);
 }

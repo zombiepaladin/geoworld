@@ -89,7 +89,10 @@ Player.prototype.update = function (timeStep, input) {
     }
 
     input.up = false;//HACK: Should probably modify the input system so we can check if it was just pressed instead.
-
+    
+	this.velocity.y = 0;  // Reset y-velocity to 0 for multiple jumps
+	this.lastAcceleration.y = 0;
+	
     //HACK: Using gravity scale to reduce jump impulse under water. Should add something more specific later.
     this.accelerate(new Vector(0, this.instantaneousJumpImpulse * this.gravityScale));
   }
