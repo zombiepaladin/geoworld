@@ -20,6 +20,7 @@
     "levels": [
 		"lev_5_1_dead_plains.json",
         "lev_5_3_grassy_plains.json",
-		"lev_5_4_lava_mountain.json"
+		"lev_5_4_lava_mountain.json",
+		"lev_3_1_watercave.json"
     ]
 }

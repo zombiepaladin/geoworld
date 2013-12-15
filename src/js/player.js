@@ -64,6 +64,10 @@ Player.prototype.update = function (timeStep, input) {
   } else {
     this.gravityScale = 1.0;//Full gravity above water
   }
+   if (this.isOnAir()) {
+	this.accelerate(new Vector(0, -7));
+  }
+  
 
   // Handle user input
   if(input.left) {
