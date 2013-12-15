@@ -1,4 +1,6 @@
 // Used by menus to prevent input from activating more than once per press
+// If anybody wants to make a better implementation that can be used for player
+// then feel free to do so
 InputHandler = function(minTime) {
 	this.minTime = minTime;
 	this.enterClock = 0;
