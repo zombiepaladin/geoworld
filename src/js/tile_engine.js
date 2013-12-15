@@ -15,6 +15,14 @@ TileEngine = function(tileMapObject) {
 	  break;
 	}
   } 
+    //Find air layer
+  for (var i = 0; i < this.layers; i++) {
+	if (this.tilemap.layers[i].name === "Air") {
+	  this.airLayer = i;
+	  break;
+	}
+  } 
+  
   
   // Load the tileset images
   tileMapObject.tilesets.forEach(
@@ -90,6 +98,15 @@ TileEngine.prototype.isEndAt = function(x, y) {
   var currTile = this.tilemap.layers[this.groundLayer].data[tileX + tileY * this.tilemap.layers[this.groundLayer].width];
   currTile = currTile & ~(0x80000000 | 0x40000000 | 0x20000000);
   if (currTile !== 0 && this.tilemap.tilesets[0].tileproperties[currTile - 1].type === "portal") return true;
+  return false;
+}
+// Checks if the tile at the specified location is on air
+TileEngine.prototype.isAirAt = function(x, y) {
+  var tileX = Math.floor(x / this.tilemap.tilewidth);
+  var tileY = Math.floor(y / this.tilemap.tileheight);
+  var currTile = this.tilemap.layers[this.airLayer].data[tileX + tileY * this.tilemap.layers[this.airLayer].width];
+  currTile = currTile & ~(0x80000000 | 0x40000000 | 0x20000000);
+  if (currTile !== 0 && this.tilemap.tilesets[0].tileproperties[currTile - 1].type === "air") return true;
   return false;
 }
 

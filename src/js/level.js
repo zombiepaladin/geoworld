@@ -45,6 +45,9 @@ Level.prototype.getGroundLevelAt = function(x, y) {
 Level.prototype.isWaterAt = function(x, y) {
 	return this.tileEngine.isWaterAt(x, y);
 }
+Level.prototype.isAirAt = function(x, y) {
+	return this.tileEngine.isAirAt(x, y);
+}
 
 Level.prototype.isFinished = function() {
 	return this.tileEngine.isEndAt(this.player.position.x, this.player.position.y);

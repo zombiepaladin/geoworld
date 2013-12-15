@@ -13,7 +13,8 @@ EventController = function(game) {
 						
 	this.levels = {"level_5_1": new Level(game, level_5_1),
 	               "level_5_3": new Level(game, level_5_3),
-				   "level_5_4": new Level(game, level_5_4)
+				   "level_5_4": new Level(game, level_5_4),
+				   "level_3_1": new Level(game, level_3_1)
 				  };
 				 
 	this.currEvent = this.events["titlescreen"];
