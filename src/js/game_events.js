@@ -13,7 +13,8 @@ EventController = function(game) {
 						
 	this.levels = {"level_5_1": new Level(game, level_5_1),
 	               "level_5_3": new Level(game, level_5_3),
-				   "level_5_4": new Level(game, level_5_4)
+				   "level_5_4": new Level(game, level_5_4),
+				   "level_3_1": new Level(game, level_3_1)
 				  };
 				 
 	this.currEvent = this.events["titlescreen"];
@@ -209,6 +210,7 @@ FinishLevelScreen.prototype.update = function(timeStep, input) {
 		}
 		else this.currFossil++;
 	}
+
 }
 
 FinishLevelScreen.prototype.render = function(timeStep, ctx) {
@@ -232,7 +234,7 @@ LevelSelectScreen = function(levels) {
 	this.levelsFinished = {"Phase1": 0, "Phase2": 0, "Phase3": 0, "Phase4": 0, "Phase5": 0, 
 						   "Phase6": 0, "Phase7": 0, "Phase8": 0 };
 	// Will needed to be updated for number of levels made for each phase
-	this.numLevels = {"Phase1": 0, "Phase2": 0, "Phase3": 0, "Phase4": 0, "Phase5": 3, 
+	this.numLevels = {"Phase1": 0, "Phase2": 0, "Phase3": 3, "Phase4": 0, "Phase5": 3, 
 					  "Phase6": 0, "Phase7": 0, "Phase8": 0 };
 					  
 	this.cursorSelect = 0;

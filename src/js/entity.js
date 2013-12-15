@@ -138,6 +138,9 @@ Entity.prototype.isOnGround = function () {
 Entity.prototype.isUnderWater = function () {
   return this.level.isWaterAt(this.position.x, this.position.y);
 }
+Entity.prototype.isOnAir = function () {
+  return this.level.isAirAt(this.position.x, this.position.y);
+}
 
 
 // make new Entities like this:
