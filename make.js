@@ -86,6 +86,7 @@ function processImageDirectory(dir) {
 processImageDirectory('resources/spritesheets');
 processImageDirectory('resources/tilesets');
 processImageDirectory('resources/text');
+processImageDirectory('resources/backgrounds');
 
 
 //==============================================
