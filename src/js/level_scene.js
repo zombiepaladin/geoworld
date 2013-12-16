@@ -1,20 +1,23 @@
-// Primary class for handling levels and, indirectly, the player
+//A level scene, spawns the player and renders the scene
+Level = function (tileMapObject) {
+  Scene.call(this);
 
-Level = function(game, tileMapObject) {
 	this.tileEngine = new TileEngine(tileMapObject);
 
+  //TODO: Make this use a Tiled object or something similar...
 	var startX = parseInt(tileMapObject.properties.startX);
 	var startY = parseInt(tileMapObject.properties.startY);
 	var initialPosition = new Vector(startX, startY);
 	var initialVelocity = new Vector(0, 0);
 	
-	this.player = new Player(game, initialPosition, initialVelocity, this);
+	this.player = new Player(this, initialPosition, this);
 }
+
+Level.prototype = new Scene();
+Level.prototype.constructor = Level;
 
 // Updates player and camera position on the level
 Level.prototype.update = function(timeStep, input) {
-	this.player.update(timeStep, input);
-
 	var canvasWidth = document.getElementById("geoworld").scrollWidth;
 	var canvasHeight = document.getElementById("geoworld").scrollHeight;
 	var midCanvasX = canvasWidth / 2;
@@ -33,9 +36,12 @@ Level.prototype.update = function(timeStep, input) {
 	this.tileEngine.scrollPosition.y = Math.clamp(this.player.position.y - midCanvasY, 0, bottomClamp);
 }
 
-Level.prototype.render = function(timeStep, ctx) {
+Level.prototype.render = function (timeStep, ctx) {
+  ctx.save();
   this.tileEngine.render(timeStep, ctx);
+  ctx.translate(-this.tileEngine.scrollPosition.x, -this.tileEngine.scrollPosition.y);
   this.player.render(timeStep, ctx);
+  ctx.restore();
 }
 
 Level.prototype.getGroundLevelAt = function(x, y) {

@@ -1,6 +1,6 @@
 //Modifier for entities, adds physics to an entity
 physics_modifier = function () {
-  this.velocity = initialVelocity;
+  this.velocity = new Vector(0,0);
   this.maxVelocity = undefined;
   this.frictionConstant = 0;
   this.lastAcceleration = new Vector(0, 0);//Used to apply friction
@@ -23,14 +23,14 @@ physics_modifier = function () {
   }
 
   this.isOnGround = function () {
-    return this.position.y >= this.level.getGroundLevelAt(this.position.x, this.position.y);
+    return this.position.y >= this.scene.getGroundLevelAt(this.position.x, this.position.y);
   }
 
   this.isUnderWater = function () {
-    return this.level.isWaterAt(this.position.x, this.position.y);
+    return this.scene.isWaterAt(this.position.x, this.position.y);
   }
   this.isOnAir = function () {
-    return this.level.isAirAt(this.position.x, this.position.y);
+    return this.scene.isAirAt(this.position.x, this.position.y);
   }
 
   return function (timeStep) {
@@ -98,7 +98,7 @@ physics_modifier = function () {
 
     // Apply current ground level in case of slopes
     if (this.isOnGround()) {
-      this.position.y = this.level.getGroundLevelAt(this.position.x, this.position.y);
+      this.position.y = this.scene.getGroundLevelAt(this.position.x, this.position.y);
     }
 
     //Reset values that are only valid in-between calls to update:

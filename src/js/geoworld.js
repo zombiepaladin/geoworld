@@ -23,20 +23,32 @@ Geoworld = function() {
   //Scenes are stored on a stack, the top-most scene is the one that the player is currently interacting with.
   this.scenes = [];
   this.pushScene(new TitleScreen());
+  this.keyHasTriggeredKeyDown = [];
 
   // Subscribe to key input events
   var thisGame = this;
-  document.addEventListener("keydown", function(event) {
+  document.addEventListener("keydown", function (event) {
+    var translatedEvent = jsKeyboardEventToGameKeyEvent(event);
+
+    //Suppress repeated keydown events:
+    if (thisGame.keyHasTriggeredKeyDown[translatedEvent.key]) {
+      return;
+    }
+    thisGame.keyHasTriggeredKeyDown[translatedEvent.key] = true;
+
     var scene = thisGame.getCurrentScene();
     if (scene) {
-      scene.entityKeyDown(jsKeyboardEventToGameKeyEvent(event));
+      scene.entityKeyDown(translatedEvent);
     }
   });
   
   document.addEventListener("keyup", function (event) {
+    var translatedEvent = jsKeyboardEventToGameKeyEvent(event);
+    thisGame.keyHasTriggeredKeyDown[translatedEvent.key] = false;
+
     var scene = thisGame.getCurrentScene();
     if (scene) {
-      scene.entityKeyUp(jsKeyboardEventToGameKeyEvent(event));
+      scene.entityKeyUp(translatedEvent);
     }
   });
 }

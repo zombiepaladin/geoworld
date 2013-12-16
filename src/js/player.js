@@ -3,8 +3,8 @@ Player = function (initialParent, initialPosition, scene) {
 
   // To use spritesheet data in the canvas, we need to load it
   // into javascript
-  var spritesheet = new Image();
-  spritesheet.src = "robot.png";
+  this.spritesheet = new Image();
+  this.spritesheet.src = "robot.png";
 
   //Call base class constructor:
   Entity.call(this, initialParent, initialPosition, scene);
@@ -28,6 +28,11 @@ Player = function (initialParent, initialPosition, scene) {
   this.hangTimeEnabled = false;
   this.hangTimeVelocityThreshold = 30;
   this.hangTimeMinimum = 0.1;
+
+  //Input-variables:
+  this.input = new Object();
+  this.input.left = false;
+  this.input.right = false;
 
   // Multi-jump:
   this.jumpsMax = 2;
@@ -59,38 +64,16 @@ Player.prototype.update = function (timeStep) {
   // if (this.isOnAir()) {
 	//this.accelerate(new Vector(0, -7));
   //}
-  
 
   // Handle user input
-  if(input.left) {
+  if (this.input.left) {
     this.accelerate(new Vector(-this.acceleration, 0), seconds);
     this.facingLeft = true;
   }
 
-  if(input.right) {
+  if (this.input.right) {
     this.accelerate(new Vector(this.acceleration, 0), seconds);
     this.facingLeft = false;
-  }
-
-  if (input.up &&
-    (
-     this.isOnGround() ||
-     this.jumpsLeft > 0 || //For double (triple, etc) jumping
-     this.isUnderWater() //Infinite mario-style jumping under water.
-    )) {
-    if (this.isOnGround()) {
-      this.jumpsLeft = this.jumpsMax - 1;
-    } else {
-      this.jumpsLeft--;
-    }
-
-    input.up = false;//HACK: Should probably modify the input system so we can check if it was just pressed instead.
-    
-	  this.velocity.y = 0;  // Reset y-velocity to 0 for multiple jumps
-	  this.lastAcceleration.y = 0;
-	
-    //HACK: Using gravity scale to reduce jump impulse under water. Should add something more specific later.
-    this.accelerate(new Vector(0, this.instantaneousJumpImpulse * this.gravityScale));
   }
   
   // Determine the current frame of animation
@@ -162,12 +145,67 @@ Player.prototype.update = function (timeStep) {
 Player.prototype.render = function(timeStep, ctx) {
   ctx.save();
   ctx.translate(this.position.x, this.position.y);
-  if (this.facingLeft) ctx.scale(-1, 1);
+
+  if (this.facingLeft) {
+    ctx.scale(-1, 1);
+  }
 
   ctx.drawImage(this.spritesheet, 
 	  this.frame.x, this.frame.y, this.frame.width, this.frame.height,
 	  -this.spriteHalfWidth, -this.spriteHeight, this.spriteWidth, this.spriteHeight
   );
   
+  this.renderChildren();
   ctx.restore();
+}
+
+Player.prototype.keyDown = function (event) {
+  //console.log("Player key down: " + event.key.toString());
+
+  //Jumping:
+  if (event.key == Keys.Up &&
+    (
+     this.isOnGround() ||
+     this.jumpsLeft > 0 || //For double (triple, etc) jumping
+     this.isUnderWater() //Infinite mario-style jumping under water.
+    )) {
+
+    if (this.isOnGround()) {
+      this.jumpsLeft = this.jumpsMax - 1;
+    } else {
+      this.jumpsLeft--;
+    }
+
+    this.velocity.y = 0;// Reset y-velocity to 0 for multiple jumps
+
+    //HACK: Using gravity scale to reduce jump impulse under water. Should add something more specific later.
+    this.accelerate(new Vector(0, this.instantaneousJumpImpulse * this.gravityScale));
+
+    return true;
+  }
+  else if (event.key == Keys.Left) {
+    this.input.left = true;
+    return true;
+  }
+  else if (event.key == Keys.Right) {
+    this.input.right = true;
+    return true;
+  }
+
+  return false;
+}
+
+Player.prototype.keyUp = function (event) {
+  //console.log("Player key up: " + event.key.toString());
+
+  if (event.key == Keys.Left) {
+    this.input.left = false;
+    return true;
+  }
+  else if (event.key == Keys.Right) {
+    this.input.right = false;
+    return true;
+  }
+
+  return false;
 }

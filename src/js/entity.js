@@ -66,7 +66,7 @@ Entity.prototype.entityUpdate = function (timeStep) {
   }, this);
 
   this.children.forEach(function (child) {
-    child.update(timeStep);
+    child.entityUpdate(timeStep);
   }, this);
 }
 
@@ -102,7 +102,7 @@ Entity.prototype.entityKeyDown = function (event) {
   }
 
   for (var i = 0; i < this.children.length; i++) {
-    if (this.children.entityKeyDown(event)) {
+    if (this.children[i].entityKeyDown(event)) {
       return true;//If child handled event, stop processing the event
     }
   }
@@ -128,7 +128,7 @@ Entity.prototype.entityKeyUp = function (event) {
   }
 
   for (var i = 0; i < this.children.length; i++) {
-    if (this.children.entityKeyUp(event)) {
+    if (this.children[i].entityKeyUp(event)) {
       return true;//If child handled event, stop processing the event
     }
   }

@@ -12,15 +12,17 @@
         "src/js/entity.js",
         "src/js/scene.js",
 
+        "src/js/physics_modifier.js",
+
         "src/js/titlescreen_scene.js",
         "src/js/pause_scene.js",
+        "src/js/level_scene.js",
 
         "src/js/sounds.js",
 		
 		"src/js/game_events.js",
         
 		"src/js/player.js",
-        "src/js/level.js",
         "src/js/tile_engine.js",
         
 		"src/js/fossil.js",

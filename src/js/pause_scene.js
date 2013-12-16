@@ -1,4 +1,6 @@
 PauseScene = function () {
+  Scene.call(this);
+
   this.cursorSelect = 0;
   this.numChoices = 2;
 
