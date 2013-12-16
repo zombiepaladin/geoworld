@@ -14,14 +14,13 @@ TitleScreen = function () {
 TitleScreen.prototype = new Scene();
 TitleScreen.prototype.constructor = TitleScreen;
 
-TitleScreen.prototype.update = function (timeStep, input) {
+TitleScreen.prototype.update = function (timeStep) {
   this.clock += timeStep;
 }
 
 TitleScreen.prototype.keyUp = function (event) {
   if (event.key == Keys.Enter) {
-    //TODO: MOVE TO NEXT STATE
-    alert("ENTER!");
+    Game.pushScene(new PauseScene());
 
     return true;
   }

@@ -1,6 +1,11 @@
 //Key constants to be used in entity keyboard input events
 Keys = new Object();
 Keys.Enter = 0x0D;
+Keys.Left = 0x25;
+Keys.Up = 0x26;
+Keys.Right = 0x27;
+Keys.Down = 0x28;
+Keys.Escape = 0x1B;
 
 //Converts a standard JavaScript KeyboardEvent into a more generic key even for our game since the JavaScript KeyboardEvent is pretty knarly
 //Returns a structure like the following:

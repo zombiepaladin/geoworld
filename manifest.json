@@ -13,6 +13,7 @@
         "src/js/scene.js",
 
         "src/js/titlescreen_scene.js",
+        "src/js/pause_scene.js",
 
         "src/js/sounds.js",
 		
