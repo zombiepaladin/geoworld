@@ -7,7 +7,7 @@
   <property name="startY" value="1024"/>
  </properties>
  <tileset firstgid="1" name="water_cave" tilewidth="24" tileheight="24">
-  <image source="water_cave.png" width="120" height="96"/>
+  <image source="../tilesets/water_cave.png" width="120" height="96"/>
   <tile id="0">
    <properties>
     <property name="left" value="0"/>

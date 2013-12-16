@@ -1,7 +1,4 @@
-// Acts as the central controller for events/levels
-
-// TODO: FIX THE FUNKY BEHAVIOR INVOLVING JAVASCRIPT'S ASYNCHRONOUS BEHAVIOR
-//       ANYBODY WITH EXPERIENCE WITH THIS SHOULD TRY TO FIX THIS CLASS UP
+// Acts as the central controller for events/levels; basically, controls game state
 
 EventController = function(game) {
 	this.events = {"titlescreen":  new TitleScreen(),
@@ -46,11 +43,13 @@ EventController.prototype.handleSelection = function(selection) {
 		this.currEvent = this.events["titlescreen"];
 	}
 	else if (selection === "finishlevel") {
+		this.events["levelselectscreen"].completeLevel(this.currLevel);
 		this.currEvent = this.events["levelfinishedscreen"];
 	}
 	else if (selection.indexOf("level") != -1) {
 		this.currEvent = this.events["level"];
 		this.currEvent.level = this.levels[selection];
+		this.currLevel = selection;
 	}
 }
 
@@ -71,8 +70,8 @@ LevelEvent = function() {
 }
 
 LevelEvent.prototype.update = function(timeStep, input) {
-	this.input_handler.press(input);
-	var canPressEscape = this.input_handler.check(timeStep, "escape");
+	this.input_handler.press(timeStep, input);
+	var canPressEscape = this.input_handler.check("escape");
 
 	this.level.update(timeStep, input);
 	if (this.level.isFinished()) {
@@ -102,6 +101,9 @@ TitleScreen = function() {
 	this.enterText = new Image();
 	this.enterText.src = "press_enter_to_play.png";
 	
+	this.background = new Image();
+	this.background.src = "TitleScreenBackground.png";
+	
 	// Used to know when to draw logos, only enterText for now
 	this.clock = 0;
 	
@@ -116,22 +118,20 @@ TitleScreen.prototype.update = function(timeStep, input) {
 	// Start game
 	if (input.enter) {
 		this.selection = "startgame";
+		this.clock = 0;
 	}
 }
 
 TitleScreen.prototype.render = function(timeStep, ctx) {
+	// Draw background
+	ctx.drawImage(this.background, 0, 0, 800, 400, 0, 0, 800, 400);
+
 	// Draw logo
-	ctx.drawImage(this.logo, 
-	              0, 0, 514, 101,
-	             120, 40, 514, 101
-    );
+	ctx.drawImage(this.logo, 0, 0, 514, 101, 120, 40, 514, 101);
 	
 	// Draw enterText after certain amount of time
 	if (this.clock > 1500) {
-        ctx.drawImage(this.enterText, 
-	                  0, 0, 156, 18,
-	                  400, 160, 156, 18
-        );
+        ctx.drawImage(this.enterText, 0, 0, 156, 18, 400, 160, 156, 18);
 	}
 }
 
@@ -146,10 +146,12 @@ PauseScreen = function() {
 	this.numChoices = 2;
 	
 	this.top = 100;
-	this.left = 300;
+	this.left = 350;
 	this.textYDistance = 80;
 	this.cursor = new Image();
 	this.cursor.src = "cursor.png";
+	this.background = new Image();
+	this.background.src = "PauseScreenBackground.png";
 	
 	this.input_handler = new InputHandler(60);
 	
@@ -157,10 +159,10 @@ PauseScreen = function() {
 }
 
 PauseScreen.prototype.update = function(timeStep, input) {
-	this.input_handler.press(input);
-	var canPressEnter = this.input_handler.check(timeStep, "enter");
-	var canPressUp = this.input_handler.check(timeStep, "up");
-	var canPressDown = this.input_handler.check(timeStep, "down");
+	this.input_handler.press(timeStep, input);
+	var canPressEnter = this.input_handler.check("enter");
+	var canPressUp = this.input_handler.check("up");
+	var canPressDown = this.input_handler.check("down");
 
 	if (canPressUp) this.cursorSelect = Math.clamp(this.cursorSelect - 1, 0, this.numChoices - 1);
 	if (canPressDown) this.cursorSelect = Math.clamp(this.cursorSelect + 1, 0, this.numChoices - 1);
@@ -176,8 +178,10 @@ PauseScreen.prototype.update = function(timeStep, input) {
 }
 
 PauseScreen.prototype.render = function(timeStep, ctx) {
+	ctx.drawImage(this.background, 0, 0, 800, 400, 0, 0, 800, 400);
+	
 	ctx.save();
-	ctx.fillStyle = "blue";
+	ctx.fillStyle = "red";
     ctx.font = "bold 30px Arial";
     ctx.fillText("Resume", this.left, this.top);
 	ctx.fillText("Quit", this.left, this.top + this.textYDistance);
@@ -195,25 +199,28 @@ FinishLevelScreen = function() {
 	this.selection = null;
 	this.clock = 0;
 	this.displayTime = 1500;  // Amount of time to display each fossil message
-	this.collectedFossils = [];
+	this.collectedFossils = ["dinosaur", "example"];  // USED FOR EXAMPLE: DELETE THESE VALUES LATER 
 	this.currFossil = 0;
+	
+	this.background = new Image();
+	this.background.src = "FinishLevelBackground.png";
 }
 
 FinishLevelScreen.prototype.update = function(timeStep, input) {
 	this.clock += timeStep;
-	
+	// If there are no more fossils to display (or none to begin with), then go back to level select
+	if (this.clock > this.displayTime && this.collectedFossils[this.currFossil] == undefined) {
+		this.selection = "startgame";
+	}
 	// Change each collected fossil to draw after certain amount of time
-	if (this.clock > this.displayTime * (this.currFossil+2)) {
-		// If there are no more fossils to display, then go back to level select
-		if (this.collectedFossils.length >= this.currFossil + 1 || this.collectedFossils == undefined) {
-			this.selection = "startgame";
-		}
-		else this.currFossil++;
+	else if (this.clock > this.displayTime * (this.currFossil+1)) {
+		this.currFossil++;
 	}
 }
 
 FinishLevelScreen.prototype.render = function(timeStep, ctx) {
 	ctx.save();
+	ctx.drawImage(this.background, 0, 0, 800, 400, 0, 0, 800, 400);
 	ctx.fillStyle = "red";
 	ctx.font = "bold 30px Arial";
 	ctx.fillText("Level Completed!", 280, 100);	
@@ -222,6 +229,7 @@ FinishLevelScreen.prototype.render = function(timeStep, ctx) {
 	}
 	ctx.restore();
 }
+
 
 
 //======================================
@@ -233,7 +241,7 @@ LevelSelectScreen = function(levels) {
 	this.levelsFinished = {"Phase1": 0, "Phase2": 0, "Phase3": 0, "Phase4": 0, "Phase5": 0, 
 						   "Phase6": 0, "Phase7": 0, "Phase8": 0 };
 	// Will needed to be updated for number of levels made for each phase
-	this.numLevels = {"Phase1": 0, "Phase2": 0, "Phase3": 0, "Phase4": 0, "Phase5": 3, 
+	this.numLevels = {"Phase1": 0, "Phase2": 0, "Phase3": 1, "Phase4": 0, "Phase5": 3, 
 					  "Phase6": 0, "Phase7": 0, "Phase8": 0 };
 					  
 	this.cursorSelect = 0;
@@ -241,12 +249,13 @@ LevelSelectScreen = function(levels) {
 	this.phaseSelect = -1;
 	
 	this.top = 50;
-	this.left = 300;
+	this.left = 350;
 	this.textYDistance = 45;
 	this.background = new Image();
 	this.background.src = "FutureBackground.png";
 	
-	this.input_handler = new InputHandler(60);
+	// Need to play with this minTime value for best results
+	this.input_handler = new InputHandler(40);
 }
 
 // Takes a level and increases the number of levels completed not completed before
@@ -260,10 +269,11 @@ LevelSelectScreen.prototype.completeLevel = function(level) {
 }
 
 LevelSelectScreen.prototype.update = function(timeStep, input) {
-	this.input_handler.press(input);
-	var canPressEnter = this.input_handler.check(timeStep, "enter");
-	var canPressUp = this.input_handler.check(timeStep, "up");
-	var canPressDown = this.input_handler.check(timeStep, "down");
+	this.input_handler.press(timeStep, input);
+	var canPressEnter = this.input_handler.check("enter");
+	var canPressUp = this.input_handler.check("up");
+	var canPressDown = this.input_handler.check("down");
+	var canPressEscape = this.input_handler.check("escape");
 	
 	// Select phase
 	if (this.menuSelect === 0) {
@@ -281,6 +291,14 @@ LevelSelectScreen.prototype.update = function(timeStep, input) {
 		if (canPressDown) this.cursorSelect = Math.clamp(this.cursorSelect + 1, 0, this.levelsFinished["Phase" + this.phaseSelect]);
 		if (canPressEnter) {
 			this.selection = "level_" + (this.phaseSelect + "_" + (this.cursorSelect+1));
+			this.phaseSelect = -1;
+			this.cursorSelect = 0;
+			this.menuSelect = 0;
+		}
+		else if (canPressEscape) {
+			this.phaseSelect = -1;
+			this.cursorSelect = 0;
+			this.menuSelect = 0;
 		}
 	}
 }

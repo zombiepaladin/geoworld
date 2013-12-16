@@ -14,9 +14,6 @@ TileEngine = function(tileMapObject) {
 	  this.groundLayer = i;
 	  break;
 	}
-  } 
-    //Find air layer
-  for (var i = 0; i < this.layers; i++) {
 	if (this.tilemap.layers[i].name === "Air") {
 	  this.airLayer = i;
 	  break;
@@ -102,6 +99,7 @@ TileEngine.prototype.isEndAt = function(x, y) {
 }
 // Checks if the tile at the specified location is on air
 TileEngine.prototype.isAirAt = function(x, y) {
+  if (this.airLayer === undefined) return false;  // No air layer exists on this level
   var tileX = Math.floor(x / this.tilemap.tilewidth);
   var tileY = Math.floor(y / this.tilemap.tileheight);
   var currTile = this.tilemap.layers[this.airLayer].data[tileX + tileY * this.tilemap.layers[this.airLayer].width];
@@ -112,6 +110,7 @@ TileEngine.prototype.isAirAt = function(x, y) {
 
 // Checks if the ground tile at the specified location contains water
 TileEngine.prototype.isWaterAt = function(x, y) {
+  if (this.groundLayer === undefined) return false;  // No ground layer exists on this level
   var tileX = Math.floor(x / this.tilemap.tilewidth);
   var tileY = Math.floor(y / this.tilemap.tileheight);
   var currTile = this.tilemap.layers[this.groundLayer].data[tileX + tileY * this.tilemap.layers[this.groundLayer].width];

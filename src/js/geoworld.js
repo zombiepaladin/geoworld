@@ -69,7 +69,7 @@ Geoworld = function() {
 	    input.enter = false;
 		break;
       case 27: // escape key
-	    input.escape = true;
+	    input.escape = false;
 		break;
 	  case 32: // spacebar key
 	    input.spacebar = false;
