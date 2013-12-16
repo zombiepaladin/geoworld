@@ -89,7 +89,7 @@ Player.prototype.update = function (timeStep) {
   
     // Determine the amount of "lean" based on the direction
     // and velocity of the sprite
-    if (this.velocity < -Math.EPSILON) {
+    if (this.velocity.y < -Math.EPSILON) {
     
       // All ground-based moving animations 
       // fall in the second row
@@ -105,7 +105,7 @@ Player.prototype.update = function (timeStep) {
       else
         this.frame.x = 4 * this.spriteWidth;  // Fifth Column
     
-    } else if (this.velocity > Math.EPSILON) {
+    } else if (this.velocity.y > Math.EPSILON) {
       
       // All ground-based moving animations 
       // fall in the second row

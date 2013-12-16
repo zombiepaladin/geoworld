@@ -96,9 +96,9 @@ Geoworld.prototype.startGame = function () {
   this.gameLoop(0);
 }
 
-//this.setDebugString = function (str) {
-//  document.getElementById("debug").innerHTML = str;
-//}
+Geoworld.prototype.setDebugString = function (str) {
+  document.getElementById("debug").innerHTML = str;
+}
 
 //Pushes a new scene onto the scene stack, making it the current scene
 Geoworld.prototype.pushScene = function (newScene) {
