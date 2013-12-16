@@ -6,10 +6,10 @@
 		"src/js/vector_library.js",
 		"src/js/game_events.js",
         "src/js/rect.js",
+        "src/js/entity.js",
 		"src/js/player.js",
         "src/js/level.js",
         "src/js/tile_engine.js",
-        "src/js/entity.js",
 		"src/js/fossil.js",
 		"src/js/input_handler.js",
 		"src/js/geoworld.js"
@@ -22,5 +22,11 @@
         "lev_5_3_grassy_plains.json",
 		"lev_5_4_lava_mountain.json",
 		"lev_3_1_watercave.json"
-    ]
+    ],
+    "testJavascriptOptions":{
+        "comments":true,
+        "outSourceMap": "out.js.map",
+        "sourceRoot": "../"
+    },
+    "releaseJavascriptOptions":{}
 }
