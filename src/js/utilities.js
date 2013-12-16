@@ -34,3 +34,11 @@ Array.prototype.peek = function () {
 
   return this[this.length - 1];
 }
+
+//Assert inputs to the context translate function:
+CanvasRenderingContext2D.prototype.translate_orig = CanvasRenderingContext2D.prototype.translate;
+CanvasRenderingContext2D.prototype.translate = function (x, y) {
+  assert(!isNaN(x));
+  assert(!isNaN(y));
+  this.translate_orig(x, y);
+}

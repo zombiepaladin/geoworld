@@ -47,9 +47,19 @@ TileEngine = function(tileMapObject) {
 
 // Set the current scrolling position for the tile engine
 //   position - the position, an object with an x and y property
-TileEngine.prototype.setScrollPosition = function(position) {
+TileEngine.prototype.setScrollPosition = function (position) {
+  assert(!isNaN(position.x));
+  assert(!isNaN(position.y));
   this.scrollPosition.x = position.x;
   this.scrollPosition.y = position.y;
+}
+
+TileEngine.prototype.getLevelWidth = function () {
+  return this.mapWidth * this.tileWidth;
+}
+
+TileEngine.prototype.getLevelHeight = function () {
+  return this.mapHeight * this.tileHeight;
 }
 
 TileEngine.prototype.getRawTileId = function (layer, x, y) {
@@ -71,7 +81,7 @@ TileEngine.prototype.isTileFlippedDiagonally = function (layer, x, y) {
 TileEngine.prototype.getTileId = function (layer, x, y) {
   //We subtract 1 because Tiled exports with 1-indexed tile ids.
   //This means -1 will be 'no tile' and 0..n will be a tile index.
-  return this.getRawTileId(layer, x, y) & ~(0x80000000 | 0x40000000 | 0x20000000) - 1;
+  return (this.getRawTileId(layer, x, y) & ~(0x80000000 | 0x40000000 | 0x20000000)) - 1;
 }
 
 TileEngine.prototype.getTileX = function (x) {
@@ -130,7 +140,7 @@ TileEngine.prototype.getGroundLevelAt = function(worldX, worldY) {
 
 		  var percent = (worldX - tileX * this.tileWidth) / this.tileWidth;
 
-		  var ret = tileY * this.tileHeight - Math.lerp(left, right, percent);
+		  var ret = tileY * this.tileHeight + Math.lerp(left, right, percent);
 
 		  Game.setDebugString("tile: @ " + tileX + ", " + tileY + " -- " + left + ".." + right + " : " + (tileY * this.tileHeight) + " - " + Math.lerp(left, right, percent) + " = " + ret + " @ " + percent);
 
@@ -165,76 +175,89 @@ TileEngine.prototype.isWaterAt = function(x, y) {
 //  ctx - the rendering context
 TileEngine.prototype.render = function (timestep, ctx) {
   ctx.save();
-  ctx.translate(-1 * this.scrollPosition.x, -1 * this.scrollPosition.y);
+  ctx.translate(this.scrollPosition.x, this.scrollPosition.y);
+  console.log(this.scrollPosition);
 
-  var canvas = document.getElementById("geoworld");
-  var tilewidth = this.tilemap.tilewidth;
-  var tileheight = this.tilemap.tileheight;
-  var width = Math.floor(canvas.scrollWidth / tilewidth) + 2;
+  /*var width = Math.floor(canvas.scrollWidth / tilewidth) + 2;
   var height = Math.floor(canvas.scrollHeight / tileheight) + 2;
   var startX = Math.floor(this.scrollPosition.x / tilewidth);
-  var startY = Math.floor(this.scrollPosition.y / tileheight);
+  var startY = Math.floor(this.scrollPosition.y / tileheight);*/
+  var tilewidth = this.tileWidth;
+  var tileheight = this.tileHeight;
 
-  for (layer = 0; layer < this.tilemap.layers.length; layer++) {  // Painter's algorithm
-    for (x = startX; x < width + startX; x++) {
-      for (y = startY; y < height + startY; y++) {
+  var tilesDrawn = 0;
 
-        var tileId = this.tilemap.layers[layer].data[x + y * this.tilemap.layers[layer].width];
+  for (var layer = 0; layer < this.tilemap.layers.length; layer++) {
+    //if (layer != this.groundLayer) { continue; }
+    for (var x = 0; x < this.mapWidth; x++) {
+      for (var y = 0; y < this.mapHeight; y++) {
+        
+        var tileId = this.getTileId(layer, x, y);
         var tileset = this.tilemap.tilesets[0];
         var tilesheet = this.tilesheetTextures[0];
         var rowWidth = Math.floor(tileset.imagewidth / tileset.tilewidth);
+        
+        if (!tilesheet || tileId < 0) {
+          continue;
+        }
 
-        // A tileID of 0 means there is nothing to draw
-        if (tilesheet && tileId > 0) {
-          var spacing = tileset.spacing;
-          var flippedHorizontally = tileId & 0x80000000;
-          var flippedVertically = tileId & 0x40000000;
-          var flippedDiagonally = tileId & 0x20000000;
-          tileId = tileId & ~(0x80000000 | 0x40000000 | 0x20000000);
-          var tileIndex = tileId - tileset.firstgid;
-          var tileX = tileIndex % rowWidth;
-          var tileY = Math.floor(tileIndex / rowWidth);
+        tilesDrawn++;
 
-          if (flippedHorizontally) {
-            ctx.save();
-            ctx.translate(x * tilewidth + tilewidth / 2, 0);
-            ctx.scale(-1, 1);
-            ctx.translate(-x * tilewidth - tilewidth / 2, 0);
-            ctx.drawImage(tilesheet,
-            //tileX, tileY, tilewidth, tileheight,
-            (tileX * tilewidth) + (spacing * tileX), (tileY * tileheight) + (spacing * tileY), tilewidth, tileheight,
-            (x * tilewidth), y * tileheight, tilewidth, tileheight
-            );
-            ctx.restore();
-          } else if (flippedVertically) {
-            ctx.save();
-            ctx.translate(0, y * tileheight + tileheight / 2);
-            ctx.scale(1, -1);
-            ctx.translate(0, -y * tileheight - tileheight / 2);
-            ctx.drawImage(tilesheet,
-            //tileX, tileY, tilewidth, tileheight,
-            tileX * tilewidth + (spacing * tileX), (tileY + 1) * tileheight + (spacing * tileY), tilewidth, -tileheight,
+        var spacing = tileset.spacing;
+        var tileX = tileId % rowWidth;
+        var tileY = Math.floor(tileId / rowWidth);
+
+        tileX = tileX * tilewidth + spacing * tileX;
+        tileY = tileY * tileheight + spacing * tileY;
+        
+        if (this.isTileFlippedHorizontally(layer, x, y)) {
+          ctx.save();
+          ctx.translate(x * tilewidth + tilewidth / 2, 0);
+          ctx.scale(-1, 1);
+          ctx.translate(-x * tilewidth - tilewidth / 2, 0);
+          ctx.drawImage(tilesheet, 
+            tileX, tileY, tilewidth, tileheight,
             x * tilewidth, y * tileheight, tilewidth, tileheight
-            );
-            ctx.restore();
-          } else if (flippedDiagonally) {
-            ctx.save();
-            ctx.translate(x * tilewidth + tilewidth, y * tileheight + tileheight / 2);
-            ctx.scale(-1, -1);
-            ctx.translate(-x * tilewidth - tilewidth, -y * tileheight - tileheight / 2);
-            ctx.drawImage(tilesheet,
-            //tileX, tileY, tilewidth, tileheight,
-            tileX * tilewidth + (spacing * tileX), tileY * tileheight + (spacing * tileY), tilewidth, tileheight,
-            x * tilewidth, y * tileheight, tilewidth + 1, tileheight
-            );
-            ctx.restore();
-          } else {
-            ctx.drawImage(tilesheet,
-            //tileX, tileY, tilewidth, tileheight,
-            (tileX * tilewidth) + (spacing * tileX), (tileY * tileheight) + (spacing * tileY), tilewidth, tileheight,
-            x * tilewidth, y * tileheight, tilewidth + 1, tileheight + 1
-            );
-          }
+          );
+          ctx.restore();
+        } else if(this.isTileFlippedVertically(layer, x, y)) {
+          ctx.save();
+          ctx.translate(0, y * tileheight + tileheight / 2);
+          ctx.scale(1, -1);
+          ctx.translate(0, -y * tileheight - tileheight / 2);
+          ctx.drawImage(tilesheet, 
+            tileX, tileY, tilewidth, tileheight,
+            x * tilewidth, y * tileheight, tilewidth, tileheight
+          );         
+          ctx.restore();
+        } else if (this.isTileFlippedDiagonally(layer, x, y)) {
+          ctx.save();
+          ctx.translate(x * tilewidth + tilewidth, y * tileheight + tileheight / 2);
+          ctx.scale(-1, -1);
+          ctx.translate(-x * tilewidth - tilewidth, -y * tileheight - tileheight / 2);
+          ctx.drawImage(tilesheet, 
+            tileX, tileY, tilewidth, tileheight,
+            x * tilewidth, y * tileheight, tilewidth, tileheight
+          );
+          ctx.restore();
+        } else {
+          ctx.drawImage(tilesheet, 
+            tileX, tileY, tilewidth, tileheight,
+            x * tilewidth, y * tileheight, tilewidth, tileheight
+          );
+        }
+
+        // Debugging overlay:
+        if (layer == this.groundLayer) {
+          ctx.save();
+          ctx.font = "8px sans-serif";
+          ctx.fillStyle = "black";
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
+          ctx.strokeRect(x * tilewidth, y * tileheight, tilewidth, tileheight);
+          ctx.fillText(tileId + (this.isTileFlippedHorizontally(layer, x, y) ? "F": ""),
+            (x + 0.5) * tilewidth, (y + 0.5) * tileheight);
+          ctx.restore();
         }
       }
     }
