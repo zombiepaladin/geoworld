@@ -1,15 +1,23 @@
 {
 	"javascripts": [
-		"src/js/utilities.js",
-		"src/js/animation_polyfill.js",
-		"src/js/math_helper_library.js",
+        "src/js/polyfills/animation_polyfill.js",
+        "src/js/polyfills/array_polyfill.js",
+        
+        "src/js/math_helper_library.js",
 		"src/js/vector_library.js",
-		"src/js/game_events.js",
+        "src/js/utilities.js",
         "src/js/rect.js",
+
+        "src/js/entity.js",
+
+        "src/js/sounds.js",
+		
+		"src/js/game_events.js",
+        
 		"src/js/player.js",
         "src/js/level.js",
         "src/js/tile_engine.js",
-        "src/js/entity.js",
+        
 		"src/js/fossil.js",
 		"src/js/input_handler.js",
 		"src/js/geoworld.js"

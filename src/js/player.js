@@ -1,6 +1,5 @@
 // Construct a new player object
-//TODO: Make a child of dynamicPhysicsObject? (We need to agree on an OOP strategy / library if we do that.)
-Player = function (game, initialPosition, initialVelocity, level) {
+Player = function (initialParent, initialPosition, level) {
 
   // To use spritesheet data in the canvas, we need to load it
   // into javascript
@@ -8,7 +7,8 @@ Player = function (game, initialPosition, initialVelocity, level) {
   spritesheet.src = "robot.png";
 
   //Call base class constructor:
-  Entity.call(this, game, initialPosition, initialVelocity, spritesheet, level);
+  Entity.call(this, initialParent, initialPosition, level);
+  this.applyModifier(physics_modifier);
   
   // Sprite size constants
   this.spriteWidth = 80;
@@ -31,7 +31,7 @@ Player = function (game, initialPosition, initialVelocity, level) {
 
   // Multi-jump:
   this.jumpsMax = 2;
-  this.jumpsLeft = 2;
+  this.jumpsLeft = this.jumpsMax;
   
   // Current animation frame to render
   this.frame = {
@@ -47,26 +47,18 @@ Player.prototype = new Entity();
 Player.prototype.constructor = Player;
 
 // Update the player's sprite given the provided input
-Player.prototype.update = function (timeStep, input) {
-  Entity.prototype.update.call(this, timeStep, input);
-
+Player.prototype.update = function (timeStep) {
   var seconds = timeStep / 1000; // Convert timestep to seconds
   
-  /*
-  //Apply physics demo properties:
-  //(Later on this would be done dynamically based on collisions, level attributes, etc.)
-  this.hangTimeEnabled = Game.enableHangTime();
-  */
-  
-  //TODO: This could be made more generic and added to the dynamicPhysicsObject once level stuff is in.
-  if (this.isUnderWater()) {
-    this.gravityScale = 0.5;//Half gravity under water
-  } else {
-    this.gravityScale = 1.0;//Full gravity above water
-  }
-   if (this.isOnAir()) {
-	this.accelerate(new Vector(0, -7));
-  }
+  ////TODO: This could be made more generic and added to the dynamicPhysicsObject once level stuff is in.
+  //if (this.isUnderWater()) {
+  //  this.gravityScale = 0.5;//Half gravity under water
+  //} else {
+  //  this.gravityScale = 1.0;//Full gravity above water
+  //}
+  // if (this.isOnAir()) {
+	//this.accelerate(new Vector(0, -7));
+  //}
   
 
   // Handle user input
@@ -94,18 +86,12 @@ Player.prototype.update = function (timeStep, input) {
 
     input.up = false;//HACK: Should probably modify the input system so we can check if it was just pressed instead.
     
-	this.velocity.y = 0;  // Reset y-velocity to 0 for multiple jumps
-	this.lastAcceleration.y = 0;
+	  this.velocity.y = 0;  // Reset y-velocity to 0 for multiple jumps
+	  this.lastAcceleration.y = 0;
 	
     //HACK: Using gravity scale to reduce jump impulse under water. Should add something more specific later.
     this.accelerate(new Vector(0, this.instantaneousJumpImpulse * this.gravityScale));
   }
-  
-  /*
-  // Wrap around edges of screen:
-  if (this.position.x > Game.gameWidth + this.spriteWidth / 2) { this.position.x = -this.spriteWidth / 2; }
-  if (this.position.x < -this.spriteWidth / 2) { this.position.x = Game.gameWidth + this.spriteWidth / 2; }
-  */
   
   // Determine the current frame of animation
   // Start with a "default" frame
@@ -175,15 +161,9 @@ Player.prototype.update = function (timeStep, input) {
 // Render the player's sprite using the provided context
 Player.prototype.render = function(timeStep, ctx) {
   ctx.save();
-
-  // Translate sprite to on-screen position
   ctx.translate(this.position.x - this.level.tileEngine.scrollPosition.x, this.position.y - this.level.tileEngine.scrollPosition.y);
-  
-  // Flip direction sprite faces when moving left 
-  // (animations are all drawn facing right)
   if (this.facingLeft) ctx.scale(-1, 1);
-  
-  // Draw the sprite's current frame of animation
+
   ctx.drawImage(this.spritesheet, 
 	  this.frame.x, this.frame.y, this.frame.width, this.frame.height,
 	  -this.spriteHalfWidth, -this.spriteHeight, this.spriteWidth, this.spriteHeight

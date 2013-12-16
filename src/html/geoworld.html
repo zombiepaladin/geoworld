@@ -1,44 +1,47 @@
-<!DOCTYPE HTML/>
+<!DOCTYPE HTML>
 <html>
-  <head>
-    <meta charset="utf8">
-    <title>Geoworld</title>
-    <link type="text/css" rel="stylesheet" href="geoworld.css" />
-  </head>
-  <body>
+<head>
+  <meta charset="utf8">
+  <title>Geoworld</title>
+  <link type="text/css" rel="stylesheet" href="geoworld.css" />
+</head>
+<body>
+
+  <h1>Geoworld</h1>
+  <div id="geoworld">
+    <canvas id="gameplay-canvas" width="800" height="400"></canvas>
+  </div>
+
+  <!-- All audio files will be done like this -->
+  <audio id="multiaudio1" src="" preload="auto"></audio>
+
+  <!-- Load JSON files as javascript tags - note this is a bit hackish -->
+  <script type="text/javascript" src="lev_5_1_dead_plains.json"></script>
+  <script type="text/javascript" src="lev_5_3_grassy_plains.json"></script>
+  <script type="text/javascript" src="lev_5_4_lava_mountain.json"></script>
+  <script type="text/javascript" src="lev_3_1_watercave.json"></script>
+
+  <script type="text/javascript" src="animation_polyfill.js"></script>
+  <script type="text/javascript" src="array_polyfill.js"></script>
+
+  <script type="text/javascript" src="math_helper_library.js"></script>
+  <script type="text/javascript" src="vector_library.js"></script>
+  <script type="text/javascript" src="utilities.js"></script>
+  <script type="text/javascript" src="rect.js"></script>
   
-    <h1>Geoworld</h1>
-    <div id="geoworld">
-      <canvas id="gameplay-canvas" width="800" height="400"></canvas>
-    </div>
-    <div id="debug">NULL</div>
-    <div id="physicsDemoSettings">
-    </div>
-	
-	<!-- All audio files will be done like this -->
-	<audio id="multiaudio1" src="" preload="auto"></audio>
-	
-	<!-- Load JSON files as javascript tags - note this is a bit hackish -->
-	<script type="text/javascript" src="lev_5_1_dead_plains.json"></script>
-    <script type="text/javascript" src="lev_5_3_grassy_plains.json"></script>
-	<script type="text/javascript" src="lev_5_4_lava_mountain.json"></script>
-	<script type="text/javascript" src="lev_3_1_watercave.json"></script>
-    
-    <script type="text/javascript" src="utilities.js"></script>
-    <script type="text/javascript" src="animation_polyfill.js"></script>
-    <script type="text/javascript" src="math_helper_library.js"></script>
-    <script type="text/javascript" src="vector_library.js"></script>
-	<script type="text/javascript" src="input_handler.js"></script>
-    <script type="text/javascript" src="rect.js"></script>
-    <script type="text/javascript" src="sounds.js"></script>
-	
-	<script type="text/javascript" src="fossil.js"></script>
-    <script type="text/javascript" src="entity.js"></script>
-    <script type="text/javascript" src="game_events.js"></script>
-    <script type="text/javascript" src="player.js"></script>
-    <script type="text/javascript" src="level.js"></script>
-    <script type="text/javascript" src="tile_engine.js"></script>
-    <script type="text/javascript" src="geoworld.js"></script>
-    
-  </body>
+  <script type="text/javascript" src="entity.js"></script>
+
+  <script type="text/javascript" src="sounds.js"></script>
+
+  <script type="text/javascript" src="game_events.js"></script>
+  
+  <script type="text/javascript" src="player.js"></script>
+  <script type="text/javascript" src="level.js"></script>
+  <script type="text/javascript" src="tile_engine.js"></script>
+
+  <script type="text/javascript" src="fossil.js"></script>
+  <script type="text/javascript" src="input_handler.js"></script>
+  <script type="text/javascript" src="geoworld.js"></script>
+
+</body>
 </html>

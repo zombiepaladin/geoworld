@@ -7,3 +7,22 @@ function assert(condition, message) {
     }
   }
 }
+
+//Additional array functions:
+Array.prototype.removeAt = function (index) {
+  this.splice(index, 1);
+}
+
+Array.prototype.remove = function (item) {
+  var i;
+  var ret = 0;
+  while (true) {
+    i = this.indexOf(item);
+    if (i < 0) { break; }
+    this.removeAt(i);
+  }
+
+  return ret;
+}
+
+Array.prototype.add = Array.prototype.push;
