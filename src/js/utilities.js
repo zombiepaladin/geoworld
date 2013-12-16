@@ -26,3 +26,11 @@ Array.prototype.remove = function (item) {
 }
 
 Array.prototype.add = Array.prototype.push;
+
+Array.prototype.peek = function () {
+  if (this.length <= 0) {
+    return undefined;
+  }
+
+  return this[this.length - 1];
+}

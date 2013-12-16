@@ -1,5 +1,5 @@
 // Construct a new player object
-Player = function (initialParent, initialPosition, level) {
+Player = function (initialParent, initialPosition, scene) {
 
   // To use spritesheet data in the canvas, we need to load it
   // into javascript
@@ -7,7 +7,7 @@ Player = function (initialParent, initialPosition, level) {
   spritesheet.src = "robot.png";
 
   //Call base class constructor:
-  Entity.call(this, initialParent, initialPosition, level);
+  Entity.call(this, initialParent, initialPosition, scene);
   this.applyModifier(physics_modifier);
   
   // Sprite size constants
@@ -161,7 +161,7 @@ Player.prototype.update = function (timeStep) {
 // Render the player's sprite using the provided context
 Player.prototype.render = function(timeStep, ctx) {
   ctx.save();
-  ctx.translate(this.position.x - this.level.tileEngine.scrollPosition.x, this.position.y - this.level.tileEngine.scrollPosition.y);
+  ctx.translate(this.position.x, this.position.y);
   if (this.facingLeft) ctx.scale(-1, 1);
 
   ctx.drawImage(this.spritesheet, 

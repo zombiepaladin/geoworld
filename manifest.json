@@ -7,8 +7,12 @@
 		"src/js/vector_library.js",
         "src/js/utilities.js",
         "src/js/rect.js",
+        "src/js/key_util.js",
 
         "src/js/entity.js",
+        "src/js/scene.js",
+
+        "src/js/titlescreen_scene.js",
 
         "src/js/sounds.js",
 		

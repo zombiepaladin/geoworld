@@ -4,127 +4,112 @@ Geoworld = function() {
   // Global variables (limited to the scope of 
   // the Geoworld object (function) - essentailly
   // namespacing)
-  var gameClock = 0;
-  var frame = 0;
+  this.lastTime = 0;
   
   // The game's containing div
   var game = document.getElementById("geoworld");
   
-  // Dictates the events or flow of the game
-  var eventController = new EventController(game);
-  
   // The gameplay canvas & context
   var gameplayCanvas = document.getElementById("gameplay-canvas");
-  this.gameWidth = gameplayCanvas.clientWidth;
-  this.gameHeight = gameplayCanvas.clientHeight;
-  var gameplayCtx = gameplayCanvas.getContext('2d');
-  
-  // The input object
-  var input = {
-    escape: false,
-    enter: false,
-	spacebar: false,
-    left: false,
-    up: false,
-    right: false,
-    down: false
-  };
+  this.width = gameplayCanvas.clientWidth;
+  this.height = gameplayCanvas.clientHeight;
+  this.gameplayCtx = gameplayCanvas.getContext('2d');
   
   // Set up physics globals
   this.physics = new Object();
   this.physics.gravityConstant = 300;
   
-  // Keypress handling
+  //Scene stetup:
+  //Scenes are stored on a stack, the top-most scene is the one that the player is currently interacting with.
+  this.scenes = [];
+  this.pushScene(new TitleScreen());
+
+  // Subscribe to key input events
+  var thisGame = this;
   document.addEventListener("keydown", function(event) {
-    var key = event.keyCode || event.which;
-    switch(key) {
-	  case 13: // enter key
-	    input.enter = true;
-		break;
-	  case 27: // escape key
-	    input.escape = true;
-		break;
-	  case 32: // spacebar key
-	    input.spacebar = true;
-		break;
-      case 37: // left key
-        input.left = true;
-        break;
-      case 38: // up key
-        input.up = true;
-        break;
-      case 39: // right key
-        input.right = true;
-        break;
-      case 40: // down key
-        input.down = true;
-        break;
-    };
-  });  
+    var scene = thisGame.getCurrentScene();
+    if (scene) {
+      scene.entityKeyDown(jsKeyboardEventToGameKeyEvent(event));
+    }
+  });
   
-  document.addEventListener("keyup", function(event) {
-    var key = event.keyCode || event.which;
-    switch(key) {
-	  case 13: // enter key
-	    input.enter = false;
-		break;
-      case 27: // escape key
-	    input.escape = true;
-		break;
-	  case 32: // spacebar key
-	    input.spacebar = false;
-		break;
-      case 37: // left key
-        input.left = false;
-        break;
-      case 38: // up key
-        input.up = false;
-        break;
-      case 39: // right key
-        input.right = false;
-        break;
-      case 40: // down key
-        input.down = false;
-        break;
-    };
-  }); 
-  
-  // Update the game simualation by the timestep
-  function update(timeStep) {
-    // Update the player sprite
-    eventController.update(timeStep, input);
+  document.addEventListener("keyup", function (event) {
+    var scene = thisGame.getCurrentScene();
+    if (scene) {
+      scene.entityKeyUp(jsKeyboardEventToGameKeyEvent(event));
+    }
+  });
+}
+
+// Update the game simualation by the timestep
+Geoworld.prototype.update = function (timeStep) {
+  var scene = this.getCurrentScene();
+  if (scene) {
+    scene.entityUpdate(timeStep);
   }
+}
+
+// Render the game
+Geoworld.prototype.render = function (timeStep, ctx) {
+  ctx.clearRect(0, 0, this.width, this.height);
   
-  // Render the updated game
-  function render(timeStep){
-    gameplayCtx.clearRect(0, 0, Game.gameWidth, Game.gameHeight);
-    
-    // Draw the level (and player)
-    eventController.render(timeStep, gameplayCtx);
+  var scene = this.getCurrentScene();
+  assert(scene);
+  scene.render(timeStep, ctx);
+}
+
+// The main game loop for the game
+Geoworld.prototype.gameLoop = function (time) {
+
+  // Calculate the timestep for this frame
+  var timeStep = time - this.lastTime;
+
+  if (this.lastTime == 0) { //Prevent the timeStep from being huge during the second frame.
+    timeStep = 0;
   }
 
-  // The main game loop for the game
-  function gameLoop(time) {
-  
-    // Calculate the timestep for this frame
-    var timeStep = time - gameClock;
-    gameClock = time;
-    
-    update(timeStep);
-    render(timeStep);
-    
-    // Loop by requesting the next animation frame
-    window.requestAnimationFrame(gameLoop);
-  }
+  this.lastTime = time;
 
-  this.startGame = function () {
-    gameLoop(0);
-  }
+  this.update(timeStep);
+  this.render(timeStep, this.gameplayCtx);
 
-  this.setDebugString = function (str) {
-    document.getElementById("debug").innerHTML = str;
-  }
-};
+  // Loop by requesting the next animation frame
+  var thisGame = this;
+  window.requestAnimationFrame(function (timeStep) {
+    thisGame.gameLoop(timeStep);
+  });
+}
+
+Geoworld.prototype.startGame = function () {
+  this.gameLoop(0);
+}
+
+//this.setDebugString = function (str) {
+//  document.getElementById("debug").innerHTML = str;
+//}
+
+//Pushes a new scene onto the scene stack, making it the current scene
+Geoworld.prototype.pushScene = function (newScene) {
+  this.scenes.push(newScene);
+}
+
+//Pops the current scene from the scene stack, making the one below it the current scene
+//Returns the old scene
+Geoworld.prototype.popScene = function () {
+  return this.scenes.pop();
+}
+
+//Replaces the current scene with a new one, returns the old scene
+Geoworld.prototype.replaceScene = function (newScene) {
+  var oldScene = this.scenes.pop();
+  this.scenes.push(newScene);
+  return oldScene;
+}
+
+//Returns the current scene or undefined when there is no current scene.
+Geoworld.prototype.getCurrentScene = function () {
+  return this.scenes.peek();
+}
 
 Game = new Geoworld();
 // Start the game loop
