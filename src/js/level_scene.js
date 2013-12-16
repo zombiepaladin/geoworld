@@ -53,7 +53,9 @@ Level.prototype.isWaterAt = function(x, y) {
 Level.prototype.isAirAt = function(x, y) {
 	return this.tileEngine.isAirAt(x, y);
 }
-
+Level.prototype.isHazzardAt = function(x, y){
+	return this.tileEngine.isHazzardAt(x, y);
+}
 Level.prototype.isFinished = function() {
 	return this.tileEngine.isEndAt(this.player.position.x, this.player.position.y);
 }

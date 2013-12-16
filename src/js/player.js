@@ -75,7 +75,9 @@ Player.prototype.update = function (timeStep) {
     this.accelerate(new Vector(this.acceleration, 0), seconds);
     this.facingLeft = false;
   }
-  
+  if(this.scene.isHazzardAt(this.position.x, this.position.y)){
+	Game.pushScene(new DeathScene());
+  }
   // Determine the current frame of animation
   // Start with a "default" frame
   this.frame = {

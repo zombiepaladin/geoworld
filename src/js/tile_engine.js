@@ -169,14 +169,18 @@ TileEngine.prototype.isAirAt = function(x, y) {
 TileEngine.prototype.isWaterAt = function(x, y) {
   return this.getTypeNear(this.groundLayer, x, y) == "water";
 }
-
+TileEngine.prototype.isHazzardAt = function(x, y){
+	var prop = this.getPropertiesNear(this.groundLayer, x, y);
+	if(prop === undefined) {return false;}
+	return prop.isHazzard == "true";
+}
 // Render the tilemap
 //  timestep - the time between frames
 //  ctx - the rendering context
 TileEngine.prototype.render = function (timestep, ctx) {
   ctx.save();
   ctx.translate(this.scrollPosition.x, this.scrollPosition.y);
-  console.log(this.scrollPosition);
+  
 
   /*var width = Math.floor(canvas.scrollWidth / tilewidth) + 2;
   var height = Math.floor(canvas.scrollHeight / tileheight) + 2;

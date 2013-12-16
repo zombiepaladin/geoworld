@@ -17,6 +17,7 @@
         "src/js/titlescreen_scene.js",
         "src/js/pause_scene.js",
         "src/js/level_scene.js",
+		"src/js/death_scene.js",
 
         "src/js/sounds.js",
 		
@@ -36,6 +37,7 @@
 		"lev_5_1_dead_plains.json",
         "lev_5_3_grassy_plains.json",
 		"lev_5_4_lava_mountain.json",
-		"lev_3_1_watercave.json"
+		"lev_3_1_watercave.json",
+		"lev_1_1_forming_earth.json"
     ]
 }
