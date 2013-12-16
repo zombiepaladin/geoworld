@@ -13,11 +13,9 @@ TileEngine = function(tileMapObject) {
   for (var i = 0; i < this.layers; i++) {
 	if (this.tilemap.layers[i].name === "Ground") {
 	  this.groundLayer = i;
-	  break;
 	}
 	if (this.tilemap.layers[i].name === "Air") {
 	  this.airLayer = i;
-	  break;
 	}
   }
   
