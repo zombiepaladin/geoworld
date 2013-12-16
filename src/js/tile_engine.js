@@ -9,16 +9,19 @@ TileEngine = function(tileMapObject) {
   this.scrollPosition = {x: 0, y: 0};
 
   // Find the ground layer
+  this.groundLayer = -1;
+  this.airLayer = -1;
   for (var i = 0; i < this.layers; i++) {
 	if (this.tilemap.layers[i].name === "Ground") {
 	  this.groundLayer = i;
-	  break;
 	}
 	if (this.tilemap.layers[i].name === "Air") {
 	  this.airLayer = i;
-	  break;
 	}
-  } 
+  }
+  if(this.groundLayer === -1) this.groundLayer = 0;
+  if(this.airLayer === -1) this.airLayer = 0;
+  console.log(this.groundLayer+", "+this.airLayer);
   
   
   // Load the tileset images
