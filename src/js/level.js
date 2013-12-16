@@ -50,5 +50,5 @@ Level.prototype.isAirAt = function(x, y) {
 }
 
 Level.prototype.isFinished = function() {
-	return this.tileEngine.isEndAt(this.player.position.x, this.player.position.y);
+	return this.tileEngine.isEndAt(this.player.position.x, this.player.position.y + this.player.spriteHalfHeight);
 }

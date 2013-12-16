@@ -23,20 +23,20 @@ InputHandler = function(minTime) {
 }
 
 // Set isPressed for all necessary input
-InputHandler.prototype.press = function(input) {
+InputHandler.prototype.press = function(timeStep, input) {
 	this.isEnterPressed = input.enter;
 	this.isUpPressed = input.up;
 	this.isDownPressed = input.down;
 	this.isEscapePressed = input.escape;
-}
-
-// Checks if the input type given can be pressed again
-InputHandler.prototype.check = function(timeStep, inputType) {
+	
 	this.enterClock += timeStep;
 	this.upClock += timeStep;
 	this.downClock += timeStep;
 	this.escapeClock += timeStep;
-	
+}
+
+// Checks if the input type given can be pressed again
+InputHandler.prototype.check = function(inputType) {
 	if (inputType === "enter") {
 		if (!this.isEnterPressed && this.wasEnterPressed && this.minTime < this.enterClock) {
 			this.enterClock = 0;
