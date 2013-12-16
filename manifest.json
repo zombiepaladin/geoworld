@@ -18,13 +18,17 @@
 		"src/css/geoworld.css"
 	],
     "levels": [
+        "lev_6_1_skyland.json",
 		"lev_5_1_dead_plains.json",
         "lev_5_3_grassy_plains.json",
 		"lev_5_4_lava_mountain.json",
 		"lev_3_1_watercave.json"
     ],
     "testJavascriptOptions":{
-        "comments":true,
+        "mangle":false,
+        "compress":false,
+        "beautify":true,
+        "compress":false,
         "outSourceMap": "out.js.map",
         "sourceRoot": "../"
     },

@@ -9,16 +9,26 @@ EventController = function(game) {
 				   "level": new LevelEvent()
 	              };
 						
+<<<<<<< HEAD
 	this.resetLevels();
+=======
+	this.levels = {"level_6_1": new Level(game, level_6_1),
+	               "level_5_1": new Level(game, level_5_1),
+	               "level_5_3": new Level(game, level_5_3),
+				   "level_5_4": new Level(game, level_5_4),
+				   "level_3_1": new Level(game, level_3_1)
+				  };
+>>>>>>> 26f035384ab29ed406cbbe337513fd80374ffa79
 				 
 	this.currEvent = this.events["titlescreen"];
 }		
 
 EventController.prototype.resetLevels = function() {
-	this.levels = {"level_5_1": new Level(this.game, level_5_1),
-	               "level_5_2": new Level(this.game, level_5_2),
-				   "level_5_3": new Level(this.game, level_5_3),
-				   "level_3_1": new Level(this.game, level_3_1)
+	this.levels = {"level_6_1": new Level(game, level_6_1),
+	               "level_5_1": new Level(game, level_5_1),
+	               "level_5_3": new Level(game, level_5_3),
+				   "level_5_4": new Level(game, level_5_4),
+				   "level_3_1": new Level(game, level_3_1)
 				  };
 }				  
 
@@ -251,7 +261,7 @@ LevelSelectScreen = function(levels) {
 						   "Phase6": 0, "Phase7": 0, "Phase8": 0 };
 	// Will needed to be updated for number of levels made for each phase
 	this.numLevels = {"Phase1": 0, "Phase2": 0, "Phase3": 1, "Phase4": 0, "Phase5": 3, 
-					  "Phase6": 0, "Phase7": 0, "Phase8": 0 };
+					  "Phase6": 1, "Phase7": 0, "Phase8": 0 };
 					  
 	this.cursorSelect = 0;
 	this.menuSelect = 0;  // 0 is for selecting phase, 1 for selecting level number
