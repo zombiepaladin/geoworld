@@ -1,6 +1,7 @@
 // Acts as the central controller for events/levels; basically, controls game state
 
 EventController = function(game) {
+	this.game = game;
 	this.events = {"titlescreen":  new TitleScreen(),
 				   "pausescreen":  new PauseScreen(),
 				   "levelfinishedscreen": new FinishLevelScreen(),
@@ -8,14 +9,18 @@ EventController = function(game) {
 				   "level": new LevelEvent()
 	              };
 						
-	this.levels = {"level_5_1": new Level(game, level_5_1),
-	               "level_5_3": new Level(game, level_5_3),
-				   "level_5_4": new Level(game, level_5_4),
-				   "level_3_1": new Level(game, level_3_1)
-				  };
+	this.resetLevels();
 				 
 	this.currEvent = this.events["titlescreen"];
-}				 
+}		
+
+EventController.prototype.resetLevels = function() {
+	this.levels = {"level_5_1": new Level(this.game, level_5_1),
+	               "level_5_2": new Level(this.game, level_5_2),
+				   "level_5_3": new Level(this.game, level_5_3),
+				   "level_3_1": new Level(this.game, level_3_1)
+				  };
+}				  
 
 EventController.prototype.update = function(timeStep, input) {
 	// Handle events
@@ -39,14 +44,16 @@ EventController.prototype.handleSelection = function(selection) {
 		this.currEvent = this.events["level"];
 	}
 	else if (selection === "quit") {
-		//this.events["level"].level = null;  // Reset level
+		this.resetLevels(); 
 		this.currEvent = this.events["titlescreen"];
 	}
 	else if (selection === "finishlevel") {
 		this.events["levelselectscreen"].completeLevel(this.currLevel);
+		this.resetLevels(); 
 		this.currEvent = this.events["levelfinishedscreen"];
 	}
 	else if (selection.indexOf("level") != -1) {
+		//this.resetLevels();
 		this.currEvent = this.events["level"];
 		this.currEvent.level = this.levels[selection];
 		this.currLevel = selection;
@@ -186,7 +193,7 @@ PauseScreen.prototype.render = function(timeStep, ctx) {
     ctx.fillText("Resume", this.left, this.top);
 	ctx.fillText("Quit", this.left, this.top + this.textYDistance);
 	
-	ctx.drawImage(this.cursor, 0, 0, 47, 45, this.left - 70, this.top - 25 + (this.cursorSelect * this.textYDistance), 47, 45);
+	ctx.drawImage(this.cursor, 0, 0, 47, 45, this.left - 70, this.top - 30 + (this.cursorSelect * this.textYDistance), 47, 45);
 	ctx.restore();
 }
 
@@ -211,6 +218,8 @@ FinishLevelScreen.prototype.update = function(timeStep, input) {
 	// If there are no more fossils to display (or none to begin with), then go back to level select
 	if (this.clock > this.displayTime && this.collectedFossils[this.currFossil] == undefined) {
 		this.selection = "startgame";
+		this.clock = 0;
+		this.currFossil = 0;
 	}
 	// Change each collected fossil to draw after certain amount of time
 	else if (this.clock > this.displayTime * (this.currFossil+1)) {
@@ -258,12 +267,13 @@ LevelSelectScreen = function(levels) {
 	this.input_handler = new InputHandler(40);
 }
 
-// Takes a level and increases the number of levels completed not completed before
+// Takes a level and increases the number of levels completed that were not completed before
+// This is used to know what levels the player can access in a phase
 LevelSelectScreen.prototype.completeLevel = function(level) {
 	var phase = "Phase" + level.substring(level.indexOf('_')+1, level.lastIndexOf('_'));
 	var levelNum = parseInt(level.substring(level.lastIndexOf('_')+1));
 	
-	if (this.levelsFinished[phase] < levelNum) {
+	if (this.levelsFinished[phase] < levelNum && this.numLevels[phase] > levelNum) {
 		this.levelsFinished[phase]++;
 	}
 }

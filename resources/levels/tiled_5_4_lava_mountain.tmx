@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="257" height="80" tilewidth="24" tileheight="24">
  <properties>
-  <property name="startX" value="1512"/>
-  <property name="startY" value="50"/>
+  <property name="startX" value="50"/>
+  <property name="startY" value="1512"/>
  </properties>
  <tileset firstgid="1" name="lava_night" tilewidth="24" tileheight="24" spacing="2">
   <image source="../tilesets/lava_night.png" width="154" height="102"/>
@@ -11,6 +11,13 @@
     <property name="left" value="0"/>
     <property name="right" value="0"/>
     <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="portal"/>
    </properties>
   </tile>
   <tile id="4">
