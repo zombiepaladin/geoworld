@@ -24,20 +24,25 @@ if (!fs.existsSync('release')) {
 // File list is pulled from the manifest.json file
 // Be sure to list files in order of inclusion
 // to avoid initialization issues
-//var minifiedJS = uglifyJS.minify(manifest.javascripts);
+var minifiedJS = uglifyJS.minify(manifest.javascripts, manifest.testJavascriptOptions);
+var sourceMapFix = "\n //# sourceMappingURL="+manifest.testJavascriptOptions.outSourceMap;
+
 
 // Write combined, minified, JavaScript file to release directory
-//fs.writeFile('release/geoworld.js', minifiedJS.code, function(err) {
-//  if(err) {
-//    console.error("Could not write release/geoworld.js file\n" + err);
-//    return;
-//  }
-//  console.log("wrote file: release/geoworld.js");
-//});
-
-manifest.javascripts.forEach(function (fileName, index, array) {
-  fs.createReadStream(fileName).pipe(fs.createWriteStream('release/' + path.basename(fileName)));
-  console.log("wrote file: release/" + path.basename(fileName));
+// Don't switch this back. To debug, turn on source maps in your browser if they aren't already: http://net.tutsplus.com/tutorials/tools-and-tips/source-maps-101/
+fs.writeFile('release/geoworld.js', minifiedJS.code + sourceMapFix, function(err) {
+  if(err) {
+    console.error("Could not write release/geoworld.js file\n" + err);
+    return;
+  }
+  console.log("wrote file: release/geoworld.js");
+});
+fs.writeFile('release/out.js.map', minifiedJS.map, function(err){
+  if(err){
+    console.error("Could not write release/out.js.map\n "+err);
+    return;
+  }
+  console.log("wrote file: release/out.js.map");
 });
 
 
@@ -85,6 +90,8 @@ function processImageDirectory(dir) {
 }
 processImageDirectory('resources/spritesheets');
 processImageDirectory('resources/tilesets');
+processImageDirectory('resources/text');
+processImageDirectory('resources/backgrounds');
 
 
 //==============================================

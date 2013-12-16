@@ -24,24 +24,24 @@ if (!fs.existsSync('release')) {
 manifest.javascripts.forEach( function(fileName, index, array) {
 
 	fs.watch(fileName, function(event, filename){	
-		console.log(fileName + " changed, reprocessing JavaScripts");
-		
-	  //Disabling this for now because it make debugging a nightmare.
-	  //Should probably add a command line switch in the future so you can toggle between a debug and release html file + js handling.
-
-		// Combine JavaScript files with uglify-js
-		//var minifiedJS = uglifyJS.minify(jsFileList);
-
-		// Write combined, minified, JavaScript file to release directory
-		//fs.writeFile('release/geoworld.js', minifiedJS.code, function(err) {
-		//	if(err) {
-		//		console.error("Could not write release/geoworld.js file\n" + err);
-		//		return;
-		//	}
-		//	console.log("wrote file: release/geoworld.js");
-		//});
-		fs.createReadStream(fileName).pipe(fs.createWriteStream('release/' + path.basename(fileName)));
-		console.log("wrote file: release/" + path.basename(fileName));
+		var minifiedJS = uglifyJS.minify(manifest.javascripts, manifest.testJavascriptOptions);
+        var sourceMapFix = "\n //# sourceMappingURL="+manifest.testJavascriptOptions.outSourceMap;
+        // Write combined, minified, JavaScript file to release directory
+        // Don't switch this back. To debug, turn on source maps in your browser if they aren't already: http://net.tutsplus.com/tutorials/tools-and-tips/source-maps-101/
+        fs.writeFile('release/geoworld.js', minifiedJS.code + sourceMapFix, function(err) {
+          if(err) {
+            console.error("Could not write release/geoworld.js file\n" + err);
+            return;
+          }
+          console.log("wrote file: release/geoworld.js");
+        });
+        fs.writeFile('release/out.js.map', minifiedJS.map, function(err){
+          if(err){
+            console.error("Could not write release/out.js.map\n "+err);
+            return;
+          }
+          console.log("wrote file: release/out.js.map");
+        });
 	});
 });
 

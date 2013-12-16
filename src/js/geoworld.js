@@ -10,9 +10,8 @@ Geoworld = function() {
   // The game's containing div
   var game = document.getElementById("geoworld");
   
-  // The game's levels
-  var levels = [new Level(level_5_3)];
-  var currLevel = 0;
+  // Dictates the events or flow of the game
+  var eventController = new EventController(game);
   
   // The gameplay canvas & context
   var gameplayCanvas = document.getElementById("gameplay-canvas");
@@ -22,6 +21,9 @@ Geoworld = function() {
   
   // The input object
   var input = {
+    escape: false,
+    enter: false,
+	spacebar: false,
     left: false,
     up: false,
     right: false,
@@ -30,12 +32,21 @@ Geoworld = function() {
   
   // Set up physics globals
   this.physics = new Object();
-  this.physics.gravityConstant = 100;
+  this.physics.gravityConstant = 300;
   
   // Keypress handling
   document.addEventListener("keydown", function(event) {
     var key = event.keyCode || event.which;
     switch(key) {
+	  case 13: // enter key
+	    input.enter = true;
+		break;
+	  case 27: // escape key
+	    input.escape = true;
+		break;
+	  case 32: // spacebar key
+	    input.spacebar = true;
+		break;
       case 37: // left key
         input.left = true;
         break;
@@ -54,6 +65,15 @@ Geoworld = function() {
   document.addEventListener("keyup", function(event) {
     var key = event.keyCode || event.which;
     switch(key) {
+	  case 13: // enter key
+	    input.enter = false;
+		break;
+      case 27: // escape key
+	    input.escape = false;
+		break;
+	  case 32: // spacebar key
+	    input.spacebar = false;
+		break;
       case 37: // left key
         input.left = false;
         break;
@@ -72,7 +92,7 @@ Geoworld = function() {
   // Update the game simualation by the timestep
   function update(timeStep) {
     // Update the player sprite
-    levels[currLevel].update(timeStep, input);
+    eventController.update(timeStep, input);
   }
   
   // Render the updated game
@@ -80,25 +100,7 @@ Geoworld = function() {
     gameplayCtx.clearRect(0, 0, Game.gameWidth, Game.gameHeight);
     
     // Draw the level (and player)
-    levels[currLevel].render(timeStep, gameplayCtx);
-    
-	/*
-    // Draw water for physics demo:
-    if (Game.enableWaterOnLeft() || Game.enableWaterOnRight()) {
-      gameplayCtx.save();
-      gameplayCtx.fillStyle = "rgba(52, 179, 247, 0.5)";
-      
-      if (Game.enableWaterOnLeft()) {
-        gameplayCtx.fillRect(0, 0, Game.gameWidth / 2, Game.gameHeight);
-      }
-
-      if (Game.enableWaterOnRight()) {
-        gameplayCtx.fillRect(Game.gameWidth / 2, 0, Game.gameWidth / 2, Game.gameHeight);
-      }
-
-      gameplayCtx.restore();
-    }
-	*/
+    eventController.render(timeStep, gameplayCtx);
   }
 
   // The main game loop for the game
@@ -122,13 +124,6 @@ Geoworld = function() {
   this.setDebugString = function (str) {
     document.getElementById("debug").innerHTML = str;
   }
-
-  /*
-  this.enableHangTime = function () { return document.getElementById("hangTime").checked; }
-  this.enableWaterOnLeft = function () { return document.getElementById("waterOnLeft").checked; }
-  this.enableWaterOnRight = function () { return document.getElementById("waterOnRight").checked; }
-  this.enableDoubleJump = function () { return document.getElementById("doubleJump").checked; }
-  */
 };
 
 Game = new Geoworld();

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="1000" height="53" tilewidth="24" tileheight="24">
+ <properties>
+  <property name="endTileX" value="100"/>
+  <property name="endTileY" value="33"/>
+  <property name="startX" value="72"/>
+  <property name="startY" value="1024"/>
+ </properties>
+ <tileset firstgid="1" name="water_cave" tilewidth="24" tileheight="24">
+  <image source="../tilesets/water_cave.png" width="120" height="96"/>
+  <tile id="0">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="left" value="12"/>
+    <property name="right" value="24"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="12"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="roof"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="left" value="12"/>
+    <property name="right" value="24"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="12"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="12"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="left" value="12"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="water"/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="portal"/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="filler"/>
+   </properties>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="left" value="12"/>
+    <property name="right" value="12"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="17">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="water"/>
+   </properties>
+  </tile>
+  <tile id="18">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="19">
+   <properties>
+    <property name="type" value="air"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Air" width="1000" height="53">
+  <data encoding="base64" compression="zlib">
+   eJzt1zEKhEAUA1AbL7B4/7NaCSJY7PI3A+E9GGynCGOybQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAECL43YAgCz/YQDgohfQRJ6Baf9+V7xbAMBFL6CJPAPT7HMAIEUvoIk8A9PscwAgRS+giTwD0+xzACBFL6CJPAPT7HMAIEUvoIk8A9PscwAgRS+giTwD0+xzACBFL6CJPAPT7HMAIEUvoIk8A9PscwAgRS8AgHf2OQCQcjy+AECOfQ4AAADr3ff5vvguAAAAAAAAAAAAAAAAAAAAAADwrc+iAwAAwG9OlbYMXg==
+  </data>
+ </layer>
+ <layer name="Background" width="1000" height="53">
+  <data encoding="base64" compression="zlib">
+   eJzt10EKhDAMBdAO7gfx/od14WaWZmhIrE94y0J/LIG/jzEOAAAAAAAAAEK+AXfOVucBAACA2SLdeUUzZ3nnq/7fAAAA9FTdj3mm6ncLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwPtsDe4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsKLPj+q7AAAAAAAAkGtnSd5T71lWZwLI9s/+m3kmsm/tcAAgk37ee5bVmQCy6ecAABf9vPcsqzMBZNPPAQAu+nnvWVZnAsimnwNA3AlGRW5d
+  </data>
+ </layer>
+ <layer name="Ground" width="1000" height="53">
+  <data encoding="base64" compression="zlib">
+   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
+  </data>
+ </layer>
+</map>
