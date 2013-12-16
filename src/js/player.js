@@ -70,17 +70,15 @@ Player.prototype.update = function (timeStep, input) {
   
 
   // Handle user input
-  if(input.left) {
+  if(input.left || input.a) {
     this.accelerate(new Vector(-this.acceleration, 0), seconds);
     this.facingLeft = true;
   }
-
-  if(input.right) {
+  if(input.right || input.d) {
     this.accelerate(new Vector(this.acceleration, 0), seconds);
     this.facingLeft = false;
   }
-
-  if (input.up &&
+  if ((input.up || input.spacebar || input.w) &&
     (
      this.isOnGround() ||
      this.jumpsLeft > 0 || //For double (triple, etc) jumping
@@ -91,9 +89,9 @@ Player.prototype.update = function (timeStep, input) {
     } else {
       this.jumpsLeft--;
     }
-
     input.up = false;//HACK: Should probably modify the input system so we can check if it was just pressed instead.
-    
+    input.spacebar = false;
+	input.w = false;
 	this.velocity.y = 0;  // Reset y-velocity to 0 for multiple jumps
 	this.lastAcceleration.y = 0;
 	
