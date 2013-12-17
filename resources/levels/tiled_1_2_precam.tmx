@@ -2,6 +2,621 @@
 <map version="1.0" orientation="orthogonal" width="360" height="35" tilewidth="24" tileheight="24">
  <tileset firstgid="1" name="g7380" tilewidth="24" tileheight="24">
   <image source="../tilesets/precam_tiles.png" width="290" height="216"/>
+  <tile id="0">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="left" value="19"/>
+    <property name="right" value="13"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="left" value="13"/>
+    <property name="right" value="7"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="left" value="7"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="11"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="left" value="11"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="17">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="18">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="10"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="19">
+   <properties>
+    <property name="left" value="10"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="20">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="21">
+   <properties>
+    <property name="left" value="10"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="22">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="23">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="24">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="25">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="26">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="27">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="28">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="29">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="30">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="31">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="32">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="33">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="34">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="35">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="38">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="39">
+   <properties>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="40">
+   <properties>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="41">
+   <properties>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="42">
+   <properties>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="43">
+   <properties>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="44">
+   <properties>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="45">
+   <properties>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="46">
+   <properties>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="47">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="49">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="50">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="51">
+   <properties>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="52">
+   <properties>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="53">
+   <properties>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="54">
+   <properties>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="55">
+   <properties>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="56">
+   <properties>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="57">
+   <properties>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="58">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+    <property name="water" value="water"/>
+   </properties>
+  </tile>
+  <tile id="59">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="60">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="61">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="62">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="63">
+   <properties>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="64">
+   <properties>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="65">
+   <properties>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="66">
+   <properties>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="67">
+   <properties>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="68">
+   <properties>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="69">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="70">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="71">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="72">
+   <properties>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="73">
+   <properties>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="74">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="75">
+   <properties>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="76">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="11"/>
+    <property name="type" value="ground"/>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="77">
+   <properties>
+    <property name="left" value="11"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="78">
+   <properties>
+    <property name="left" value="19"/>
+    <property name="right" value="13"/>
+    <property name="type" value="ground"/>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="79">
+   <properties>
+    <property name="left" value="13"/>
+    <property name="right" value="7"/>
+    <property name="type" value="ground"/>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="80">
+   <properties>
+    <property name="left" value="7"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="84">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="10"/>
+    <property name="type" value="ground"/>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="85">
+   <properties>
+    <property name="left" value="10"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="86">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="87">
+   <properties>
+    <property name="left" value="10"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+    <property name="water" value="true"/>
+   </properties>
+  </tile>
+  <tile id="88">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="89">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="90">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="91">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="92">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="96">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="97">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="98">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="99">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="100">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="101">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="102">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="103">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="104">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="Background" width="360" height="35">
   <data encoding="base64" compression="zlib">
@@ -13,4 +628,26 @@
    eJztmluTFEUQhUdQwAcRUB4QFHhALgq4yEWUhUERWO4+LKLgw3IR/Rf10zkbG0OkbWdvZl26u3rOF3Eicjp6ZqqrqrOyTvdsRgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYSQnHwIfQTt2lJAHHAsDNsqQojGCehr6CT0AbQD2tmISb3I8d0H7YcObCkgDjgWPob2QLuZq4ui3WuEaKxAF6DvoU+gvdCnjZjUixzfI9CX0FdbCogDjoWD0OfQZ8zPRdHuNUI0VqHr0A3oEPQFdLgRk3qR46utv8eRl49BRyFtDyVjeiNxaPcaIRYfI8XfyPU7KXDPuIV3fGWs5XAZ0xuxQ/+QWLD4GFp8CjoNnemILb9TGm+bpxQ/hp5AvzX6wZuftT2UjOmN2KF/SCxYfAwtvghdgi53xJbfKY23zVOKn0MvoL8a/eBdi72x9EZQIwbUiuEEc/V7xuYfpuyL6WvlJWWfK+M5dBP6uSO2/E7pGtLbZi0u0Tbv/3rb/Bb6B/p35q+Hc8WoEQNqxbCy5Pev10vsc5/lrdvpa5UjV42Uy98oXUPm8jdKtM37v971SPOQc63Rlhg1YkCtGFaX/J71eol97rPkemqZY7X5Ws25OeaaP1ddlMvfmM/ia1pLnMvfKNE27/961yMZ9+lv0FP9P14vcT4re1/IZxMyf1nmmLYWS18rsbuy0pyPsuYftGEtLIO/cQ46D30X0WYtrsXf0O73ofyNZXhnrMS+wzJnvHND5mT5bELmL8vvaOvvUP7MIrbU+5uxrPmRIwJyRUDOCEM9x1+D7kH3O/p2Sv7Gj9BP0LWINtPfKBdPlRJ7DW3OfAN9C53tOK69wyNzsnw2keJvaDXAEM/E5TGZ87T5uCnkiIBcEZAzwlDP8dehp9DvHX07JX/jNnQHuhvRZvob9De8lNhrzGftc+YK9AN0teO49g6PZQ1N8Te8dXjuWB6TOU+bj5tCjgjIFQE5I1j+S65T2pqoffcB9BB61Oi3Degl9Mo4RjX6G5qfVru/4W0//Y3+ibmPFp+998Uv0C3o19l/x107Lutkiy8hv6vFY/I3NF9T5jxtPjZrFdTaATV3WOvwOuQ6pa2J2nefQX9Af3b04VT9Dc1Pq93f8LZfq2dS4mXzN7zXFdO3i8/e+6K0B5Xibwzx/onma1rWxmatglo7oOYO6x1ex3y2/Zqoffc19Ab6u6MPp+pvaH5a7f6Gt/2ap5ES97mmjyH2XldM3y4+e++L0nVXir+Ra6/qieUx6Wta1sZm7YFaO6DmDhsdXkfKtVv2TVP1N0rPmRr9jVxj3eeaPobYe1191rE13teaT5vjHM3TbYst7c7R/0ONnTevWtaLXOPY51pgaWfK+dp15VqnhopLrHExfZ0yl9rmc591bI2+pebT5jjH4+la2r0Y05T+H2rsvPsgr8+WMo59et2Wdqacr11XyvsbY4hL1LoxfZ0yl9rmc5/vb9ToW2o+bY5zPJ6upd3b7SPGPHZe39jrs6WMY59et6WdKedr1+U9f2xxrv6XcUxfp8yltvlMf2P7eAz7txL+Rtt+KnXsYttf+167tL9doj2193mu/u/yN2LzRa7ror9hf19lLHs5Lfb2f9t+KnXsYttf+147ZR89pEdUc5/34W/E5otc10V/w/6+ylj2clrs7f+2/VTq2MW2v/a9tqXNfV6L939r7PM+/I3YfJHrut4Bk5vmAw==
   </data>
  </layer>
+ <objectgroup name="Object Layer 1" width="360" height="35">
+  <object name="Player" x="3" y="466" width="69" height="88"/>
+  <object name="Goal" x="8568" y="218" width="73" height="407">
+   <properties>
+    <property name="for" value="Player"/>
+   </properties>
+  </object>
+  <object name="BlobEnemy" x="649" y="577" width="286" height="71"/>
+  <object name="CyanoEnemy" x="1442" y="382" width="69" height="74"/>
+  <object name="BlobEnemy" x="1657" y="696" width="311" height="71"/>
+  <object name="BlobEnemy" x="1992" y="694" width="287" height="74"/>
+  <object name="BlobEnemy" x="2953" y="601" width="215" height="69"/>
+  <object name="CyanoEnemy" x="3385" y="527" width="72" height="73"/>
+  <object name="CyanoEnemy" x="4249" y="313" width="71" height="71"/>
+  <object name="BlobEnemy" x="4393" y="696" width="215" height="71"/>
+  <object name="BlobEnemy" x="4609" y="695" width="215" height="72"/>
+  <object name="BlobEnemy" x="5400" y="695" width="217" height="72"/>
+  <object name="BlobEnemy" x="5689" y="697" width="215" height="70"/>
+  <object name="CyanoEnemy" x="5617" y="695" width="73" height="72"/>
+  <object name="BlobEnemy" x="7873" y="696" width="335" height="71"/>
+  <object name="CyanoEnemy" x="8232" y="697" width="73" height="71"/>
+ </objectgroup>
 </map>
