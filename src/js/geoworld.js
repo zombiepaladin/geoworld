@@ -35,59 +35,25 @@ Geoworld = function() {
   this.physics.gravityConstant = 300;
   
   // Keypress handling
-  document.addEventListener("keydown", function(event) {
-    var key = event.keyCode || event.which;
-    switch(key) {
-	  case 13: // enter key
-	    input.enter = true;
-		break;
-	  case 27: // escape key
-	    input.escape = true;
-		break;
-	  case 32: // spacebar key
-	    input.spacebar = true;
-		break;
-      case 37: // left key
-        input.left = true;
-        break;
-      case 38: // up key
-        input.up = true;
-        break;
-      case 39: // right key
-        input.right = true;
-        break;
-      case 40: // down key
-        input.down = true;
-        break;
-    };
-  });  
-  
-  document.addEventListener("keyup", function(event) {
-    var key = event.keyCode || event.which;
-    switch(key) {
-	  case 13: // enter key
-	    input.enter = false;
-		break;
-      case 27: // escape key
-	    input.escape = false;
-		break;
-	  case 32: // spacebar key
-	    input.spacebar = false;
-		break;
-      case 37: // left key
-        input.left = false;
-        break;
-      case 38: // up key
-        input.up = false;
-        break;
-      case 39: // right key
-        input.right = false;
-        break;
-      case 40: // down key
-        input.down = false;
-        break;
-    };
-  }); 
+  var keys = {
+	13: "enter",
+	27: "escape",
+	32: "spacebar",
+	37: "left",
+	38: "up",
+	39: "right",
+	40: "down",
+	87: "w",
+	65: "a",
+	83: "s",
+	68: "d"
+  };
+  function keyHandler(event){
+	var key = event.keyCode || event.which;
+	if(keys[key]) input[keys[key]] = event.type === "keydown";
+  }
+  document.addEventListener("keydown", keyHandler);
+  document.addEventListener("keyup", keyHandler);
   
   // Update the game simualation by the timestep
   function update(timeStep) {

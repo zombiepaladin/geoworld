@@ -12,6 +12,13 @@
         "src/js/tile_engine.js",
 		"src/js/fossil.js",
 		"src/js/input_handler.js",
+		"resources/entities/lev_8_1_entities.js",
+		"resources/entities/lev_6_1_entities.js",
+		"resources/entities/lev_5_1_entities.js",
+		"resources/entities/lev_5_2_entities.js",
+		"resources/entities/lev_5_3_entities.js",
+		"resources/entities/lev_5_4_entities.js",
+		"resources/entities/lev_3_1_entities.js",
 		"src/js/geoworld.js"
 	],
 	"stylesheets": [
@@ -22,7 +29,9 @@
 		"lev_5_1_dead_plains.json",
         "lev_5_3_grassy_plains.json",
 		"lev_5_4_lava_mountain.json",
-		"lev_3_1_watercave.json"
+		"lev_3_1_watercave.json",
+		"lev_8_1_snow.json",
+		"lev_3_2_geysers.json"
     ],
     "testJavascriptOptions":{
         "mangle":false,

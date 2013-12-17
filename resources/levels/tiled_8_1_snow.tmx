@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="256" height="20" tilewidth="24" tileheight="24">
+ <tileset firstgid="1" name="marlen_tiles" tilewidth="24" tileheight="24">
+  <image source="F:/tile engine example/marlen_tiles.png" width="168" height="168"/>
+  <tile id="0">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="17">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="18">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="19">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="20">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="21">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="22">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="23">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="24">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="25">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="26">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="27">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="28">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="29">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="30">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="31">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="32">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="33">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="34">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="35">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="36">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="37">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="38">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="39">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="40">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="41">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="42">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="43">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="44">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="45">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="24"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="46">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="24"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="47">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="24"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="48">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Tile Layer 1" width="256" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztmNtO40AMhg3csL0BbgpLy2FXuxSEFvH+T0esxsJ1PcdMmmb7/5KlqkoyB/uzPUMEQRAEQRAEQRDURu+dfUw9CQiCDi5m/09nfwk5AIJOScL+ujfkAAg6DVn2kQMg6DQUYn+MHIC7BQg6DjGLDxRnv2UOwN0CBE2vEu5b5QDcLUDQtKrlfmgOwN3C4XVHW1/fZj6/7J8veedUxHv5pOzntNPJkvan2BDuLbfPnf1S9pv8uFkmxkUOGEcvtN3fN9r3lfXbg3pe3nlU9jnSHP/RLlfHxBczL/PQe8O2mWpSGRLuX6mObZs3bgve5bjRLL9nzqM0B4x1h8hrf6ZdLkpjUdeKlnEs9Tw1JxnfxmzKYs+zf1rnAGY/VBc8vsbaVzuGZn6jfh8T/7aue5bidhl4xltrTW/A/JT0G7k5YIw7xHva1jkvV5X6Wu9fyzix9Znj9Kyz894uaD9HtOJf/CP9wGrgWkLsC+N6XbI27Zs3apcLYswfK/85/oxxa896LfmPjZXKVSmmvTvEoWfWO2fN2iTWUnHm1V0dp3q9tt8N/af/9/xy2dmP3m5oP/e05N+OXdsPxOq+zEGvS9aW8k9tLogxH+Lf3gcc+uxSw7/m0OZSHZut+c+JKz2GMG15Dt0jcO1eUV1OFj/mnFE2FPevrLO0767dR+H/urdD819zJuD9jvWEMocr+maf17bInFdNLqjhP7ZXQ+Iw12r4z/Xv1PyzMeu2tw19h//XvWlJH+B9054z7Rx1jHk2Bv9ej8Lz0Zws+mdCsZQ6D5Tyvzb7nmuryBpDvX/uGkK5IGav1I7/Uo5LfVRic+af35HapmM75/tydx07o8buyEI1NHcfxuD/JeAXr/6Hxk/Nv4b/FnG57v0hPZjt/ReNxk3NiWg4/0N933J9/wv/Xm+b8/2c/O/1/XPiX+q/9Mhz5F+zv6bdnsae/cF//bfmxj/HgfBfUv+H2pz49+7/5sa/HVf3faj/vn0Bgv7NXQ==
+  </data>
+ </layer>
+</map>

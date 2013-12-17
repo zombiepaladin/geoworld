@@ -25,8 +25,8 @@ InputHandler = function(minTime) {
 // Set isPressed for all necessary input
 InputHandler.prototype.press = function(timeStep, input) {
 	this.isEnterPressed = input.enter;
-	this.isUpPressed = input.up;
-	this.isDownPressed = input.down;
+	this.isUpPressed = input.up || input.w;
+	this.isDownPressed = input.down || input.s;
 	this.isEscapePressed = input.escape;
 	
 	this.enterClock += timeStep;

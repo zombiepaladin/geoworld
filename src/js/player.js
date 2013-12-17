@@ -49,6 +49,35 @@ Player.prototype.constructor = Player;
 // Update the player's sprite given the provided input
 Player.prototype.update = function (timeStep, input) {
   Entity.prototype.update.call(this, timeStep, input);
+  
+  /*
+  // Check for collisions and if there is any, apply non-colliding x and/or y value to position
+  // TODO: GENERALIZE FOR ENTITY; RIGHT NOW, NEED HEIGHT AND WIDTH OF SPRITE
+  if (this.velocity.y > 0) {  // Collision on ground at foot of robot
+    var nonCollY = this.level.getCollisionAt(this.position.x, this.position.y, "down");
+	if (nonCollY !== null) {
+		this.position.y = nonCollY;
+	}
+  }
+  else if (this.velocity.y < 0) {  // Collision on head of robot
+	var nonCollY = this.level.getCollisionAt(this.position.x, this.position.y - this.spriteHalfHeight, "up");
+	if (nonCollY !== null) {
+		this.position.y = nonCollY;
+	}
+  }
+  else if (this.velocity.x > 0) {  // Collision on right side of robot
+    var nonCollX = this.level.getCollisionAt(this.position.x, this.position.y + this.spriteHalfWidth, "right");
+	if (nonCollX !== null) {
+		this.position.x = nonCollX;
+	}
+  }
+  else if (this.velocity.x < 0) {  // Collision on left side of robot
+    var nonCollX = this.level.getCollisionAt(this.position.x, this.position.y - this.spriteHalfWidth, "left");
+	if (nonCollX !== null) {
+		this.position.x = nonCollX;
+	}
+  }
+  */
 
   var seconds = timeStep / 1000; // Convert timestep to seconds
   
@@ -70,17 +99,15 @@ Player.prototype.update = function (timeStep, input) {
   
 
   // Handle user input
-  if(input.left) {
+  if(input.left || input.a) {
     this.accelerate(new Vector(-this.acceleration, 0), seconds);
     this.facingLeft = true;
   }
-
-  if(input.right) {
+  if(input.right || input.d) {
     this.accelerate(new Vector(this.acceleration, 0), seconds);
     this.facingLeft = false;
   }
-
-  if (input.up &&
+  if ((input.up || input.spacebar || input.w) &&
     (
      this.isOnGround() ||
      this.jumpsLeft > 0 || //For double (triple, etc) jumping
@@ -91,9 +118,9 @@ Player.prototype.update = function (timeStep, input) {
     } else {
       this.jumpsLeft--;
     }
-
     input.up = false;//HACK: Should probably modify the input system so we can check if it was just pressed instead.
-    
+    input.spacebar = false;
+	input.w = false;
 	this.velocity.y = 0;  // Reset y-velocity to 0 for multiple jumps
 	this.lastAcceleration.y = 0;
 	
