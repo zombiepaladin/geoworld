@@ -57,7 +57,9 @@ Level.prototype.isWaterAt = function(x, y) {
 Level.prototype.isAirAt = function(x, y) {
 	return this.tileEngine.isAirAt(x, y);
 }
-
+Level.prototype.isDeathTileAt = function(x, y) {
+	return this.tileEngine.isDeathTileAt(x, y);
+}
 Level.prototype.getCollisionAt = function(x, y, direction) {
 	return this.tileEngine.getCollisionAt(x, y, direction);
 }
@@ -71,3 +73,4 @@ Level.prototype.isFinished = function() {
 		return true;
 	return false;
 }
+

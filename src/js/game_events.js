@@ -4,6 +4,7 @@ EventController = function(game) {
 	this.game = game;
 	this.events = {"titlescreen":  new TitleScreen(),
 				   "pausescreen":  new PauseScreen(),
+				   "deathscreen":  new DeathScreen(),
 				   "levelfinishedscreen": new FinishLevelScreen(),
 			 	   "levelselectscreen": new LevelSelectScreen(this.levels),
 				   "level": new LevelEvent()
@@ -54,6 +55,12 @@ EventController.prototype.handleSelection = function(selection) {
 		this.resetLevels(); 
 		this.currEvent = this.events["levelfinishedscreen"];
 	}
+	else if (selection === "death")
+	{
+		// If player dies, restart
+		this.resetLevels(); 
+		this.currEvent = this.events["deathscreen"];
+	}
 	else if (selection.indexOf("level") != -1) {
 		//this.resetLevels();
 		this.currEvent = this.events["level"];
@@ -88,6 +95,10 @@ LevelEvent.prototype.update = function(timeStep, input) {
 	}
 	else if (canPressEscape) {
 		this.selection = "pause";
+	}
+	else if (this.level.isDeathTileAt(this.level.player.position.x,this.level.player.position.y))
+	{
+		this.selection = "death";
 	}
 }
 
@@ -199,6 +210,60 @@ PauseScreen.prototype.render = function(timeStep, ctx) {
 	ctx.restore();
 }
 
+
+//======================================
+// Death Screen
+//--------------------------------------
+
+DeathScreen = function() {
+	this.selection = null;
+	this.cursorSelect = 0;
+	this.numChoices = 2;
+	
+	this.top = 100;
+	this.left = 350;
+	this.textYDistance = 80;
+	this.cursor = new Image();
+	this.cursor.src = "cursor.png";
+	this.background = new Image();
+	this.background.src = "Phase6DeathScreen.png";
+	
+	this.input_handler = new InputHandler(60);
+	
+	// TODO: MAKE A MORE INTERESTING PAUSE SCREEN
+}
+
+DeathScreen.prototype.update = function(timeStep, input) {
+	this.input_handler.press(timeStep, input);
+	var canPressEnter = this.input_handler.check("enter");
+	var canPressUp = this.input_handler.check("up");
+	var canPressDown = this.input_handler.check("down");
+
+	if (canPressUp) this.cursorSelect = Math.clamp(this.cursorSelect - 1, 0, this.numChoices - 1);
+	if (canPressDown) this.cursorSelect = Math.clamp(this.cursorSelect + 1, 0, this.numChoices - 1);
+	
+	if (canPressEnter) {
+		if (this.cursorSelect === 0) {
+			this.selection = "startgame";
+		}
+		else if (this.cursorSelect === 1) {
+			this.selection = "quit";
+		}
+	}
+}
+
+DeathScreen.prototype.render = function(timeStep, ctx) {
+	ctx.drawImage(this.background, 0, 0, 800, 400, 0, 0, 800, 400);
+	
+	ctx.save();
+	ctx.fillStyle = "red";
+    ctx.font = "bold 30px Arial";
+    ctx.fillText("Restart", this.left, this.top);
+	ctx.fillText("Quit", this.left, this.top + this.textYDistance);
+	
+	ctx.drawImage(this.cursor, 0, 0, 47, 45, this.left - 70, this.top - 30 + (this.cursorSelect * this.textYDistance), 47, 45);
+	ctx.restore();
+}
 
 
 //======================================
