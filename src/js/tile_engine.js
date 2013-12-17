@@ -10,11 +10,15 @@ TileEngine = function(tileMapObject) {
   this.background;
   
   //Paralaxed backgorund add backgroundsrc prop in json file
+  if (this.tilemap.backgroundsrc) {
   var backgroundimg = new Image();
-  backgroundimg.onload = function() {
-   engine.background = this;
+  	backgroundimg.onload = function() {
+   	engine.background = this;
+  	}
+  	backgroundimg.src = this.tilemap.backgroundsrc;
   }
-  backgroundimg.src = this.tilemap.backgroundsrc;
+  
+ 
   
   this.tileanimation = 15;
   this.switchtile = false;
@@ -326,7 +330,11 @@ TileEngine.prototype.render = function (timestep, ctx) {
   var startX = Math.floor(this.scrollPosition.x / tilewidth);
   var startY = Math.floor(this.scrollPosition.y / tileheight);
 
-  
+  //set background color if in tilemap properties
+  if (this.tilemap.backgroundcolor) {
+  	ctx.fillStyle = this.tilemap.backgroundcolor;
+  	ctx.fillRect(0,0,800,400);
+  }
 
   
   for (layer = 0; layer < this.layers; layer++) {  // Painter's algorithm
