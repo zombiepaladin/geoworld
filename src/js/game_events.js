@@ -31,6 +31,7 @@ EventController.prototype.resetLevels = function() {
 	               "level_5_3": new Level(this.game, level_5_2),
 				   "level_5_4": new Level(this.game, level_5_3),
 				   "level_3_1": new Level(this.game, level_3_1),
+				   "level_3_2": new Level(this.game, level_3_2),
 				   "level_8_1": new Level(this.game, level_8_1)
 				  };
 }				  
@@ -263,7 +264,7 @@ LevelSelectScreen = function(levels) {
 	this.levelsFinished = {"Phase1": 0, "Phase2": 0, "Phase3": 0, "Phase4": 0, "Phase5": 0, 
 						   "Phase6": 0, "Phase7": 0, "Phase8": 0 };
 	// Will needed to be updated for number of levels made for each phase
-	this.numLevels = {"Phase1": 0, "Phase2": 0, "Phase3": 1, "Phase4": 0, "Phase5": 3, 
+	this.numLevels = {"Phase1": 0, "Phase2": 0, "Phase3": 2, "Phase4": 0, "Phase5": 3, 
 					  "Phase6": 1, "Phase7": 0, "Phase8": 1 };
 					  
 	this.cursorSelect = 0;
