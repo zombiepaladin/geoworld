@@ -19,7 +19,7 @@ Alphadon = function (game, initialPosition, initialVelocity, level) {
   
   // Physics constants:
   this.instantaneousJumpImpulse = -200;
-  this.acceleration = 0.5;  // in pixels per second^2
+  this.acceleration = 100;  // in pixels per second^2
 
   this.maxVelocity = new Vector(200, 400);
   this.frictionConstant = 200;
@@ -57,8 +57,13 @@ Alphadon.prototype.update = function (timeStep, input) {
    if (this.isOnAir()) {
 	this.accelerate(new Vector(0, -7));
   }
-  
-  this.accelerate(new Vector(this.acceleration, 0), seconds);
+  var player = this.level.player;
+  var playerPos = player.position;
+  if(playerPos.x > this.position.x){
+	this.accelerate(new Vector(this.acceleration, 0), seconds);
+  } else {
+	this.accelerate(new Vector(-this.acceleration, 0), seconds);
+  }
   // Handle user input
   /*if(input.left || input.a) {
     this.accelerate(new Vector(-this.acceleration, 0), seconds);
