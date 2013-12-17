@@ -43,6 +43,7 @@ Level.prototype.render = function(timeStep, ctx) {
 
 Level.prototype.getGroundLevelAt = function(x, y) {
 	return this.tileEngine.getGroundLevelAt(x, y);
+	//return this.tileEngine.getCollisionAt(x, y, "down");
 }
 
 Level.prototype.isWaterAt = function(x, y) {
@@ -50,6 +51,10 @@ Level.prototype.isWaterAt = function(x, y) {
 }
 Level.prototype.isAirAt = function(x, y) {
 	return this.tileEngine.isAirAt(x, y);
+}
+
+Level.prototype.getCollisionAt = function(x, y, direction) {
+	return this.tileEngine.getCollisionAt(x, y, direction);
 }
 
 Level.prototype.isFinished = function() {
