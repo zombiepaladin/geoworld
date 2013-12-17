@@ -11,9 +11,9 @@ Level = function(game, tileMapObject, entitiesList) {
 	this.player = new Player(game, initialPosition, initialVelocity, this);
 	this.entities = [this.player];
 	for(var i=0; entitiesList && i<entitiesList.length; i++){
-	  entitiesList[i].game = game;
-	  entitiesList[i].level = this;
-	  this.entities.push(entitiesList[i]);
+      if(entitiesList[i]["class"] instanceof Function){
+	    this.entities.push(new entitiesList[i]["class"](game, entitiesList[i].position, new Vector(0,0), this));
+	  }
 	}
 }
 
