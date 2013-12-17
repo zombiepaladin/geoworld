@@ -7,7 +7,13 @@ TileEngine = function(tileMapObject) {
   this.tilesheets = [];
   this.layers = this.tilemap.layers.length;  // Number of layers
   this.scrollPosition = {x: 0, y: 0};
-
+  this.background;
+  
+  var backgroundimg = new Image();
+  backgroundimg.onload = function() {
+   engine.background = this;
+  }
+  backgroundimg.src = this.tilemap.backgroundsrc;
   // Find the ground layer
   // Checks for undefined later to tell if ground or air layer exists
   for (var i = 0; i < this.layers; i++) {
@@ -121,9 +127,6 @@ TileEngine.prototype.isWaterAt = function(x, y) {
 //  timestep - the time between frames
 //  ctx - the rendering context
 TileEngine.prototype.render = function (timestep, ctx) {
-  ctx.save();
-  ctx.translate(-1 * this.scrollPosition.x, -1 * this.scrollPosition.y);
-  
   var canvas = document.getElementById("geoworld");  
   var tilewidth = this.tilemap.tilewidth;
   var tileheight = this.tilemap.tileheight;
@@ -131,8 +134,19 @@ TileEngine.prototype.render = function (timestep, ctx) {
   var height = Math.floor(canvas.scrollHeight / tileheight) + 2;
   var startX = Math.floor(this.scrollPosition.x / tilewidth);
   var startY = Math.floor(this.scrollPosition.y / tileheight);
+
+  
+
   
   for (layer = 0; layer < this.layers; layer++) {  // Painter's algorithm
+		ctx.save();
+		console.log(ctx.width);
+		if(this.background) ctx.drawImage(this.background,-((this.background.width-800)*((this.scrollPosition.x)/((this.tilemap.layers[layer].width*tilewidth)-800))), 0);
+   
+		ctx.restore();
+		ctx.save();
+		ctx.translate(-1 * this.scrollPosition.x, -1 * this.scrollPosition.y);
+  
 	  for(x = startX; x < width + startX; x++) {
 		for(y = startY; y < height + startY; y++) {
 		  
@@ -195,9 +209,9 @@ TileEngine.prototype.render = function (timestep, ctx) {
 		  }      
 	  }
     }  
-    
+      ctx.restore();
   }
   
-  ctx.restore();
+
 }
   
