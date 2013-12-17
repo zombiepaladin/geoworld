@@ -22,7 +22,7 @@ EventController.prototype.resetLevels = function() {
 	  "level_5_3": new Level(this.game, level_5_2, entities_5_2),
 	  "level_5_4": new Level(this.game, level_5_3, entities_5_3),
 	  "level_3_1": new Level(this.game, level_3_1, entities_3_1),
-	  "level_3_2": new Level(this.game, level_3_2, entities_3_1),
+	  "level_3_2": new Level(this.game, level_3_1, entities_3_1),
 	  "level_3_3": new Level(this.game, level_3_3, entities_3_1)
 	};
 }				  
