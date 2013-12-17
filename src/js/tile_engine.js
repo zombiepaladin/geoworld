@@ -86,6 +86,18 @@ TileEngine.prototype.getAlternateTile = function(id) {
 				break;
 		}
 	}
+	if (this.validanimationmap===2)
+	{
+	switch(id)
+		{
+			case 12:
+				id=21;
+				break;
+			case 19:
+				id=20;
+				break;
+		}
+	}
 	return id;
 }
 
