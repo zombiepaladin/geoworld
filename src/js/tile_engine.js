@@ -9,11 +9,18 @@ TileEngine = function(tileMapObject) {
   this.scrollPosition = {x: 0, y: 0};
   this.background;
   
+  //Paralaxed backgorund add backgroundsrc prop in json file
   var backgroundimg = new Image();
   backgroundimg.onload = function() {
    engine.background = this;
   }
   backgroundimg.src = this.tilemap.backgroundsrc;
+  
+  this.tileanimation = 15;
+  this.switchtile = false;
+  this.validanimationmap=this.tilemap.valid;
+
+  
   // Find the ground layer
   // Checks for undefined later to tell if ground or air layer exists
   for (var i = 0; i < this.layers; i++) {
@@ -45,6 +52,62 @@ TileEngine = function(tileMapObject) {
   );
 }
 
+TileEngine.prototype.getAlternateTile = function(id) {
+	if (this.validanimationmap===1)
+	{
+	switch(id)
+		{
+			case 1:
+				id=4;
+				break;
+			case 2:
+				id=5;
+				break;
+			case 3:
+				id=6;
+				break;
+			case 8:
+				id=11;
+				break;
+			case 9:
+				id=12;
+				break;
+			case 10:
+				id=13;
+				break;
+			case 15:
+				id=18;
+				break;
+			case 16:
+				id=19;
+				break;
+			case 17:
+				id=20;
+				break;
+		}
+	}
+	return id;
+}
+
+TileEngine.prototype.Alternate = function() {
+		if(this.tileanimation<0)
+			{
+				this.tileanimation=15;
+				if(this.switchtile===true)
+				{
+					this.switchtile=false;
+				}
+				else
+				{
+					this.switchtile=true;
+				}
+			}
+		else
+			{
+				this.tileanimation--;
+			}
+}
+
 // Set the current scrolling position for the tile engine
 //   position - the position, an object with an x and y property
 TileEngine.prototype.setScrollPosition = function(position) {
@@ -63,6 +126,7 @@ TileEngine.prototype.getGroundLevelAt = function(absX, absY) {
   // Loop down through the current x that player is on until a ground tile is reached
   for (y = Math.floor(absY / tileHeight) - 1; y < mapHeight; y++) {
 	var currTile = this.tilemap.layers[this.groundLayer].data[tileX + y * mapWidth];
+	
 	var flippedHorizontally = currTile & 0x80000000;
 	currTile = currTile & ~(0x80000000 | 0x40000000 | 0x20000000);
     
@@ -139,6 +203,7 @@ TileEngine.prototype.render = function (timestep, ctx) {
 
   
   for (layer = 0; layer < this.layers; layer++) {  // Painter's algorithm
+		this.Alternate();
 		ctx.save();
 		console.log(ctx.width);
 		if(this.background) ctx.drawImage(this.background,-((this.background.width-800)*((this.scrollPosition.x)/((this.tilemap.layers[layer].width*tilewidth)-800))), 0);
@@ -146,11 +211,18 @@ TileEngine.prototype.render = function (timestep, ctx) {
 		ctx.restore();
 		ctx.save();
 		ctx.translate(-1 * this.scrollPosition.x, -1 * this.scrollPosition.y);
-  
+		
+		
+		
 	  for(x = startX; x < width + startX; x++) {
 		for(y = startY; y < height + startY; y++) {
 		  
 		  var tileId = this.tilemap.layers[layer].data[x + y * this.tilemap.layers[layer].width];
+
+		  if (this.switchtile)
+			{
+				tileId = this.getAlternateTile(tileId);
+			}
 		  var tileset = this.tilemap.tilesets[0];
 		  var tilesheet = this.tilesheets[0];
 		  var rowWidth = Math.floor(tileset.imagewidth / tileset.tilewidth);

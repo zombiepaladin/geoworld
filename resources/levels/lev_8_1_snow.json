@@ -272,5 +272,7 @@ level_8_1={ "height":20,
  "tilewidth":24,
  "version":1,
  "width":256,
- "backgroundsrc":"background.png"
+ "backgroundsrc":"background.png",
+ "animatedtiles":"true",
+ "valid":1
 }
