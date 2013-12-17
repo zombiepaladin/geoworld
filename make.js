@@ -17,38 +17,45 @@ if (!fs.existsSync('release')) {
 // JavaScript pre-processing
 //-------------------------------------------	
 
-//Disabling this for now because it make debugging a nightmare.
-//Should probably add a command line switch in the future so you can toggle between a debug and release html file + js handling.
+// Command line switch for debug mode (since source maps don't work with breakpoints)
+if (process.argv[2] === "debug" || process.argv[2] === "d") {
+	manifest.javascripts.forEach(function (fileName, index, array) {
+		fs.createReadStream(fileName).pipe(fs.createWriteStream('release/' + path.basename(fileName)));
+		console.log("wrote file: release/" + path.basename(fileName));
+	});
+}
+else {
+	// Combine JavaScript files with uglify-js
+	// File list is pulled from the manifest.json file
+	// Be sure to list files in order of inclusion
+	// to avoid initialization issues
+	var minifiedJS = uglifyJS.minify(manifest.javascripts, manifest.testJavascriptOptions);
+	var sourceMapFix = "\n //# sourceMappingURL="+manifest.testJavascriptOptions.outSourceMap;
 
-// Combine JavaScript files with uglify-js
-// File list is pulled from the manifest.json file
-// Be sure to list files in order of inclusion
-// to avoid initialization issues
-var minifiedJS = uglifyJS.minify(manifest.javascripts, manifest.testJavascriptOptions);
-var sourceMapFix = "\n //# sourceMappingURL="+manifest.testJavascriptOptions.outSourceMap;
 
-
-// Write combined, minified, JavaScript file to release directory
-// Don't switch this back. To debug, turn on source maps in your browser if they aren't already: http://net.tutsplus.com/tutorials/tools-and-tips/source-maps-101/
-fs.writeFile('release/geoworld.js', minifiedJS.code + sourceMapFix, function(err) {
-  if(err) {
-    console.error("Could not write release/geoworld.js file\n" + err);
-    return;
-  }
-  console.log("wrote file: release/geoworld.js");
-});
-fs.writeFile('release/out.js.map', minifiedJS.map, function(err){
-  if(err){
-    console.error("Could not write release/out.js.map\n "+err);
-    return;
-  }
-  console.log("wrote file: release/out.js.map");
-});
+	// Write combined, minified, JavaScript file to release directory
+	// To see source, turn on source maps in your browser if they aren't already: http://net.tutsplus.com/tutorials/tools-and-tips/source-maps-101/
+	fs.writeFile('release/geoworld.js', minifiedJS.code + sourceMapFix, function(err) {
+	  if(err) {
+		console.error("Could not write release/geoworld.js file\n" + err);
+		return;
+	  }
+	  console.log("wrote file: release/geoworld.js");
+	});
+	fs.writeFile('release/out.js.map', minifiedJS.map, function(err){
+	  if(err){
+		console.error("Could not write release/out.js.map\n "+err);
+		return;
+	  }
+	  console.log("wrote file: release/out.js.map");
+	});
+}
 
 
 //==============================================
 // CSS pre-processing
 //----------------------------------------------
+
 
 // Read CSS from files listed in manifest object (currently only geoworld.css)
 var cssSource = "";
@@ -62,11 +69,12 @@ var minifiedCSS = cleanCSS().minify(cssSource);
 // Write the finalized CSS code to the release directory
 fs.writeFile('release/geoworld.css', minifiedCSS, function(err) {
   if(err) {
-    console.error("Could not write release/geoworld.css file\n" + err);
-    return;
+	console.error("Could not write release/geoworld.css file\n" + err);
+	return;
   }
   console.log("wrote file: release/geoworld.css");
 });
+
 
 
 //==============================================
@@ -102,15 +110,16 @@ processImageDirectory('resources/backgrounds');
 fs.readdir('src/html', function(err, files) {
   
   if(err) {
-    console.error("Could not read from directory src/html\n" + err);
-    return;
+	console.error("Could not read from directory src/html\n" + err);
+	return;
   }
   
   files.forEach(function(fileName, index, array) {
-    fs.createReadStream('src/html/' + fileName).pipe(fs.createWriteStream('release/' + fileName));
-    console.log("wrote file: release/" + fileName);
+	fs.createReadStream('src/html/' + fileName).pipe(fs.createWriteStream('release/' + fileName));
+	console.log("wrote file: release/" + fileName);
   });
 });
+
 
 //==============================================
 // Level pre-processing

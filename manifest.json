@@ -8,6 +8,7 @@
         "src/js/rect.js",
         "src/js/entity.js",
 		"src/js/player.js",
+		"src/js/Entities/Alphadon.js",
         "src/js/level.js",
         "src/js/tile_engine.js",
 		"src/js/fossil.js",
@@ -31,7 +32,8 @@
 		"lev_5_4_lava_mountain.json",
 		"lev_3_1_watercave.json",
 		"lev_8_1_snow.json",
-		"lev_3_2_geysers.json"
+		"lev_3_2_geysers.json",
+		"lev_3_3_trees.json"
     ],
     "testJavascriptOptions":{
         "mangle":false,
