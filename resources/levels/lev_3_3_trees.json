@@ -1,4 +1,5 @@
 level_3_3 = { "backgroundcolor":"#1fbdfb",
+	"backgroundsrc":"level_3_3_sky.png",
  "height":100,
  "layers":[
         {
@@ -29,7 +30,7 @@ level_3_3 = { "backgroundcolor":"#1fbdfb",
      "endTileX":"994",
      "endTileY":"57",
      "startX":"72",
-     "startY":"150"
+     "startY":"2200"
     },
  "tileheight":24,
  "tilesets":[
@@ -220,6 +221,12 @@ level_3_3 = { "backgroundcolor":"#1fbdfb",
                 {
                  "left":"12",
                  "right":"12",
+                 "type":"ground"
+                },
+             "58":
+                {
+                 "left":"0",
+                 "right":"0",
                  "type":"ground"
                 },
              "7":

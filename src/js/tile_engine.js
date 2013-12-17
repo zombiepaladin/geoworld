@@ -256,7 +256,6 @@ TileEngine.prototype.getGroundLevelAt = function(absX, absY) {
 	
 	// Ground tile
 	if (currTile !== 0 && this.tilemap.tilesets[0].tileproperties[currTile - 1].type === "ground") {
-		//console.log(this.tilemap.tilesets[0].tileproperties);
 		var y0 = parseFloat(this.tilemap.tilesets[0].tileproperties[currTile - 1].left);
 		var y1 = parseFloat(this.tilemap.tilesets[0].tileproperties[currTile - 1].right);
 		var x0 = 0;
@@ -335,18 +334,17 @@ TileEngine.prototype.render = function (timestep, ctx) {
   	ctx.fillStyle = this.tilemap.backgroundcolor;
   	ctx.fillRect(0,0,800,400);
   }
+  
+  //set parallax scroll background
+  this.Alternate();
+  ctx.save();
+	if(this.background) ctx.drawImage(this.background,-((this.background.width-800)*((this.scrollPosition.x)/((this.tilemap.layers[0].width*tilewidth)-800))), 0);
+  ctx.restore();
 
   
   for (layer = 0; layer < this.layers; layer++) {  // Painter's algorithm
-		this.Alternate();
-		ctx.save();
-		console.log(ctx.width);
-		if(this.background) ctx.drawImage(this.background,-((this.background.width-800)*((this.scrollPosition.x)/((this.tilemap.layers[layer].width*tilewidth)-800))), 0);
-   
-		ctx.restore();
-		ctx.save();
-		ctx.translate(-1 * this.scrollPosition.x, -1 * this.scrollPosition.y);
-		
+	  ctx.save();
+	  ctx.translate(Math.floor(-1 * this.scrollPosition.x), Math.floor(-1 * this.scrollPosition.y));
 		
 		
 	  for(x = startX; x < width + startX; x++) {
