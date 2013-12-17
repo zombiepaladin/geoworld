@@ -9,6 +9,7 @@
         "src/js/entity.js",
 		"src/js/player.js",
 		"src/js/Entities/Alphadon.js",
+		"src/js/Entities/Mastodon.js",
         "src/js/level.js",
         "src/js/tile_engine.js",
 		"src/js/fossil.js",
