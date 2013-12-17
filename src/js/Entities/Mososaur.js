@@ -1,4 +1,4 @@
-Alphadon = function (game, initialPosition, initialVelocity, level) {
+Mososaur = function (game, initialPosition, initialVelocity, level) {
 
   // To use spritesheet data in the canvas, we need to load it
   // into javascript
@@ -42,11 +42,11 @@ Alphadon = function (game, initialPosition, initialVelocity, level) {
   
 }
 
-Alphadon.prototype = new Entity();
-Alphadon.prototype.constructor = Alphadon;
+Mososaur.prototype = new Entity();
+Mososaur.prototype.constructor = Mososaur;
 
 // Update the player's sprite given the provided input
-Alphadon.prototype.update = function (timeStep, input) {
+Mososaur.prototype.update = function (timeStep, input) {
   Entity.prototype.update.call(this, timeStep, input);
   var seconds = timeStep / 1000; // Convert timestep to seconds
   if (this.isUnderWater()) {
@@ -132,7 +132,7 @@ Alphadon.prototype.update = function (timeStep, input) {
 }
 
 // Render the player's sprite using the provided context
-Alphadon.prototype.render = function(timeStep, ctx) {
+Mososaur.prototype.render = function(timeStep, ctx) {
   ctx.save();
   // Translate sprite to on-screen position
   ctx.translate(this.position.x - this.level.tileEngine.scrollPosition.x, this.position.y - this.level.tileEngine.scrollPosition.y);

@@ -6,6 +6,76 @@
  </properties>
  <tileset firstgid="1" name="dev_tiles" tilewidth="24" tileheight="24">
   <image source="../tilesets/dev_tiles.png" width="120" height="240"/>
+  <tile id="0">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="filler"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="filler"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="filler"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="filler"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="filler"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="type" value="filler"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="type" value="filler"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="type" value="filler"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="type" value="filler"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="type" value="filler"/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="type" value="filler"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="type" value="filler"/>
+   </properties>
+  </tile>
   <tile id="12">
    <properties>
     <property name="left" value="12"/>
@@ -18,6 +88,11 @@
     <property name="left" value="12"/>
     <property name="right" value="12"/>
     <property name="type" value="portal"/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="type" value="filler"/>
    </properties>
   </tile>
   <tile id="16">
@@ -34,11 +109,31 @@
     <property name="type" value="death"/>
    </properties>
   </tile>
+  <tile id="18">
+   <properties>
+    <property name="type" value="filler"/>
+   </properties>
+  </tile>
+  <tile id="19">
+   <properties>
+    <property name="type" value="air"/>
+   </properties>
+  </tile>
+  <tile id="20">
+   <properties>
+    <property name="type" value="filler"/>
+   </properties>
+  </tile>
   <tile id="21">
    <properties>
-    <property name="left" value="0"/>
-    <property name="right" value="0"/>
+    <property name="left" value="1"/>
+    <property name="right" value="1"/>
     <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="22">
+   <properties>
+    <property name="type" value="filler"/>
    </properties>
   </tile>
   <tile id="23">
@@ -90,6 +185,11 @@
     <property name="type" value="filler"/>
    </properties>
   </tile>
+  <tile id="30">
+   <properties>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
   <tile id="31">
    <properties>
     <property name="left" value="12"/>
@@ -118,6 +218,11 @@
     <property name="type" value="ground"/>
    </properties>
   </tile>
+  <tile id="35">
+   <properties>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
   <tile id="36">
    <properties>
     <property name="left" value="0"/>
@@ -139,6 +244,11 @@
     <property name="type" value="filler"/>
    </properties>
   </tile>
+  <tile id="39">
+   <properties>
+    <property name="type" value="filler"/>
+   </properties>
+  </tile>
   <tile id="40">
    <properties>
     <property name="left" value="12"/>
@@ -146,11 +256,51 @@
     <property name="type" value="ground"/>
    </properties>
   </tile>
+  <tile id="41">
+   <properties>
+    <property name="type" value="filler"/>
+   </properties>
+  </tile>
+  <tile id="42">
+   <properties>
+    <property name="type" value="filler"/>
+   </properties>
+  </tile>
+  <tile id="43">
+   <properties>
+    <property name="type" value="filler"/>
+   </properties>
+  </tile>
+  <tile id="44">
+   <properties>
+    <property name="type" value="filler"/>
+   </properties>
+  </tile>
+  <tile id="45">
+   <properties>
+    <property name="type" value="filler"/>
+   </properties>
+  </tile>
+  <tile id="46">
+   <properties>
+    <property name="type" value="filler"/>
+   </properties>
+  </tile>
+  <tile id="47">
+   <properties>
+    <property name="type" value="filler"/>
+   </properties>
+  </tile>
+  <tile id="48">
+   <properties>
+    <property name="type" value="filler"/>
+   </properties>
+  </tile>
   <tile id="49">
    <properties>
     <property name="left" value="0"/>
     <property name="right" value="0"/>
-    <property name="type" value="filler"/>
+    <property name="type" value="ground"/>
    </properties>
   </tile>
  </tileset>
