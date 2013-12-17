@@ -1,27 +1,27 @@
-Alphadon = function (game, initialPosition, initialVelocity, level) {
+fish3 = function (game, initialPosition, initialVelocity, level) {
 
   // To use spritesheet data in the canvas, we need to load it
   // into javascript
   var spritesheet = new Image();
-  spritesheet.src = "alphadon.png";
+  spritesheet.src = "fish3.png";
 
   //Call base class constructor:
   Entity.call(this, game, initialPosition, initialVelocity, spritesheet, level);
   
   // Sprite size constants
-  this.spriteWidth = 47;
-  this.spriteHeight = 58;
+  this.spriteWidth = 182;
+  this.spriteHeight = 114;
   this.spriteHalfWidth = this.spriteWidth / 2;
   this.spriteHalfHeight = this.spriteHeight / 2;
 
-  this.facingLeft = false;
+  this.facingLeft = true;
   this.walktime = 0;
   
   // Physics constants:
   this.instantaneousJumpImpulse = -200;
   this.acceleration = 100;  // in pixels per second^2
 
-  this.maxVelocity = new Vector(200, 400);
+  this.maxVelocity = new Vector(100, 400);
   this.frictionConstant = 200;
 
   this.hangTimeEnabled = false;
@@ -36,17 +36,17 @@ Alphadon = function (game, initialPosition, initialVelocity, level) {
   this.frame = {
     x: 0,
     y: 0,
-    width: 80,
-    height: 100
+    width: 182,
+    height: 114
   };
   
 }
 
-Alphadon.prototype = new Entity();
-Alphadon.prototype.constructor = Alphadon;
+fish3.prototype = new Entity();
+fish3.prototype.constructor = fish3;
 
 // Update the player's sprite given the provided input
-Alphadon.prototype.update = function (timeStep, input) {
+fish3.prototype.update = function (timeStep, input) {
   Entity.prototype.update.call(this, timeStep, input);
   var seconds = timeStep / 1000; // Convert timestep to seconds
   if (this.isUnderWater()) {
@@ -66,17 +66,20 @@ Alphadon.prototype.update = function (timeStep, input) {
   } else {
     change = -48;
   }
-  
-  if(playerPos.x + change > this.position.x){
-	this.accelerate(new Vector(this.acceleration, 0), seconds);
-	this.facingLeft = false;
-  } else {
-	this.accelerate(new Vector(-this.acceleration, 0), seconds);
-  }
-  if(playerPos.y + 10 < this.position.y && this.isOnGround()){
+  if(Math.abs(this.position.x - playerPos.x) < 500){
+	if( playerPos.x + change > this.position.x){
+		this.facingLeft = true;
+		this.accelerate(new Vector(this.acceleration, 0), seconds);
+	} else {
+		this.facingLeft = false;
+		this.accelerate(new Vector(-this.acceleration, 0), seconds);
+	}
+	 if(playerPos.y + 10 < this.position.y && this.isOnGround()){
     this.accelerate(new Vector(0, this.instantaneousJumpImpulse * this.gravityScale));
-	this.facingLeft = true;
   }
+  }
+  
+ 
   // Handle user input
   /*if(input.left || input.a) {
     this.accelerate(new Vector(-this.acceleration, 0), seconds);
@@ -116,7 +119,7 @@ Alphadon.prototype.update = function (timeStep, input) {
   // Determine the current frame of animation
   // Start with a "default" frame
   this.frame = {
-    x: 0, 
+    x: 182, 
     y: 0, 
     width: this.spriteWidth, 
     height: this.spriteHeight
@@ -126,15 +129,15 @@ Alphadon.prototype.update = function (timeStep, input) {
   } else{
 	this.walktime = (this.walktime + timeStep) % 300;
 	if(this.walktime < 150){
-      this.frame.x = this.spriteWidth;
+      this.frame.x = 0;
 	} else{
-	  this.frame.x = this.spriteWidth * 2;
+	  this.frame.x = this.spriteWidth;
 	}
   }
 }
 
 // Render the player's sprite using the provided context
-Alphadon.prototype.render = function(timeStep, ctx) {
+fish3.prototype.render = function(timeStep, ctx) {
   ctx.save();
   // Translate sprite to on-screen position
   ctx.translate(this.position.x - this.level.tileEngine.scrollPosition.x, this.position.y - this.level.tileEngine.scrollPosition.y);
