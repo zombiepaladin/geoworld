@@ -22,7 +22,7 @@ AsteroidField.prototype.update = function (timeStep) {
   this.timeToNextAsteroid -= timeStep;
 
   if (this.timeToNextAsteroid <= 0) {
-    this.timeToNextAsteroid = Math.random(10, 100);
+    this.timeToNextAsteroid = Math.random(100, 200);
     this.spawnAsteroid();
   }
 }

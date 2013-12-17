@@ -1,7 +1,7 @@
 Asteroid = function (initialParent, initialPosition, scene) {
   Entity.call(this, initialParent, initialPosition, scene);
 
-  this.size = Math.random(20, 60);
+  this.size = Math.random(50, 60);
   this.position.y -= this.size / 2.0;//Move up so it is above the world, so the player doesn't see it spawn
 }
 
