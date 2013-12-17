@@ -11,7 +11,7 @@ Asteroid_Phase6 = function (game, initialPosition, initialVelocity, level) {
   // Sprite size constants
   this.spriteWidth = 150;
   this.spriteHeight = 135;
-  this.spriteHalfWidth = this.spriteWidth / 2;
+  this.spriteHalfWidth = this.spriteWidth / 2 - 45;
   this.spriteHalfHeight = this.spriteHeight / 2;
 
   this.facingLeft = false;
