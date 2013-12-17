@@ -69,11 +69,13 @@ Alphadon.prototype.update = function (timeStep, input) {
   
   if(playerPos.x + change > this.position.x){
 	this.accelerate(new Vector(this.acceleration, 0), seconds);
+	this.facingLeft = false;
   } else {
 	this.accelerate(new Vector(-this.acceleration, 0), seconds);
   }
   if(playerPos.y + 10 < this.position.y && this.isOnGround()){
     this.accelerate(new Vector(0, this.instantaneousJumpImpulse * this.gravityScale));
+	this.facingLeft = true;
   }
   // Handle user input
   /*if(input.left || input.a) {

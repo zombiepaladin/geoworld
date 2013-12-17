@@ -256,7 +256,6 @@ TileEngine.prototype.getGroundLevelAt = function(absX, absY) {
 	
 	// Ground tile
 	if (currTile !== 0 && this.tilemap.tilesets[0].tileproperties[currTile - 1].type === "ground") {
-		//console.log(this.tilemap.tilesets[0].tileproperties);
 		var y0 = parseFloat(this.tilemap.tilesets[0].tileproperties[currTile - 1].left);
 		var y1 = parseFloat(this.tilemap.tilesets[0].tileproperties[currTile - 1].right);
 		var x0 = 0;
@@ -340,7 +339,6 @@ TileEngine.prototype.render = function (timestep, ctx) {
   for (layer = 0; layer < this.layers; layer++) {  // Painter's algorithm
 		this.Alternate();
 		ctx.save();
-		console.log(ctx.width);
 		if(this.background) ctx.drawImage(this.background,-((this.background.width-800)*((this.scrollPosition.x)/((this.tilemap.layers[layer].width*tilewidth)-800))), 0);
    
 		ctx.restore();

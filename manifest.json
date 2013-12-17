@@ -10,6 +10,7 @@
 		"src/js/player.js",
 		"src/js/Entities/Alphadon.js",
 		"src/js/Entities/Mososaur.js",
+		"src/js/Entities/Asteroid_Phase6.js",
         "src/js/level.js",
         "src/js/tile_engine.js",
 		"src/js/fossil.js",
