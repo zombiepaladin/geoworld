@@ -17,7 +17,7 @@ Geoworld = function() {
   
   // Set up physics globals
   this.physics = new Object();
-  this.physics.gravityConstant = 300;
+  this.physics.gravityConstant = 300 * 1.5;
   
   //Scene stetup:
   //Scenes are stored on a stack, the top-most scene is the one that the player is currently interacting with.

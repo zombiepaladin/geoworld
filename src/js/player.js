@@ -19,7 +19,7 @@ Player = function (initialParent, initialPosition, scene) {
   this.facingLeft = false;
   
   // Physics constants:
-  this.instantaneousJumpImpulse = -200;
+  this.instantaneousJumpImpulse = -200 * 1.5;
   this.acceleration = 200;  // in pixels per second^2
 
   this.maxVelocity = new Vector(200, 400);
@@ -78,16 +78,14 @@ Player.prototype.kill = function () {
 // Update the player's sprite given the provided input
 Player.prototype.update = function (timeStep) {
   var seconds = timeStep / 1000; // Convert timestep to seconds
-  
-  ////TODO: This could be made more generic and added to the dynamicPhysicsObject once level stuff is in.
-  //if (this.isUnderWater()) {
-  //  this.gravityScale = 0.5;//Half gravity under water
-  //} else {
-  //  this.gravityScale = 1.0;//Full gravity above water
-  //}
-  // if (this.isOnAir()) {
-	//this.accelerate(new Vector(0, -7));
-  //}
+
+  //Game.setDebugString("Under water: " + this.isUnderWater());
+
+  if (this.isUnderWater()) {
+    this.gravityScale = 0.5;//Half gravity under water
+  } else {
+    this.gravityScale = 1.0;//Full gravity above water
+  }
 
   // Handle user input
   if (this.input.left) {
@@ -201,7 +199,7 @@ Player.prototype.render = function(timeStep, ctx) {
 
 Player.prototype.keyDown = function (event) {
   //Jumping:
-  if (event.key == Keys.Up &&
+  if ((event.key == Keys.Up || event.key == Keys.Space) &&
     (
      this.isOnGround() ||
      this.jumpsLeft > 0 || //For double (triple, etc) jumping
@@ -216,8 +214,11 @@ Player.prototype.keyDown = function (event) {
 
     this.velocity.y = 0;// Reset y-velocity to 0 for multiple jumps
 
-    //HACK: Using gravity scale to reduce jump impulse under water. Should add something more specific later.
-    this.accelerate(new Vector(0, this.instantaneousJumpImpulse * this.gravityScale));
+    if (this.isUnderWater()) {
+      this.accelerate(new Vector(0, this.instantaneousJumpImpulse * 0.7));
+    } else {
+      this.accelerate(new Vector(0, this.instantaneousJumpImpulse));
+    }
 
     return true;
   }

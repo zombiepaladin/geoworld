@@ -6,6 +6,7 @@ Keys.Up = 0x26;
 Keys.Right = 0x27;
 Keys.Down = 0x28;
 Keys.Escape = 0x1B;
+Keys.Space = 0x20;
 
 //Converts a standard JavaScript KeyboardEvent into a more generic key even for our game since the JavaScript KeyboardEvent is pretty knarly
 //Returns a structure like the following:

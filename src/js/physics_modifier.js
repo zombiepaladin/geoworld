@@ -27,7 +27,7 @@ physics_modifier = function () {
   }
 
   this.isUnderWater = function () {
-    return this.scene.isWaterAt(this.position.x, this.position.y);
+    return this.scene.isWaterAt(this.position.x, this.position.y - 3);//Check a little above current Y so we don't get ground at our feet
   }
   this.isOnAir = function () {
     return this.scene.isAirAt(this.position.x, this.position.y);
@@ -76,7 +76,7 @@ physics_modifier = function () {
 
     // Apply gravity:
     if (!this.isOnGround()) {
-      gravity = Game.physics.gravityConstant * this.gravityScale;
+      var gravity = Game.physics.gravityConstant * this.gravityScale;
 
       if (this.hangTimeEnabled &&
         Math.abs(this.velocity.y) < this.hangTimeVelocityThreshold &&// If we've passed the threshold
