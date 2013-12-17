@@ -10,28 +10,18 @@ EventController = function(game) {
 	              };
 			
 	this.resetLevels();
-/*	
-<<<<<<< HEAD
-=======
-	this.levels = {"level_6_1": new Level(game, level_6_1),
-	               "level_5_1": new Level(game, level_5_1),
-	               "level_5_3": new Level(game, level_5_2),
-				   "level_5_4": new Level(game, level_5_3),
-				   "level_3_1": new Level(game, level_3_1)
-				  };
->>>>>>> 26f035384ab29ed406cbbe337513fd80374ffa79
-*/
-				 
 	this.currEvent = this.events["titlescreen"];
 }		
 
 EventController.prototype.resetLevels = function() {
-	this.levels = {"level_6_1": new Level(this.game, level_6_1),
-	               "level_5_1": new Level(this.game, level_5_1),
-	               "level_5_3": new Level(this.game, level_5_2),
-				   "level_5_4": new Level(this.game, level_5_3),
-				   "level_3_1": new Level(this.game, level_3_1)
-				  };
+	this.levels = {
+	  "level_8_1": new Level(this.game, level_8_1, entities_8_1),
+	  "level_6_1": new Level(this.game, level_6_1, entities_6_1),
+	  "level_5_1": new Level(this.game, level_5_1, entities_5_1),
+	  "level_5_3": new Level(this.game, level_5_2, entities_5_2),
+	  "level_5_4": new Level(this.game, level_5_3, entities_5_3),
+	  "level_3_1": new Level(this.game, level_3_1, entities_3_1)
+	};
 }				  
 
 EventController.prototype.update = function(timeStep, input) {
