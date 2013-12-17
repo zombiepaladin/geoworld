@@ -252,8 +252,8 @@ LevelSelectScreen = function(levels) {
 	this.levelsFinished = {"Phase1": 0, "Phase2": 0, "Phase3": 0, "Phase4": 0, "Phase5": 0, 
 						   "Phase6": 0, "Phase7": 0, "Phase8": 0 };
 	// Will needed to be updated for number of levels made for each phase
-	this.numLevels = {"Phase1": 0, "Phase2": 0, "Phase3": 1, "Phase4": 0, "Phase5": 3, 
-					  "Phase6": 1, "Phase7": 0, "Phase8": 0 };
+	this.numLevels = {"Phase1": 0, "Phase2": 0, "Phase3": 2, "Phase4": 0, "Phase5": 3, 
+					  "Phase6": 1, "Phase7": 0, "Phase8": 1 };
 					  
 	this.cursorSelect = 0;
 	this.menuSelect = 0;  // 0 is for selecting phase, 1 for selecting level number

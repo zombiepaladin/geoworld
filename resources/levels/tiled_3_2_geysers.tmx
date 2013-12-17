@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="700" height="50" tilewidth="24" tileheight="24">
+ <properties>
+  <property name="startX" value="10"/>
+  <property name="startY" value="500"/>
+ </properties>
+ <tileset firstgid="1" name="dev_tiles" tilewidth="24" tileheight="24">
+  <image source="../tilesets/dev_tiles.png" width="640" height="400"/>
+  <tile id="105">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="157">
+   <properties>
+    <property name="left" value="12"/>
+    <property name="right" value="24"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="158">
+   <properties>
+    <property name="left" value="5"/>
+    <property name="right" value="5"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="159">
+   <properties>
+    <property name="left" value="5"/>
+    <property name="right" value="5"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="160">
+   <properties>
+    <property name="left" value="12"/>
+    <property name="right" value="12"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="161">
+   <properties>
+    <property name="left" value="12"/>
+    <property name="right" value="12"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="183">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="12"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="186">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="187">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="background" width="700" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt3D1SwzAQBtAci0PBHVLBtUnDTAqcsRPF0rf7ildRRH+7WgvZH5fL5QMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAINjnzdeG29+us9sHAMB8yTXj983Phu/F2w7p7nLHdfVcAUBvakbgGXe54ypXrMtzSabksygA4LHEff5Bm6fXmJ5LMnU+i0rMAQBwROI+/6DNakw4KDEHAABAImfNQFfuQwL04KwZ6Mp9SAA4l7MmAAC2VKgVnTXVnl9jws75dLcMFiPfsgq14lirxfaI+a1WT1jztbhbxplm5MPV9pUjOubb5PmCvSrGtnoC+jpz7175G75/ZuTDivtKZQnzpSYHZpOHWMmRvfvVerXLN3xnx/js3+867isZXZN3H9vu/YdnJJwNkOeMs9Mu9erAcZoyLiN/P2mfnz3ulXUf2+79B/ZJ2jNTrVyLjqzFK62lhL7Y560F5s23dVFDtffkjOM2e2ZvI2vxSmtpT18S4nuLvXrsWqCOvfNtXdSQ8J5cQr5OGEfgOcnx3fVeBXTSKTYr99WzFWdKiqWktnbsTzVycS/iMUen2OzUV3ins2PplXu11eK+Wn92zrtagiV1ikcA3mvld9w4Zd7NMwBAKGeYAABU5gwTWIln8ENjFPc9GgCA7mY9gyfV2cnfowEAYA7/6wIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4D+/fsTu6w==
+  </data>
+ </layer>
+ <layer name="Ground" width="700" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt3Ntt2zAUBmC/dKas0a7Rh84goJ6jcTtF0vYlm5VGK0BR5Ysu1CHp7wN+ILYTiaQo+Vg0cjgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANCa7yk/LiS91sW1DOB+39L16iXlc/r5WgAAoCZ9nfsl5Zge3wpQHvfeAOB/c+tc9S5QCvU9ANcsrXPVu9AmtSMArVhb56p3AbjF5ycgwlZ1rnoXoB3qUqAFW9e56l0AAEqQq85V77KW+0kAwNC9/w93KjnqXPUu1O9ryseUD9ENmZDr85DPWcsYNyCn3Pdn1btQtzWfhbfIy982AMBspde5pdW7b9ENgJ0VdI04t0HdWwH3aIFSFPQeVlW9e6bm5REUeI3o+qh7AbimwPewkHr31vcJr73+dlhe85b8PcZ7Le1DC30vxdyxnPP7FV0j1L0AvFPRe9gm9W7O7xqePaecBvvrH6d0zxn2Ozbe/5S+LVOvTf191Pcyl47B2N77u3UMlrwePcbnVHSN6I7u9wJwqL/OnVvv7tHfp5TXlJ//fh4+TuleM+z7aZTh/n+l/J74nb4t4+en2v+UaaxyjsE4e+9vagzXvh49xpWnubp3zn156yd1cby296hrj/e0f82a9tZt2VordW6fkvr76Y5E7HNtoo/x2jGoccxrOwaFpzsG3O+N/r8VW65fjNccTlfWiA4F9GHrNZtbfdrCnO1PrQGtWVdaOx/WbG9OX8bPR8+breba6cL5FN3W2tNKndvnkoi6Xr0bkxbHvLZjUFmy1r2131OYWhsarzkM14im1pGi+7Ckz2vWiYa/d2ld7dZrc9o3tQa0Zl1p7tjc2leuvoyfj543W821S2uu0W2VsjIW+V6j3o1Ji2Ne2zGoLN1xcL/XPYX3ecT5urZPuccs8vpSwvZamWdz+x/dVikrvRLuqUTM39zXwRrOuRbHvLZjIO3kEedrCTVc7u3vue+9+hI9b3KfX9FtlbJS0j2ViPmb+zpYwznX4pjXdgyknTzifC2hhsu9/T33vVdfoudN7vMruq0ilxIxf3NfB2s451oc89qOgbSTR5yvJdRwube/57736kv0vMl9fkW3VcrKH8TnAtk=
+  </data>
+ </layer>
+</map>
