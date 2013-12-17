@@ -59,10 +59,21 @@ Alphadon.prototype.update = function (timeStep, input) {
   }
   var player = this.level.player;
   var playerPos = player.position;
-  if(playerPos.x > this.position.x){
+  var playDirection = player.facingLeft;
+  var change = 0;
+  if(player.facingLeft){
+    change = 48;
+  } else {
+    change = -48;
+  }
+  
+  if(playerPos.x + change > this.position.x){
 	this.accelerate(new Vector(this.acceleration, 0), seconds);
   } else {
 	this.accelerate(new Vector(-this.acceleration, 0), seconds);
+  }
+  if(playerPos.y + 10 < this.position.y && this.isOnGround()){
+    this.accelerate(new Vector(0, this.instantaneousJumpImpulse * this.gravityScale));
   }
   // Handle user input
   /*if(input.left || input.a) {
