@@ -90,11 +90,11 @@ TileEngine.prototype.getAlternateTile = function(id) {
 	{
 	switch(id)
 		{
-			case 12:
-				id=21;
+			case 13:
+				id=22;
 				break;
-			case 19:
-				id=20;
+			case 20:
+				id=21;
 				break;
 		}
 	}
