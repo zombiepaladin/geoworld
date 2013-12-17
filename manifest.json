@@ -14,6 +14,7 @@
 		"src/js/Entities/fish1.js",
 		"src/js/Entities/fish2.js",
 		"src/js/Entities/fish3.js",
+		"src/js/Entities/Lizard.js",
 		"src/js/Entities/Asteroid_Phase6.js",
         "src/js/level.js",
         "src/js/tile_engine.js",
@@ -26,6 +27,8 @@
 		"resources/entities/lev_5_3_entities.js",
 		"resources/entities/lev_5_4_entities.js",
 		"resources/entities/lev_3_1_entities.js",
+		"resources/entities/lev_3_2_entities.js",
+		"resources/entities/lev_3_3_entities.js",
 		"src/js/geoworld.js"
 	],
 	"stylesheets": [
