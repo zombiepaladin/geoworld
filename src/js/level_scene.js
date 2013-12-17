@@ -27,7 +27,7 @@ Level = function (tileMapObject) {
 	  }
 
 	  if (window[object.name].createFromLevel == undefined) {
-	    console.warn("Level wanted to spawn object '%s' but that object does not support createFromLevel!", objext.name);
+	    console.warn("Level wanted to spawn object '%s' but that object does not support createFromLevel!", object.name);
 	    continue;
 	  }
 
