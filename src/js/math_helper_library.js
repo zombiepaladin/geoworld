@@ -27,3 +27,7 @@ Math.random = function (min, max) {
 
   return Math.random_basic() * (max - min) + min;
 }
+
+Math.randomInt = function (min, max) {
+  return Math.floor(Math.random(min, max));
+}

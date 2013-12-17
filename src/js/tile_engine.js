@@ -228,8 +228,6 @@ TileEngine.prototype.render = function (timestep, ctx, frame) {
 
   var tilesDrawn = 0;
 
-  console.log(startX, endX, ",", startY, endY);
-
   for (var layer = 0; layer < this.tilemap.layers.length; layer++) {
     if (layer == this.objectLayer) { continue; }
 
