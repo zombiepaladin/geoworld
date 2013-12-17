@@ -304,7 +304,6 @@ TileEngine.prototype.render = function (timestep, ctx, frame) {
       } //Y loop
     } // X loop
   } // Layer loop
-  Game.setDebugString(tilesDrawn.toString() + " Tiles Drawn");
 
   ctx.restore();
 }
