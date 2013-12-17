@@ -50,6 +50,6 @@ DeathScene.prototype.render = function (timeStep, ctx) {
 
   ctx.drawImage(this.cursor, 0, 0, 47, 45, this.left - 70, this.top - 25 + (this.cursorSelect * this.textYDistance), 47, 45);
 
-  this.renderChildren();
+  this.renderChildren(timeStep, ctx);
   ctx.restore();
 }

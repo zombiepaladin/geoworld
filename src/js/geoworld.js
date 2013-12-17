@@ -25,6 +25,9 @@ Geoworld = function() {
   this.pushScene(new TitleScreen());
   this.keyHasTriggeredKeyDown = [];
 
+  //FPS counter:
+  this.fpsTimer = 0;
+
   // Subscribe to key input events
   var thisGame = this;
   document.addEventListener("keydown", function (event) {
@@ -84,6 +87,12 @@ Geoworld.prototype.gameLoop = function (time) {
 
   this.update(timeStep);
   this.render(timeStep, this.gameplayCtx);
+
+  this.fpsTimer -= time;
+  if (this.fpsTimer <= 0) {
+    this.fpsTimer = 100;
+    document.getElementById("fps").innerHTML = (Math.floor(1 / (timeStep / 1000)).toString() + " FPS").toString();
+  }
 
   // Loop by requesting the next animation frame
   var thisGame = this;

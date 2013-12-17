@@ -1,7 +1,5 @@
 // Construct a new player object
 Entity = function (initialParent, initialPosition, scene) {
-  console.log(this);
-
   this.scene = scene;
 	this.position = initialPosition;
 
@@ -17,7 +15,7 @@ Entity = function (initialParent, initialPosition, scene) {
 	  initialParent.giveChild(this);
 	}
 
-	return;
+	//console.log(this);
 }
 
 //Adds a child to this entity's children list
@@ -79,6 +77,9 @@ Entity.prototype.update = function (timeStep) {
 
 //Renders all children of this entity, usually you want to call this from render before your final ctx.restore.
 Entity.prototype.renderChildren = function (timeStep, ctx) {
+  assert(timeStep != undefined);
+  assert(ctx != undefined);
+
   this.children.forEach(function (child) {
     child.render(timeStep, ctx);
   });
@@ -89,7 +90,7 @@ Entity.prototype.renderChildren = function (timeStep, ctx) {
 Entity.prototype.render = function (timeStep, ctx) {
   ctx.save();
   ctx.translate(this.position.x, this.position.y);
-  this.renderChildren();
+  this.renderChildren(timeStep, ctx);
   ctx.restore();
 }
 

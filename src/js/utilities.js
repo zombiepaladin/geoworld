@@ -20,6 +20,7 @@ Array.prototype.remove = function (item) {
     i = this.indexOf(item);
     if (i < 0) { break; }
     this.removeAt(i);
+    ret++;
   }
 
   return ret;
@@ -41,4 +42,11 @@ CanvasRenderingContext2D.prototype.translate = function (x, y) {
   assert(!isNaN(x));
   assert(!isNaN(y));
   this.translate_orig(x, y);
+}
+
+CanvasRenderingContext2D.prototype.fillCircle = function (x, y, radius) {
+  this.beginPath();
+  this.arc(x, y, radius, 0, Math.PI * 2, true);
+  this.closePath();
+  this.fill();
 }

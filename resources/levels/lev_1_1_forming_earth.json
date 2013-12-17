@@ -36,8 +36,8 @@ level_1_1 = { "height":35,
                  "type":"",
                  "visible":true,
                  "width":49,
-                 "x":54,
-                 "y":515
+                 "x":4872,
+                 "y":518
                 }, 
                 {
                  "height":65,
@@ -70,14 +70,13 @@ level_1_1 = { "height":35,
                  "name":"Goal",
                  "properties":
                     {
-                     "for":"Player",
-                     "destination":"level_1_2"
+                     "destination":"level_1_2",
+                     "for":"Player"
                     },
                  "type":"",
                  "visible":true,
                  "width":195,
-                 "xold":8280,
-                 "x":200,
+                 "x":8280,
                  "y":350
                 }],
          "opacity":1,

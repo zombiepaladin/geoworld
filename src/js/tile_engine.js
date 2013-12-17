@@ -57,8 +57,8 @@ TileEngine = function(tileMapObject) {
 TileEngine.prototype.setScrollPosition = function (position) {
   assert(!isNaN(position.x));
   assert(!isNaN(position.y));
-  this.scrollPosition.x = position.x;
-  this.scrollPosition.y = position.y;
+  this.scrollPosition.x = Math.floor(position.x);
+  this.scrollPosition.y = Math.floor(position.y);
 }
 
 TileEngine.prototype.getObjects = function () {
@@ -157,8 +157,6 @@ TileEngine.prototype.getGroundLevelAt = function(worldX, worldY) {
 
 		  var ret = tileY * this.tileHeight + Math.lerp(left, right, percent);
 
-		  Game.setDebugString("tile: @ " + tileX + ", " + tileY + " -- " + left + ".." + right + " : " + (tileY * this.tileHeight) + " - " + Math.lerp(left, right, percent) + " = " + ret + " @ " + percent);
-
 		  return ret;
 	  }
   }
@@ -167,10 +165,20 @@ TileEngine.prototype.getGroundLevelAt = function(worldX, worldY) {
   return this.mapHeight * this.tileHeight;
 }
 
+// Checks if the ground tile at the specified location is ground
+TileEngine.prototype.isGroundAt = function (x, y) {
+  if (y > this.getLevelHeight()) {//Points below the level are always considered ground
+    return true;
+  }
+
+  return this.getTypeNear(this.groundLayer, x, y) == "ground";
+}
+
 // Checks if the tile at the specified location is the end (portal)
 TileEngine.prototype.isEndAt = function (x, y) {
   return this.getTypeNear(this.groundLayer, x, y) == "portal";
 }
+
 // Checks if the tile at the specified location is on air
 TileEngine.prototype.isAirAt = function(x, y) {
   if (this.airLayer < 0) {
@@ -182,34 +190,51 @@ TileEngine.prototype.isAirAt = function(x, y) {
 
 // Checks if the ground tile at the specified location contains water
 TileEngine.prototype.isWaterAt = function(x, y) {
-  return this.getTypeNear(this.groundLayer, x, y) == "water";
+  var prop = this.getPropertiesNear(this.groundLayer, x, y);
+  if (prop === undefined) { return false; }
+  return prop.water == "true" || prop.type == "water";
 }
+
 TileEngine.prototype.isHazzardAt = function(x, y){
 	var prop = this.getPropertiesNear(this.groundLayer, x, y);
 	if(prop === undefined) {return false;}
 	return prop.isHazzard == "true";
 }
+
 // Render the tilemap
 //  timestep - the time between frames
 //  ctx - the rendering context
-TileEngine.prototype.render = function (timestep, ctx) {
+TileEngine.prototype.render = function (timestep, ctx, frame) {
   ctx.save();
   ctx.translate(this.scrollPosition.x, this.scrollPosition.y);
 
-  /*var width = Math.floor(canvas.scrollWidth / tilewidth) + 2;
-  var height = Math.floor(canvas.scrollHeight / tileheight) + 2;
-  var startX = Math.floor(this.scrollPosition.x / tilewidth);
-  var startY = Math.floor(this.scrollPosition.y / tileheight);*/
+  //Handle optional frame argument:
+  if (frame === undefined) {
+    frame = new Rect(0, 0, this.getLevelWidth(), this.getLevelHeight());
+  }
+
+  var startX = this.getTileX(frame.x);
+  var startY = this.getTileY(frame.y);
+  var endX = this.getTileX(frame.x + frame.width) + 1;
+  var endY = this.getTileY(frame.y + frame.height) + 1;
+
+  if (startX < 0) { startX = 0; }
+  if (startY < 0) { startY = 0; }
+  if (endX >= this.mapWidth) { endX = this.mapWidth - 1; }
+  if (endY >= this.mapHeight) { endY = this.mapHeight - 1; }
+
   var tilewidth = this.tileWidth;
   var tileheight = this.tileHeight;
 
   var tilesDrawn = 0;
 
+  console.log(startX, endX, ",", startY, endY);
+
   for (var layer = 0; layer < this.tilemap.layers.length; layer++) {
     if (layer == this.objectLayer) { continue; }
 
-    for (var x = 0; x < this.mapWidth; x++) {
-      for (var y = 0; y < this.mapHeight; y++) {
+    for (var x = startX; x <= endX; x++) {
+      for (var y = startY; y <= endY; y++) {
         
         var tileId = this.getTileId(layer, x, y);
         var tileset = this.tilemap.tilesets[0];
@@ -267,7 +292,7 @@ TileEngine.prototype.render = function (timestep, ctx) {
         }
 
         // Debugging overlay:
-        if (layer == this.groundLayer) {
+        if (layer == this.groundLayer && false) {
           ctx.save();
           ctx.font = "8px sans-serif";
           ctx.fillStyle = "black";
@@ -278,10 +303,10 @@ TileEngine.prototype.render = function (timestep, ctx) {
             (x + 0.5) * tilewidth, (y + 0.5) * tileheight);
           ctx.restore();
         }
-      }
-    }
-
-  }
+      } //Y loop
+    } // X loop
+  } // Layer loop
+  Game.setDebugString(tilesDrawn.toString() + " Tiles Drawn");
 
   ctx.restore();
 }

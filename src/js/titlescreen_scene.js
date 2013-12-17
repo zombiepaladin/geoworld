@@ -45,5 +45,5 @@ TitleScreen.prototype.render = function (timeStep, ctx) {
     );
   }
 
-  this.renderChildren();
+  this.renderChildren(timeStep, ctx);
 }

@@ -14,3 +14,16 @@ Math.almostEqual = function (x, y) {
 Math.lerp = function (start, end, percent) {
   return start + (end - start) * percent;
 }
+
+Math.random_basic = Math.random;
+Math.random = function (min, max) {
+  if (min == undefined) {
+    min = 0.0;
+  }
+
+  if (max == undefined) {
+    max = 1.0;
+  }
+
+  return Math.random_basic() * (max - min) + min;
+}

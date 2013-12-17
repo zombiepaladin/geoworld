@@ -75,6 +75,8 @@ Level = function (tileMapObject) {
 	}
 
 	this.cameraPosition = new Vector(0, 0);
+	this.cameraScale = 1.0;
+	this.cameraScaleInv = (1.0 / this.cameraScale);
 }
 
 Level.prototype = new Scene();
@@ -84,30 +86,42 @@ Level.prototype.constructor = Level;
 Level.prototype.update = function(timeStep, input) {
   //Move camera:
   this.cameraPosition.x = Math.clamp(this.player.position.x,
-    Game.width / 2,
-    (this.tileEngine.getLevelWidth() - Game.width / 2)
+    Game.width / 2 * this.cameraScaleInv,
+    (this.tileEngine.getLevelWidth() - Game.width / 2 * this.cameraScaleInv)
   );
 
   this.cameraPosition.y = Math.clamp(this.player.position.y,
-    Game.height / 2,
-    (this.tileEngine.getLevelHeight() - Game.height / 2)
+    Game.height / 2 * this.cameraScaleInv,
+    (this.tileEngine.getLevelHeight() - Game.height / 2 * this.cameraScaleInv)
   );
 
-  this.tileEngine.setScrollPosition(new Vector(Game.width / 2 - this.cameraPosition.x, Game.height / 2 - this.cameraPosition.y));
+  this.tileEngine.setScrollPosition(new Vector(Game.width / 2 * this.cameraScaleInv - this.cameraPosition.x, Game.height / 2 * this.cameraScaleInv - this.cameraPosition.y));
 }
 
 Level.prototype.render = function (timeStep, ctx) {
   ctx.save();
-  this.tileEngine.render(timeStep, ctx);
+  ctx.scale(this.cameraScale, this.cameraScale);
+  this.tileEngine.render(timeStep, ctx,
+    new Rect(
+      this.cameraPosition.x - Game.width / 2 * this.cameraScaleInv,
+      this.cameraPosition.y - Game.height / 2 * this.cameraScaleInv,
+      Game.width * this.cameraScaleInv,
+      Game.height * this.cameraScaleInv
+    )
+  );
 
   //Translate and render children
-  ctx.translate(-this.cameraPosition.x + Game.width / 2, -this.cameraPosition.y + Game.height / 2);
+  ctx.translate(-this.cameraPosition.x + Game.width / 2 * this.cameraScaleInv, -this.cameraPosition.y + Game.height / 2 * this.cameraScaleInv);
   this.renderChildren(timeStep, ctx);
   ctx.restore();
 }
 
 Level.prototype.getGroundLevelAt = function(x, y) {
 	return this.tileEngine.getGroundLevelAt(x, y);
+}
+
+Level.prototype.isGroundAt = function (x, y) {
+  return this.tileEngine.isGroundAt(x, y);
 }
 
 Level.prototype.isWaterAt = function(x, y) {

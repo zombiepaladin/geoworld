@@ -195,7 +195,7 @@ Player.prototype.render = function(timeStep, ctx) {
 	  -this.spriteHalfWidth, -this.spriteHeight, this.spriteWidth, this.spriteHeight
   );
   
-  this.renderChildren();
+  this.renderChildren(timeStep, ctx);
   ctx.restore();
 }
 
