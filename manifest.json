@@ -18,26 +18,24 @@
         "src/js/pause_scene.js",
         "src/js/level_scene.js",
 		"src/js/death_scene.js",
+        "src/js/finish_scene.js",
 
         "src/js/sounds.js",
-		
-		"src/js/game_events.js",
         
 		"src/js/player.js",
         "src/js/tile_engine.js",
         
-		"src/js/fossil.js",
-		"src/js/input_handler.js",
 		"src/js/geoworld.js"
 	],
 	"stylesheets": [
 		"src/css/geoworld.css"
 	],
     "levels": [
+        "lev_1_1_forming_earth.json",
+        "lev_1_2_precam.json",
+        "lev_3_1_watercave.json",
 		"lev_5_1_dead_plains.json",
         "lev_5_3_grassy_plains.json",
-		"lev_5_4_lava_mountain.json",
-		"lev_3_1_watercave.json",
-		"lev_1_1_forming_earth.json"
+		"lev_5_4_lava_mountain.json"
     ]
 }

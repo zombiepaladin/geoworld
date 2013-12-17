@@ -16,6 +16,7 @@ TileEngine = function(tileMapObject) {
   // Identifify special layers:
   this.groundLayer = -1;
   this.airLayer = -1;
+  this.objectLayer = -1;
   this.tilemap.layers.forEach(function (layer, i) {
     //Ensure consistency of tile map:
     assert(layer.width == thisEngine.mapWidth);
@@ -31,6 +32,12 @@ TileEngine = function(tileMapObject) {
     if (layer.name === "Air" || layer.name == "Sky") {
       assert(thisEngine.airLayer == -1);
       thisEngine.airLayer = i;
+    }
+
+    //Find object layer
+    if (layer.objects !== undefined) {
+      assert(thisEngine.objectLayer == -1);
+      thisEngine.objectLayer = i;
     }
   });
 
@@ -52,6 +59,14 @@ TileEngine.prototype.setScrollPosition = function (position) {
   assert(!isNaN(position.y));
   this.scrollPosition.x = position.x;
   this.scrollPosition.y = position.y;
+}
+
+TileEngine.prototype.getObjects = function () {
+  if (this.objectLayer < 0) {
+    return [];
+  }
+
+  return this.tilemap.layers[this.objectLayer].objects;
 }
 
 TileEngine.prototype.getLevelWidth = function () {
@@ -180,7 +195,6 @@ TileEngine.prototype.isHazzardAt = function(x, y){
 TileEngine.prototype.render = function (timestep, ctx) {
   ctx.save();
   ctx.translate(this.scrollPosition.x, this.scrollPosition.y);
-  
 
   /*var width = Math.floor(canvas.scrollWidth / tilewidth) + 2;
   var height = Math.floor(canvas.scrollHeight / tileheight) + 2;
@@ -192,7 +206,8 @@ TileEngine.prototype.render = function (timestep, ctx) {
   var tilesDrawn = 0;
 
   for (var layer = 0; layer < this.tilemap.layers.length; layer++) {
-    //if (layer != this.groundLayer) { continue; }
+    if (layer == this.objectLayer) { continue; }
+
     for (var x = 0; x < this.mapWidth; x++) {
       for (var y = 0; y < this.mapHeight; y++) {
         

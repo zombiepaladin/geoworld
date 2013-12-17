@@ -15,12 +15,18 @@ PauseScene.prototype = new Scene();
 PauseScene.prototype.constructor = PauseScene;
 
 PauseScene.prototype.keyUp = function (event) {
+  var handled = false;
+
   //Move selection:
   if (event.key == Keys.Up) {
     this.cursorSelect--;
+    handled = true;
   } else if (event.key == Keys.Down) {
     this.cursorSelect++;
+    handled = true;
   } else if (event.key == Keys.Enter) {
+    handled = true;
+
     //Resume:
     if (this.cursorSelect == 0) {
       Game.popScene();
@@ -34,6 +40,15 @@ PauseScene.prototype.keyUp = function (event) {
       assert(false);//Invalid selection
     }
   }
+
+  if (this.cursorSelect < 0) {
+    this.cursorSelect = this.numChoices - 1;
+  }
+  if (this.cursorSelect >= this.numChoices) {
+    this.cursorSelect = 0;
+  }
+
+  return handled;
 }
 
 PauseScene.prototype.render = function (timeStep, ctx) {

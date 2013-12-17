@@ -46,10 +46,34 @@ Player = function (initialParent, initialPosition, scene) {
     height: 100
   };
   
+  // Game state things:
+  this.goal = undefined;
+  this.goalDestination = undefined;
 }
 
 Player.prototype = new Entity();
 Player.prototype.constructor = Player;
+
+// Called from level_scene to create a player defined as an object in the level
+Player.createFromLevel = function (info, scene) {
+  return new Player(scene, new Vector(info.x + info.width / 2, info.y + info.height), scene);
+}
+
+Player.prototype.giveRegion = function (region) {
+  if (region.name == "Goal") {
+    assert(this.goal === undefined);
+    this.goal = new Rect(region.x, region.y, region.width, region.height);
+
+    if (region.properties.destination != undefined) {
+      this.goalDestination = region.properties.destination;
+    }
+  }
+}
+
+// Called when the player dies
+Player.prototype.kill = function () {
+  Game.pushScene(new DeathScene());
+}
 
 // Update the player's sprite given the provided input
 Player.prototype.update = function (timeStep) {
@@ -75,9 +99,23 @@ Player.prototype.update = function (timeStep) {
     this.accelerate(new Vector(this.acceleration, 0), seconds);
     this.facingLeft = false;
   }
-  if(this.scene.isHazzardAt(this.position.x, this.position.y)){
-	Game.pushScene(new DeathScene());
+
+  if (this.scene.isHazzardAt(this.position.x, this.position.y) && false) {
+    this.kill();
   }
+
+  if (this.goal != undefined && this.goal.isPointInside(this.position)) {
+    Game.popScene();//Remove this level from the stack
+    if (this.goalDestination != undefined) {
+      if (window[this.goalDestination] === undefined) {
+        console.error("Tried to move to the next level '%s', but that level does not exist!", this.goalDestination);
+      } else {
+        Game.pushScene(new Level(window[this.goalDestination]));//Push the next level so the end of level screen returns to it when it is done
+      }
+    }
+    Game.pushScene(new FinishScene());//Push the end of level screen
+  }
+
   // Determine the current frame of animation
   // Start with a "default" frame
   this.frame = {
@@ -162,8 +200,6 @@ Player.prototype.render = function(timeStep, ctx) {
 }
 
 Player.prototype.keyDown = function (event) {
-  //console.log("Player key down: " + event.key.toString());
-
   //Jumping:
   if (event.key == Keys.Up &&
     (
@@ -198,8 +234,6 @@ Player.prototype.keyDown = function (event) {
 }
 
 Player.prototype.keyUp = function (event) {
-  //console.log("Player key up: " + event.key.toString());
-
   if (event.key == Keys.Left) {
     this.input.left = false;
     return true;

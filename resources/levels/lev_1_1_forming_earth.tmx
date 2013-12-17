@@ -25559,4 +25559,14 @@
    <tile gid="3"/>
   </data>
  </layer>
+ <objectgroup name="Object Layer 1" width="360" height="35">
+  <object name="Player" x="54" y="515" width="49" height="83"/>
+  <object name="AsteroidField" x="4845" y="18" width="3785" height="65"/>
+  <object name="LavaFlow" x="44" y="56" width="56" height="180"/>
+  <object name="Goal" x="8280" y="350" width="195" height="387">
+   <properties>
+    <property name="for" value="Player"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

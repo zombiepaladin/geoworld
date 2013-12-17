@@ -22,7 +22,7 @@ TitleScreen.prototype.update = function (timeStep) {
 
 TitleScreen.prototype.keyUp = function (event) {
   if (event.key == Keys.Enter) {
-    Game.pushScene(new Level(level_5_1));
+    Game.pushScene(new Level(level_1_1));
 
     return true;
   }

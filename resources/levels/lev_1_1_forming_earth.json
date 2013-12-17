@@ -21,12 +21,77 @@ level_1_1 = { "height":35,
          "width":360,
          "x":0,
          "y":0
+        }, 
+        {
+         "height":35,
+         "name":"Object Layer 1",
+         "objects":[
+                {
+                 "height":83,
+                 "name":"Player",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":49,
+                 "x":54,
+                 "y":515
+                }, 
+                {
+                 "height":65,
+                 "name":"AsteroidField",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":3785,
+                 "x":4845,
+                 "y":18
+                }, 
+                {
+                 "height":180,
+                 "name":"LavaFlow",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":56,
+                 "x":44,
+                 "y":56
+                }, 
+                {
+                 "height":387,
+                 "name":"Goal",
+                 "properties":
+                    {
+                     "for":"Player",
+                     "destination":"level_1_2"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":195,
+                 "xold":8280,
+                 "x":200,
+                 "y":350
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "width":360,
+         "x":0,
+         "y":0
         }],
  "orientation":"orthogonal",
  "properties":
     {
-     "startX":"24",
-     "startY":"600"
+     "startX":"200",
+     "startY":"300"
     },
  "tileheight":24,
  "tilesets":[
