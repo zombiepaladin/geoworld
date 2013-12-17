@@ -328,7 +328,6 @@ TileEngine.prototype.render = function (timestep, ctx) {
   var height = Math.floor(canvas.scrollHeight / tileheight) + 2;
   var startX = Math.floor(this.scrollPosition.x / tilewidth);
   var startY = Math.floor(this.scrollPosition.y / tileheight);
-
   //set background color if in tilemap properties
   if (this.tilemap.backgroundcolor) {
   	ctx.fillStyle = this.tilemap.backgroundcolor;
@@ -343,6 +342,7 @@ TileEngine.prototype.render = function (timestep, ctx) {
 
   
   for (layer = 0; layer < this.layers; layer++) {  // Painter's algorithm
+
 	  ctx.save();
 	  ctx.translate(Math.floor(-1 * this.scrollPosition.x), Math.floor(-1 * this.scrollPosition.y));
 		
