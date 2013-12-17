@@ -1,6 +1,6 @@
 // Construct a new player object
 Entity = function (game, initialPosition, initialVelocity, spritesheet, level) {
-  console.log(this);
+
   if (!game) { return -1; }
 
   this.id = Entity.nextId;

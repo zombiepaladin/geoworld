@@ -9,6 +9,7 @@
         "src/js/entity.js",
 		"src/js/player.js",
 		"src/js/Entities/Alphadon.js",
+		"src/js/Entities/Mastodon.js",
 		"src/js/Entities/Mososaur.js",
 		"src/js/Entities/fish1.js",
 		"src/js/Entities/fish2.js",
