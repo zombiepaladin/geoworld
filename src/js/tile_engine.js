@@ -117,6 +117,17 @@ TileEngine.prototype.isWaterAt = function(x, y) {
   return false;
 }
 
+// Checks if the ground tile at the specified location is a death tile
+TileEngine.prototype.isDeathTileAt = function(x, y) {
+  if (this.groundLayer === undefined) return false;  // No ground layer exists on this level
+  var tileX = Math.floor(x / this.tilemap.tilewidth);
+  var tileY = Math.floor(y / this.tilemap.tileheight);
+  var currTile = this.tilemap.layers[this.groundLayer].data[tileX + tileY * this.tilemap.layers[this.groundLayer].width];
+  currTile = currTile & ~(0x80000000 | 0x40000000 | 0x20000000);
+  if (currTile !== 0 && this.tilemap.tilesets[0].tileproperties[currTile - 1].type === "death") return true;
+  return false;
+}
+
 // Render the tilemap
 //  timestep - the time between frames
 //  ctx - the rendering context

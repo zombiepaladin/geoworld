@@ -49,6 +49,10 @@ Level.prototype.isAirAt = function(x, y) {
 	return this.tileEngine.isAirAt(x, y);
 }
 
+Level.prototype.isDeathTileAt = function(x, y) {
+	return this.tileEngine.isDeathTileAt(x, y);
+}
+
 Level.prototype.isFinished = function() {
 	// Hackish: Check bottom of robot and the three tiles above it
 	if (this.tileEngine.isEndAt(this.player.position.x, this.player.position.y) ||
@@ -58,3 +62,4 @@ Level.prototype.isFinished = function() {
 		return true;
 	return false;
 }
+
