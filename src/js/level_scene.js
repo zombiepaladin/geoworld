@@ -116,6 +116,10 @@ Level.prototype.render = function (timeStep, ctx) {
   ctx.restore();
 }
 
+Level.prototype.getLevelHeight = function () {
+  return this.tileEngine.getLevelHeight();
+}
+
 Level.prototype.getGroundLevelAt = function(x, y) {
 	return this.tileEngine.getGroundLevelAt(x, y);
 }

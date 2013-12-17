@@ -26,6 +26,7 @@
 		"src/js/player.js",
         "src/js/level1/asteroid_field.js",
         "src/js/level1/asteroid.js",
+        "src/js/level1/lava_flow.js",
         "src/js/level1/cyano_enemy.js",
         "src/js/level1/blob_enemy.js",
         

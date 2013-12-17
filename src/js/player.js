@@ -98,7 +98,7 @@ Player.prototype.update = function (timeStep) {
     this.facingLeft = false;
   }
 
-  if (this.scene.isHazzardAt(this.position.x, this.position.y) && false) {
+  if (this.scene.isHazzardAt(this.position.x, this.position.y)) {
     this.kill();
   }
 
