@@ -52,6 +52,110 @@ TileEngine.prototype.setScrollPosition = function(position) {
   this.scrollPosition.y = position.y;
 }
 
+// Checks if there is a collision and returns the non-colliding x or y value based on direction, or null if no collision
+// direction: "up", "down", "left", or "right
+TileEngine.prototype.getCollisionAt = function(absX, absY, direction) {
+	var mapWidth = this.tilemap.layers[this.groundLayer].width;
+    var mapHeight = this.tilemap.layers[this.groundLayer].height;
+    var tileHeight = this.tilemap.tileheight;
+    var groundLevel = mapHeight * tileHeight;
+    var tileX = Math.floor(absX / this.tilemap.tilewidth); 
+	var tileY = Math.floor(absY / tileHeight);
+	var currTile = this.tilemap.layers[this.groundLayer].data[tileX + tileY * mapWidth];
+	
+	// If colliding on the current tile, return the non-colliding x or y value based on the direction
+	// It's possible that player is on a ground tile and not colliding with wall (i.e. slopes), in which case 
+	// it should pass through everything without returning the value and instead return null
+	if (currTile !== 0 && (this.tilemap.tilesets[0].tileproperties[currTile - 1].type === "ground" ||
+						   this.tilemap.tilesets[0].tileproperties[currTile - 1].type === "ceiling")) {
+		if (direction === "right") {
+			// Loop right through the current y that player is on until a ground tile is reached
+			for (; tileX < mapWidth; tileX++) {
+				currTile = this.tilemap.layers[this.groundLayer].data[tileX + tileY * mapWidth];
+				var flippedHorizontally = currTile & 0x80000000;
+				currTile = currTile & ~(0x80000000 | 0x40000000 | 0x20000000);
+
+				// Ground tile
+				if (currTile !== 0 && this.tilemap.tilesets[0].tileproperties[currTile - 1].type === "ground") {
+					return y * tileHeight;
+				}
+			}
+		}
+		else if (direction === "left") {
+			// Loop left through the current y that player is on until a ground tile is reached
+			for (; tileX > 0; tileX--) {
+				currTile = this.tilemap.layers[this.groundLayer].data[tileX + tileY * mapWidth];
+				var flippedHorizontally = currTile & 0x80000000;
+				currTile = currTile & ~(0x80000000 | 0x40000000 | 0x20000000);
+
+				// Ground tile
+				if (currTile !== 0 && this.tilemap.tilesets[0].tileproperties[currTile - 1].type === "ground") {
+					return y * tileHeight;
+				}
+			}
+		}
+		else if (direction === "down") {
+			// Loop down through the current x that player is on until a ground tile is reached
+			for (tileY = tileY - 1; y < mapHeight; y++) {
+				currTile = this.tilemap.layers[this.groundLayer].data[tileX + tileY * mapWidth];
+				var flippedHorizontally = currTile & 0x80000000;
+				currTile = currTile & ~(0x80000000 | 0x40000000 | 0x20000000);
+
+				// Ground tile
+				if (currTile !== 0 && this.tilemap.tilesets[0].tileproperties[currTile - 1].type === "ground") {
+					var y0 = parseFloat(this.tilemap.tilesets[0].tileproperties[currTile - 1].left);
+					var y1 = parseFloat(this.tilemap.tilesets[0].tileproperties[currTile - 1].right);
+					var x0 = 0;
+					var x1 = this.tilemap.tilewidth;
+					var xWidth = absX - tileX * this.tilemap.tilewidth;
+					var xHeight;
+					
+					// Linear interpolation
+					if (flippedHorizontally) 
+					  xHeight = y1 + (y0 - y1) * ((xWidth - x0)/(x1 - x0));
+					else xHeight = y0 + (y1 - y0) * ((xWidth - x0)/(x1 - x0));
+
+					var nonCollY = y * tileHeight + xHeight;
+					// Only return non-colliding value if there's actually a collision
+					if (absY > nonCollY) return nonCollY;
+				}
+			}
+		}
+		else if (direction === "up") {
+			// Loop up through the current x that player is on until a ground/ceiling tile is reached
+			for (tileY = tileY + 1; tileY > 0; tileY--) {
+				currTile = this.tilemap.layers[this.groundLayer].data[tileX + tileY * mapWidth];
+				var flippedHorizontally = currTile & 0x80000000;
+				currTile = currTile & ~(0x80000000 | 0x40000000 | 0x20000000);
+
+				// Ground tile; no linear interpolation is required in this case
+				if (currTile !== 0 && this.tilemap.tilesets[0].tileproperties[currTile - 1].type === "ground") {
+					return y * tileHeight;
+				}
+				// Ceiling tile
+				else if (currTile !== 0 && this.tilemap.tilesets[0].tileproperties[currTile - 1].type === "ceiling") {
+					var y0 = parseFloat(this.tilemap.tilesets[0].tileproperties[currTile - 1].left);
+					var y1 = parseFloat(this.tilemap.tilesets[0].tileproperties[currTile - 1].right);
+					var x0 = 0;
+					var x1 = this.tilemap.tilewidth;
+					var xWidth = absX - tileX * this.tilemap.tilewidth;
+					var xHeight;
+					
+					// Linear interpolation
+					if (flippedHorizontally) 
+					  xHeight = y1 + (y0 - y1) * ((xWidth - x0)/(x1 - x0));
+					else xHeight = y0 + (y1 - y0) * ((xWidth - x0)/(x1 - x0));
+					
+					var nonCollY = y * tileHeight - xHeight;
+					// Only return non-colliding value if there's actually a collision
+					if (absY < nonCollY) return nonCollY;
+				}
+			}
+		}
+	}
+	return null;
+}
+
 // Calculate height based on absolute x position, below y position
 TileEngine.prototype.getGroundLevelAt = function(absX, absY) {
   var mapWidth = this.tilemap.layers[this.groundLayer].width;

@@ -49,6 +49,35 @@ Player.prototype.constructor = Player;
 // Update the player's sprite given the provided input
 Player.prototype.update = function (timeStep, input) {
   Entity.prototype.update.call(this, timeStep, input);
+  
+  /*
+  // Check for collisions and if there is any, apply non-colliding x and/or y value to position
+  // TODO: GENERALIZE FOR ENTITY; RIGHT NOW, NEED HEIGHT AND WIDTH OF SPRITE
+  if (this.velocity.y > 0) {  // Collision on ground at foot of robot
+    var nonCollY = this.level.getCollisionAt(this.position.x, this.position.y, "down");
+	if (nonCollY !== null) {
+		this.position.y = nonCollY;
+	}
+  }
+  else if (this.velocity.y < 0) {  // Collision on head of robot
+	var nonCollY = this.level.getCollisionAt(this.position.x, this.position.y - this.spriteHalfHeight, "up");
+	if (nonCollY !== null) {
+		this.position.y = nonCollY;
+	}
+  }
+  else if (this.velocity.x > 0) {  // Collision on right side of robot
+    var nonCollX = this.level.getCollisionAt(this.position.x, this.position.y + this.spriteHalfWidth, "right");
+	if (nonCollX !== null) {
+		this.position.x = nonCollX;
+	}
+  }
+  else if (this.velocity.x < 0) {  // Collision on left side of robot
+    var nonCollX = this.level.getCollisionAt(this.position.x, this.position.y - this.spriteHalfWidth, "left");
+	if (nonCollX !== null) {
+		this.position.x = nonCollX;
+	}
+  }
+  */
 
   var seconds = timeStep / 1000; // Convert timestep to seconds
   
