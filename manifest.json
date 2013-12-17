@@ -8,6 +8,7 @@
         "src/js/rect.js",
         "src/js/entity.js",
 		"src/js/player.js",
+		"src/js/Entities/Alphadon.js",
         "src/js/level.js",
         "src/js/tile_engine.js",
 		"src/js/fossil.js",
