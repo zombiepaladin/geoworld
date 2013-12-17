@@ -77,6 +77,7 @@ Level = function (tileMapObject) {
 	this.cameraPosition = new Vector(0, 0);
 	this.cameraScale = 1.0;
 	this.cameraScaleInv = (1.0 / this.cameraScale);
+	this.cameraFrame = new Rect(0, 0, Game.width, Game.height);
 }
 
 Level.prototype = new Scene();
@@ -96,19 +97,19 @@ Level.prototype.update = function(timeStep, input) {
   );
 
   this.tileEngine.setScrollPosition(new Vector(Game.width / 2 * this.cameraScaleInv - this.cameraPosition.x, Game.height / 2 * this.cameraScaleInv - this.cameraPosition.y));
+
+  this.cameraFrame = new Rect(
+      this.cameraPosition.x - Game.width / 2 * this.cameraScaleInv,
+      this.cameraPosition.y - Game.height / 2 * this.cameraScaleInv,
+      Game.width * this.cameraScaleInv,
+      Game.height * this.cameraScaleInv
+    );
 }
 
 Level.prototype.render = function (timeStep, ctx) {
   ctx.save();
   ctx.scale(this.cameraScale, this.cameraScale);
-  this.tileEngine.render(timeStep, ctx,
-    new Rect(
-      this.cameraPosition.x - Game.width / 2 * this.cameraScaleInv,
-      this.cameraPosition.y - Game.height / 2 * this.cameraScaleInv,
-      Game.width * this.cameraScaleInv,
-      Game.height * this.cameraScaleInv
-    )
-  );
+  this.tileEngine.render(timeStep, ctx, this.cameraFrame);
 
   //Translate and render children
   ctx.translate(-this.cameraPosition.x + Game.width / 2 * this.cameraScaleInv, -this.cameraPosition.y + Game.height / 2 * this.cameraScaleInv);
