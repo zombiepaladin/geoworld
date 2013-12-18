@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="24" tileheight="24">
+ <properties>
+  <property name="endTileX" value="78"/>
+  <property name="endTileY" value="19"/>
+  <property name="startX" value="48"/>
+  <property name="startY" value="525"/>
+ </properties>
+ <tileset firstgid="1" name="Base" tilewidth="24" tileheight="24">
+  <image source="Phase IV alpha tileset.png" width="191" height="193"/>
+  <tile id="3">
+   <properties>
+    <property name="type" value="portal"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="type" value="water"/>
+   </properties>
+  </tile>
+  <tile id="28">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="29">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="24"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="30">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="18"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="31">
+   <properties>
+    <property name="left" value="18"/>
+    <property name="right" value="24"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="32">
+   <properties>
+    <property name="type" value="ceiling"/>
+   </properties>
+  </tile>
+  <tile id="33">
+   <properties>
+    <property name="type" value="ceiling"/>
+   </properties>
+  </tile>
+  <tile id="35">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="36">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="37">
+   <properties>
+    <property name="left" value="6"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="38">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="6"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="39">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="6"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="40">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="3"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="41">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="42">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="43">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="24"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="44">
+   <properties>
+    <property name="left" value="24"/>
+    <property name="right" value="18"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="45">
+   <properties>
+    <property name="left" value="18"/>
+    <property name="right" value="24"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="46">
+   <properties>
+    <property name="type" value="ceiling"/>
+   </properties>
+  </tile>
+  <tile id="47">
+   <properties>
+    <property name="type" value="ceiling"/>
+   </properties>
+  </tile>
+  <tile id="48">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+  <tile id="49">
+   <properties>
+    <property name="left" value="2"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="50">
+   <properties>
+    <property name="left" value="4"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="51">
+   <properties>
+    <property name="left" value="6"/>
+    <property name="right" value="0"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="52">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="6"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="53">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="4"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="54">
+   <properties>
+    <property name="left" value="0"/>
+    <property name="right" value="2"/>
+    <property name="type" value="ground"/>
+   </properties>
+  </tile>
+  <tile id="55">
+   <properties>
+    <property name="type" value="sky"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Background" width="100" height="100" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJzt1DtuAjEUBVCKLIB1pEuX/a8spECiCMzYfh9mco7kDo2f77W5Xi6Xa+D6uq3vF+uzcK+sfV/Nkr1PRj4RM490kdlJ5f2LzCJizoh9o3IaneVde5jNJmPv2U5mZ+n6r46etXPvrBlWusnO49mce/Z9dMT78M5dPGYz2kVWJxXn33orHR2MrC1R+VTncMYu7rrnXLkHR+hhpItH3TOPrtUuKs69qjvjkRXRRdbZI3XnnLkqzp+lO7uOLlbOXqE7w44uZs5eqTvLji72nL1Td6bVPWydvdKr/bszru6iy8g5u7PufBcVfc+cd+9vPya+v9rFam4db/AMb37PPVn9ZkVGZ+ji1+ybffaNlTe5Ov9RO9gS/d83skfkfGeTfecjez9rB39ZySUj8//aw93suXWRI+v/XQ9zqvLVBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAEPwEJXWk=
+  </data>
+ </layer>
+ <layer name="Ground" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt2EtWwjAABdDuwOMCdAOII9n/1qyDYi2lNiGfktx7zhswoDR5SQMMAwBAXacxL2M+a98I1y6mfNS9nW6dx3wNf7vQSR3LPaGTevZ0MeUy9HmmTHOU09bzyV75NV+vOdZjyH7ouZOttZqql1RdtP782jtPsWvykWdTb3sldM2Gjj31nmi5k9i5+m/spTpopZMUz457Yy/ZxZpnO1NyzNfP+M8Zrru3gzXPsFdSdTFXai+EdDG5RLynlNPidc45Kd1DrfMq9v6XXcTOWYhS++HoXSzHsdbFPY/M/57rpeoh52+ZGh09am1Nbp2fve2HvUlxvm3NR67vNC11kHLeSvzvu/Z5PWQu9n059dRFTB+l5P7v8ag5ot72xDyvifIW+LnvCa7RYmp0sdaJLm7npGQXIiIiIiIiIiIiIiIiIiItBwAAAAAAAAAAAAAAAAAAAAAAAAC49Q3CEL3j
+  </data>
+ </layer>
+</map>
