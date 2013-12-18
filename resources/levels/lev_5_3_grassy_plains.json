@@ -49,6 +49,19 @@
                  "width":48,
                  "x":48,
                  "y":552
+                }, 
+                {
+                 "height":158,
+                 "name":"Goal",
+                 "properties":
+                    {
+                     "for":"Player"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":259,
+                 "x":5767,
+                 "y":815
                 }],
          "opacity":1,
          "type":"objectgroup",

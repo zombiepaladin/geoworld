@@ -53,7 +53,6 @@
         [3, 2, "lev_3_2_geysers.json"],
         [3, 3, "lev_3_3_trees.json"],
 
-        [4, 1, "lev_4_1_ice.json"],
         [4, 2, "lev_4_2_mountain.json"],
 
         [5, 1, "lev_5_1_dead_plains.json"],
