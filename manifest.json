@@ -20,8 +20,6 @@
         "src/js/tile_engine.js",
         "src/js/death_scene.js",
         "src/js/finish_scene.js",
-
-        "src/js/sounds.js",
         
         "src/js/player.js",
         "src/js/level1/asteroid_field.js",
