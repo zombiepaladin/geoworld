@@ -196,6 +196,11 @@ TileEngine.prototype.isWaterAt = function (x, y) {
 }
 
 TileEngine.prototype.isHazzardAt = function (x, y) {
+  //TODO: There are currently two ways to define a hazzard tile, it'd be ideal if we consolidated them later.
+  if (this.getTypeNear(this.groundLayer, x, y) == "death") {
+    return true;
+  }
+
   var prop = this.getPropertiesNear(this.groundLayer, x, y);
   if (prop === undefined) { return false; }
   return prop.isHazzard == "true";

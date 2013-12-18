@@ -17,7 +17,7 @@
          "name":"Background",
          "opacity":1,
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":1000,
          "x":0,
          "y":0
@@ -28,7 +28,57 @@
          "name":"Ground",
          "opacity":1,
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
+         "width":1000,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "height":54,
+         "name":"Object Layer 1",
+         "objects":[
+                {
+                 "height":96,
+                 "name":"Player",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":48,
+                 "y":960
+                }, 
+                {
+                 "height":282,
+                 "name":"Goal",
+                 "properties":
+                    {
+                     "for":"Player"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":144,
+                 "x":23852,
+                 "y":24
+                }, 
+                {
+                 "height":24,
+                 "name":"Fish1",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":888,
+                 "y":1038
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
          "width":1000,
          "x":0,
          "y":0
@@ -36,10 +86,7 @@
  "orientation":"orthogonal",
  "properties":
     {
-     "endTileX":"100",
-     "endTileY":"33",
-     "startX":"72",
-     "startY":"1024"
+
     },
  "tileheight":24,
  "tilesets":[
@@ -197,6 +244,5 @@
         }],
  "tilewidth":24,
  "version":1,
- "width":1000,
- "valid":2
+ "width":1000
 }

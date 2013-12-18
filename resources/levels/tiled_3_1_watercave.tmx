@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="1000" height="54" tilewidth="24" tileheight="24">
- <properties>
-  <property name="endTileX" value="100"/>
-  <property name="endTileY" value="33"/>
-  <property name="startX" value="72"/>
-  <property name="startY" value="1024"/>
- </properties>
  <tileset firstgid="1" name="water_cave" tilewidth="24" tileheight="24">
   <image source="../tilesets/water_cave.png" width="120" height="120"/>
   <tile id="0">
@@ -171,14 +165,23 @@
    eJzt17EJA0EQA8Cvwbj/Wh09OHEm63gxA9eB2JOuCwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFjx/noAQJd/GAC46QUskWcg7d93xd0CAG56AUvkGUizzwGAFr2AJfIMpNnnAECLXsASeQbS7HMAoEUvYIk8A2n2OQDQohewRJ6BNPscAGjRC1giz0CafQ4AtOgFLJFnIM0+BwBa9AKWyDOQZp8DAC16AQD8Zp8DAC16AQCc4x8GAACA8+xzAAAAAAAAAAAAAAAAAAAAAACe7HXoAQAAAAAAADzVB5OZDG0=
   </data>
  </layer>
- <layer name="Background" width="1000" height="54" visible="0">
+ <layer name="Background" width="1000" height="54">
   <data encoding="base64" compression="zlib">
    eJzt1zEKwzAQBED5A8H4/49N4SalFXTsRZmFKQ26sxDsOca4AAAAAAAAAJjymvDk2/Q8AAAAsNpMd97Ryl0+Sfp/AwAA0FO6H/Ob0vcWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgP8zGpwBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYEfHh/RZAAAAAAAAqHWyJfep9y7TMwFU++b9W/nNzHvrDQcAKunnvXeZngmgmn4OAHDTz3vvMj0TQDX9HADgpp/33mV6JoBq+jkAzBMRERERERGRfN6I725a
   </data>
  </layer>
- <layer name="Ground" width="1000" height="54" visible="0">
+ <layer name="Ground" width="1000" height="54">
   <data encoding="base64" compression="zlib">
    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
   </data>
  </layer>
+ <objectgroup name="Object Layer 1" width="1000" height="54">
+  <object name="Player" x="48" y="960" width="48" height="96"/>
+  <object name="Goal" x="23852" y="24" width="144" height="282">
+   <properties>
+    <property name="for" value="Player"/>
+   </properties>
+  </object>
+  <object name="Fish1" x="888" y="1038" width="24" height="24"/>
+ </objectgroup>
 </map>
