@@ -36,11 +36,22 @@
         "src/css/geoworld.css"
     ],
     "levels": [
-        "lev_1_1_forming_earth.json",
-        "lev_1_2_precam.json",
-        "lev_3_1_watercave.json",
-        "lev_5_1_dead_plains.json",
-        "lev_5_3_grassy_plains.json",
-        "lev_5_4_lava_mountain.json"
+        [1, 1, "lev_1_1_forming_earth.json"],
+        [1, 2, "lev_1_2_precam.json"],
+
+        [3, 1, "lev_3_1_watercave.json"],
+        [3, 2, "lev_3_2_geysers.json"],
+        [3, 3, "lev_3_3_trees.json"],
+
+        [4, 1, "lev_4_1_ice.json"],
+        [4, 2, "lev_4_2_mountain.json"],
+
+        [5, 1, "lev_5_1_dead_plains.json"],
+        [5, 3, "lev_5_3_grassy_plains.json"],
+        [5, 4, "lev_5_4_lava_mountain.json"],
+
+        [6, 1, "lev_6_1_skyland.json"],
+
+        [8, 1, "lev_8_1_snow.json"]
     ]
 }

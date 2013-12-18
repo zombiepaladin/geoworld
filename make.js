@@ -113,7 +113,14 @@ fs.readdir('src/html', function (err, files) {
 //----------------------------------------------
 
 //For now, levels are just copied into the release directory
-manifest.levels.forEach(function (fileName, index, array) {
-  fs.createReadStream('resources/levels/' + fileName).pipe(fs.createWriteStream('release/' + fileName));
-  console.log("wrote file: release/" + fileName);
+manifest.levels.forEach(function (level, index, array) {
+  var outFile = fs.createWriteStream('release/' + level[2]);
+
+  //Pre-pend the level name and an equals sign so the json gets parsed as javascript.
+  //(In the future the json should get loaded when it is neaded using ajax or something similar.)
+  outFile.write("level_" + level[0].toString() + "_" + level[1].toString() + " = ");
+
+  //Pipe level data to destination file:
+  fs.createReadStream('resources/levels/' + level[2]).pipe(outFile);
+  console.log("wrote file: release/" + level[2]);
 });

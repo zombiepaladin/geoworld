@@ -1,4 +1,4 @@
-level_3_3 = { "backgroundcolor":"#1fbdfb",
+{ "backgroundcolor":"#1fbdfb",
 	"backgroundsrc":"level_3_3_sky.png",
  "height":100,
  "layers":[

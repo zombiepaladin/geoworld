@@ -1,10 +1,12 @@
 var http = require('http'),
-	url = require('url'),
-	fs = require('fs'),
+  url = require('url'),
+  fs = require('fs'),
   path = require('path'),
-	uglifyJS = require("uglify-js"),
-	cleanCSS = require("clean-css"),
-	manifest = require("./manifest.json");
+  uglifyJS = require("uglify-js"),
+  cleanCSS = require("clean-css"),
+  manifest = require("./manifest.json");
+
+throw console.error("!!! This makescript is out of date !!!\nDon't use it until it has been updated!");
 
 // ==========================================
 // Ensure the release directory exists
@@ -21,28 +23,28 @@ if (!fs.existsSync('release')) {
 
 // Watch the files in the manifest.javascripts array
 //  and re-process the combined, minified JavaScript any time a change is made
-manifest.javascripts.forEach( function(fileName, index, array) {
+manifest.javascripts.forEach(function (fileName, index, array) {
 
-	fs.watch(fileName, function(event, filename){	
-		console.log(fileName + " changed, reprocessing JavaScripts");
-		
-	  //Disabling this for now because it make debugging a nightmare.
-	  //Should probably add a command line switch in the future so you can toggle between a debug and release html file + js handling.
+  fs.watch(fileName, function (event, filename) {
+    console.log(fileName + " changed, reprocessing JavaScripts");
 
-		// Combine JavaScript files with uglify-js
-		//var minifiedJS = uglifyJS.minify(jsFileList);
+    //Disabling this for now because it make debugging a nightmare.
+    //Should probably add a command line switch in the future so you can toggle between a debug and release html file + js handling.
 
-		// Write combined, minified, JavaScript file to release directory
-		//fs.writeFile('release/geoworld.js', minifiedJS.code, function(err) {
-		//	if(err) {
-		//		console.error("Could not write release/geoworld.js file\n" + err);
-		//		return;
-		//	}
-		//	console.log("wrote file: release/geoworld.js");
-		//});
-		fs.createReadStream(fileName).pipe(fs.createWriteStream('release/' + path.basename(fileName)));
-		console.log("wrote file: release/" + path.basename(fileName));
-	});
+    // Combine JavaScript files with uglify-js
+    //var minifiedJS = uglifyJS.minify(jsFileList);
+
+    // Write combined, minified, JavaScript file to release directory
+    //fs.writeFile('release/geoworld.js', minifiedJS.code, function(err) {
+    //	if(err) {
+    //		console.error("Could not write release/geoworld.js file\n" + err);
+    //		return;
+    //	}
+    //	console.log("wrote file: release/geoworld.js");
+    //});
+    fs.createReadStream(fileName).pipe(fs.createWriteStream('release/' + path.basename(fileName)));
+    console.log("wrote file: release/" + path.basename(fileName));
+  });
 });
 
 console.log("Watching for changes in JavaScript");
@@ -53,30 +55,30 @@ console.log("Watching for changes in JavaScript");
 //----------------------------------------------
 
 // Watch the files in the manifest.stylesheets array file and re-process it any time changes are made
-manifest.stylesheets.forEach(function(fileName, index, array) {
+manifest.stylesheets.forEach(function (fileName, index, array) {
 
-	fs.watch(fileName, function(event, fileName) {
-		console.log(fileName + " changed, reprocessing " + fileName);
-		
-		// Read CSS from filenames in the manifest
-		var cssSource = "";
-		manifest.stylesheets.forEach(function(fileName, index, array) {
-			cssSource = cssSource.concat(fs.readFileSync('src/css/geoworld.css', 'utf8'));
-		});
+  fs.watch(fileName, function (event, fileName) {
+    console.log(fileName + " changed, reprocessing " + fileName);
 
-		// Minify the CSS code using clean css
-		var minifiedCSS = cleanCSS().minify(cssSource);
+    // Read CSS from filenames in the manifest
+    var cssSource = "";
+    manifest.stylesheets.forEach(function (fileName, index, array) {
+      cssSource = cssSource.concat(fs.readFileSync('src/css/geoworld.css', 'utf8'));
+    });
 
-		// Write the finalized CSS code to the release directory
-		fs.writeFile('release/geoworld.css', minifiedCSS, function(err) {
-			if(err) {
-				console.error("Could not write release/geoworld.css file\n" + err);
-				return;
-			}
-			console.log("wrote file: release/geoworld.css");
-		});
-	});
-	
+    // Minify the CSS code using clean css
+    var minifiedCSS = cleanCSS().minify(cssSource);
+
+    // Write the finalized CSS code to the release directory
+    fs.writeFile('release/geoworld.css', minifiedCSS, function (err) {
+      if (err) {
+        console.error("Could not write release/geoworld.css file\n" + err);
+        return;
+      }
+      console.log("wrote file: release/geoworld.css");
+    });
+  });
+
 });
 
 console.log("Watching for changes in CSS");
