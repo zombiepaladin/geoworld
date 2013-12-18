@@ -11,6 +11,8 @@ physics_modifier = function () {
   this.hangTimeVelocityThreshold = 0;//The crossover of the Y velocity to start applying hang time
   this.hangTimeMinimum = 1.0;//As a percentage of world gravity
 
+  this.airJetSpeed = new Vector(0, -500);
+
   this.accelerate = function (accelerationVector, scale) {
     if (scale === undefined) {
       scale = 1.0;
@@ -29,8 +31,9 @@ physics_modifier = function () {
   this.isUnderWater = function () {
     return this.scene.isWaterAt(this.position.x, this.position.y - 3);//Check a little above current Y so we don't get ground at our feet
   }
-  this.isOnAir = function () {
-    return this.scene.isAirAt(this.position.x, this.position.y);
+
+  this.isInAirJet = function () {
+    return this.scene.isAirJetAt(this.position.x, this.position.y);
   }
 
   return function (timeStep) {
@@ -44,6 +47,11 @@ physics_modifier = function () {
     if (this.maxVelocity) {
       this.velocity.x = Math.clamp(this.velocity.x, -this.maxVelocity.x, this.maxVelocity.x);
       this.velocity.y = Math.clamp(this.velocity.y, -this.maxVelocity.y, this.maxVelocity.y);
+    }
+
+    //Apply air jets
+    if (this.isInAirJet()) {
+      this.accelerate(this.airJetSpeed, seconds);
     }
 
     // Apply friction

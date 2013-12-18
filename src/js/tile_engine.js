@@ -15,7 +15,7 @@ TileEngine = function (tileMapObject) {
 
   // Identifify special layers:
   this.groundLayer = -1;
-  this.airLayer = -1;
+  this.airJetLayer = -1;
   this.objectLayer = -1;
   this.tilemap.layers.forEach(function (layer, i) {
     //Ensure consistency of tile map:
@@ -28,10 +28,10 @@ TileEngine = function (tileMapObject) {
       thisEngine.groundLayer = i;
     }
 
-    //Find air layer:
-    if (layer.name === "Air" || layer.name == "Sky") {
-      assert(thisEngine.airLayer == -1);
-      thisEngine.airLayer = i;
+    //Find air jet layer:
+    if (layer.name === "Air") {
+      assert(thisEngine.airJetLayer == -1);
+      thisEngine.airJetLayer = i;
     }
 
     //Find object layer
@@ -180,12 +180,12 @@ TileEngine.prototype.isEndAt = function (x, y) {
 }
 
 // Checks if the tile at the specified location is on air
-TileEngine.prototype.isAirAt = function (x, y) {
-  if (this.airLayer < 0) {
+TileEngine.prototype.isAirJetAt = function (x, y) {
+  if (this.airJetLayer < 0) {
     return false;
   }
 
-  return this.getTypeNear(this.airLayer, x, y) == "air";
+  return this.getTypeNear(this.airJetLayer, x, y) == "air";
 }
 
 // Checks if the ground tile at the specified location contains water

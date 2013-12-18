@@ -133,8 +133,8 @@ Level.prototype.isWaterAt = function (x, y) {
   return this.tileEngine.isWaterAt(x, y);
 }
 
-Level.prototype.isAirAt = function (x, y) {
-  return this.tileEngine.isAirAt(x, y);
+Level.prototype.isAirJetAt = function (x, y) {
+  return this.tileEngine.isAirJetAt(x, y);
 }
 
 Level.prototype.isHazzardAt = function (x, y) {
