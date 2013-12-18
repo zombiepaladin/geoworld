@@ -1,12 +1,26 @@
-Fish1 = function (initialParent, initialPosition, scene) {
+Fish1 = function (initialParent, initialPosition, scene, fishType) {
   Entity.call(this, initialParent, initialPosition, scene);
 
-  this.spritesheet = new Image();
-  this.spritesheet.src = "fish1.png";
+  this.fishType = (fishType ? fishType : 1);
 
-  // Sprite size constants
-  this.spriteWidth = 120;
-  this.spriteHeight = 46;
+  //Sprite
+  this.spritesheet = new Image();
+
+  if (this.fishType == 1) {
+    this.spritesheet.src = "fish1.png";
+    this.spriteWidth = 120;
+    this.spriteHeight = 46;
+  } else if (this.fishType == 2) {
+    this.spritesheet.src = "fish2.png";
+    this.spriteWidth = 164;
+    this.spriteHeight = 50;
+  } else if (this.fishType == 3) {
+    this.spritesheet.src = "fish3.png";
+    this.spriteWidth = 182;
+    this.spriteHeight = 114;
+  } else {
+    assert(false);//Invalid fish type
+  }
   this.spriteHalfWidth = this.spriteWidth / 2;
   this.spriteHalfHeight = this.spriteHeight / 2;
   this.spriteFacingLeft = true;
@@ -17,7 +31,11 @@ Fish1 = function (initialParent, initialPosition, scene) {
   // Physics:
   this.applyModifier(physics_modifier);
   this.instantaneousJumpImpulse = -200;
-  this.acceleration = 100 / 2;  // in pixels per second^2
+  this.acceleration = 100;  // in pixels per second^2
+
+  if (this.fishType == 2) {
+    this.acceleration /= 2;//Fish 1 is slower than the others
+  }
 
   this.maxVelocity = new Vector(100, 400);
   this.frictionConstant = 200;
@@ -43,7 +61,7 @@ Fish1.prototype = new Entity();
 Fish1.prototype.constructor = Fish1;
 
 Fish1.createFromLevel = function (info, scene) {
-  return new Fish1(scene, new Vector(info.x + info.width / 2, info.y + info.height / 2), scene);
+  return new Fish1(scene, new Vector(info.x + info.width / 2, info.y + info.height / 2), scene, info.properties.fishType);
 }
 
 Fish1.prototype.update = function (timeStep, input) {
@@ -75,7 +93,7 @@ Fish1.prototype.update = function (timeStep, input) {
   // Determine the current frame of animation
   // Start with a "default" frame
   this.frame = {
-    x: 120,
+    x: 0,
     y: 0,
     width: this.spriteWidth,
     height: this.spriteHeight
