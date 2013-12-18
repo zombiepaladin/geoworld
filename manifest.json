@@ -24,11 +24,23 @@
         "src/js/credits_scene.js",
         
         "src/js/player.js",
+        
         "src/js/level1/asteroid_field.js",
         "src/js/level1/asteroid.js",
         "src/js/level1/lava_flow.js",
         "src/js/level1/cyano_enemy.js",
         "src/js/level1/blob_enemy.js",
+
+        "src/js/level1/fish1.js",
+        "src/js/level1/fish2.js",
+        "src/js/level1/fish3.js",
+        "src/js/level1/Lizard.js",
+
+        "src/js/level1/Alphadon.js",
+        "src/js/level1/Asteroid_Phase6.js",
+        "src/js/level1/Mososaur.js",
+
+        "src/js/level1/Mastodon.js",
         
         "src/js/geoworld.js"
     ],
