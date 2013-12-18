@@ -1,8 +1,6 @@
 CreditsScreen = function () {
   Scene.call(this);
 
-  this.selection = null;
-
   this.top = 60;
   this.left = 100;
   this.textYDistance = 22;
@@ -19,8 +17,6 @@ CreditsScreen = function () {
             "Jonathan Kress", "Montana Grier",
             "Dalton Vonfeldt", "Chase Sinclair", "Grant Borthwick",
             "Eric Marlen", "Joung Kim", "Alex Roberts", "Kyle Hacek"];
-
-  this.input_handler = new InputHandler(60);
 }
 
 CreditsScreen.prototype = new Scene();
@@ -31,17 +27,8 @@ CreditsScreen.prototype.keyUp = function (event) {
     Game.popScene();
     return true;
   }
+
   return false;
-}
-
-CreditsScreen.prototype.update = function (timeStep, input) {
-  this.input_handler.press(timeStep, input);
-  var canPressEnter = this.input_handler.check("enter");
-  var canPressEscape = this.input_handler.check("escape");
-
-  if (canPressEnter || canPressEscape) {
-    this.selection = "startgame";
-  }
 }
 
 CreditsScreen.prototype.render = function (timeStep, ctx) {
@@ -152,6 +139,5 @@ CreditsScreen.prototype.render = function (timeStep, ctx) {
   ctx.restore();
   ctx.restore();
 
-  // No children to render
-  //this.renderChildren(timeStep, ctx);
+  this.renderChildren(timeStep, ctx);
 }
