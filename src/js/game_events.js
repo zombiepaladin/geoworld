@@ -7,6 +7,7 @@ EventController = function(game) {
 				   "deathscreen":  new DeathScreen(),
 				   "levelfinishedscreen": new FinishLevelScreen(),
 			 	   "levelselectscreen": new LevelSelectScreen(this.levels),
+				   "creditsscreen": new CreditsScreen(),
 				   "level": new LevelEvent()
 	              };
 			
@@ -59,11 +60,13 @@ EventController.prototype.handleSelection = function(selection) {
 		this.resetLevels(); 
 		this.currEvent = this.events["levelfinishedscreen"];
 	}
-	else if (selection === "death")
-	{
+	else if (selection === "death") {
 		// If player dies, restart
 		this.resetLevels(); 
 		this.currEvent = this.events["deathscreen"];
+	}
+	else if (selection === "credits") {
+		this.currEvent = this.events["creditsscreen"];
 	}
 	else if (selection.indexOf("level") != -1) {
 		//this.resetLevels();
@@ -358,9 +361,13 @@ LevelSelectScreen.prototype.update = function(timeStep, input) {
 	
 	// Select phase
 	if (this.menuSelect === 0) {
-		if (canPressUp) this.cursorSelect = Math.clamp(this.cursorSelect - 1, 0, 7);
-		if (canPressDown) this.cursorSelect = Math.clamp(this.cursorSelect + 1, 0, 7);
-		if (canPressEnter && this.numLevels["Phase" + (this.cursorSelect+1)] > 0) {
+		if (canPressUp) this.cursorSelect = Math.clamp(this.cursorSelect - 1, 0, 8);
+		if (canPressDown) this.cursorSelect = Math.clamp(this.cursorSelect + 1, 0, 8);
+		if (canPressEnter && this.cursorSelect === 8) {
+			this.selection = "credits";
+			this.cursorSelect = 0;
+		}
+		else if (canPressEnter && this.numLevels["Phase" + (this.cursorSelect+1)] > 0) {
 			this.phaseSelect = this.cursorSelect+1;
 			this.cursorSelect = 0;
 			this.menuSelect = 1;
@@ -412,6 +419,15 @@ LevelSelectScreen.prototype.render = function(timeStep, ctx) {
 			}
 			else ctx.fillText("Phase " + i, this.left, this.top + (this.textYDistance * (i-1)));
 		}
+		// Credits
+		if (this.cursorSelect === 8) {
+			ctx.fillStyle = "red";
+			ctx.font = "bold 27px Arial";
+		}
+		else {
+			ctx.fillStyle = "green";
+		}
+		ctx.fillText("Credits", this.left + 300, this.top +(this.textYDistance * 7) + 30);
 	}
 	// Draw level choices
 	else if (this.menuSelect === 1) {
@@ -429,5 +445,151 @@ LevelSelectScreen.prototype.render = function(timeStep, ctx) {
 			ctx.fillText("Level " + i, this.left, this.top + (this.textYDistance * (i-1)));
 		}
 	}
+	ctx.restore();
+}
+
+
+//======================================
+// Credits Screen
+//--------------------------------------
+CreditsScreen = function() {
+	this.selection = null;
+	
+	this.top = 60;
+	this.left = 100;
+	this.textYDistance = 22;
+	
+	this.numDesigners = {"Phase1": 3, "Phase2": 2, "Phase3": 3, "Phase4": 3, 
+					    "Phase5": 2, "Phase6": 3, "Phase7": 0, "Phase8": 4};
+						
+	this.developers = ["David Maas", "Robert Stewart", "Tyler Robinson",
+					  "Jan Kabelka", "Matej Dolezal",
+					  "Casey Mason", "Brendan Carney", "Adam Liebl",
+					  "Youg Jae Song", "Phillip Dugas", "Austin Goering",
+					  "Jonathan Kress", "Montana Grier",
+					  "Dalton Vonfeldt", "Chase Sinclair", "Grant Borthwick",
+					  "Eric Marlen", "Joung Kim", "Alex Roberts", "Kyle Hacek"];
+	
+	this.input_handler = new InputHandler(60);
+	
+	// TODO: MAKE A MORE INTERESTING PAUSE SCREEN
+}
+
+CreditsScreen.prototype.update = function(timeStep, input) {
+	this.input_handler.press(timeStep, input);
+	var canPressEnter = this.input_handler.check("enter");
+	var canPressEscape = this.input_handler.check("escape");
+	
+	if (canPressEnter || canPressEscape) {
+		this.selection = "startgame";
+	}
+}
+
+CreditsScreen.prototype.render = function(timeStep, ctx) {
+	ctx.fillRect(0, 0, 800, 400);
+	var currDevIndex = 0;
+	var currSpace = 1;
+	
+	ctx.save();
+	ctx.fillStyle = "red";
+    ctx.font = "bold 18px Arial";
+	// Phase One
+    ctx.fillText("Phase One Design", this.left, this.top);
+	ctx.save();
+	ctx.fillStyle = "white";
+    ctx.font = "bold 12px Arial";
+	for (i = 0; i < this.numDesigners["Phase1"]; i++) {
+		ctx.fillText(this.developers[currDevIndex++], this.left + 10, this.top + this.textYDistance * currSpace++);
+	}
+	ctx.restore();
+	
+	// Phase Two
+	ctx.fillText("Phase Two Design", this.left, this.top + this.textYDistance * currSpace++);
+	ctx.save();
+	ctx.fillStyle = "white";
+    ctx.font = "bold 12px Arial";
+	for (i = 0; i < this.numDesigners["Phase2"]; i++) {
+		ctx.fillText(this.developers[currDevIndex++], this.left + 10, this.top + this.textYDistance * currSpace++);
+	}
+	ctx.restore();
+	
+	// Phase Three
+	ctx.fillText("Phase Three Design", this.left, this.top + this.textYDistance * currSpace++);
+	ctx.save();
+	ctx.fillStyle = "white";
+    ctx.font = "bold 12px Arial";
+	for (i = 0; i < this.numDesigners["Phase3"]; i++) {
+		ctx.fillText(this.developers[currDevIndex++], this.left + 10, this.top + this.textYDistance * currSpace++);
+	}
+	ctx.restore();
+	
+	// Phase Four
+	ctx.fillText("Phase Four Design", this.left, this.top + this.textYDistance * currSpace++);
+	ctx.save();
+	ctx.fillStyle = "white";
+    ctx.font = "bold 12px Arial";
+	for (i = 0; i < this.numDesigners["Phase4"]; i++) {
+		ctx.fillText(this.developers[currDevIndex++], this.left + 10, this.top + this.textYDistance * currSpace++);
+	}
+	ctx.restore();
+	
+	// Phase Five
+	currSpace = 1;
+	ctx.fillText("Phase Five Design", this.left + 200, this.top);
+	ctx.save();
+	ctx.fillStyle = "white";
+    ctx.font = "bold 12px Arial";
+	for (i = 0; i < this.numDesigners["Phase5"]; i++) {
+		ctx.fillText(this.developers[currDevIndex++], this.left + 210, this.top + this.textYDistance * currSpace++);
+	}
+	ctx.restore();
+	
+	// Phase Six
+	ctx.fillText("Phase Six Design", this.left + 200, this.top + this.textYDistance * currSpace++);
+	ctx.save();
+	ctx.fillStyle = "white";
+    ctx.font = "bold 12px Arial";
+	for (i = 0; i < this.numDesigners["Phase6"]; i++) {
+		ctx.fillText(this.developers[currDevIndex++], this.left + 210, this.top + this.textYDistance * currSpace++);
+	}
+	ctx.restore();
+	
+	/* Commented out since nobody has worked on this phase yet
+	// Phase Seven
+	ctx.fillText("Phase Seven Design", this.left + 200, this.top + this.textYDistance * currSpace++);
+	ctx.save();
+	ctx.fillStyle = "blue";
+    ctx.font = "bold 12px Arial";
+	for (i = 0; i < this.numDesigners["Phase7"]; i++) {
+		ctx.fillText(this.developers[currDevIndex++], this.left + 210, this.top + this.textYDistance * currSpace++);
+	}
+	ctx.restore();
+	*/
+	
+	// Phase Eight
+	ctx.fillText("Phase Eight Design", this.left + 200, this.top + this.textYDistance * currSpace++);
+	ctx.save();
+	ctx.fillStyle = "white";
+    ctx.font = "bold 12px Arial";
+	for (i = 0; i < this.numDesigners["Phase8"]; i++) {
+		ctx.fillText(this.developers[currDevIndex++], this.left + 210, this.top + this.textYDistance * currSpace++);
+	}
+	ctx.restore();
+	
+	
+	// Developers
+	ctx.fillText("Developers", this.left + 400, this.top);
+	ctx.save();
+	ctx.fillStyle = "white";
+    ctx.font = "bold 12px Arial";
+	// First Half
+	for (i = 0; i < this.developers.length / 2; i++) {
+		ctx.fillText(this.developers[i], this.left + 410, this.top + this.textYDistance * (i+1));
+	}
+	// Second half
+	for (i = 0; i < this.developers.length / 2 - 1; i++) {
+		ctx.fillText(this.developers[i + 1 + this.developers.length / 2], this.left + 510, this.top + this.textYDistance * (i+1));
+	}
+	ctx.restore();	
 	ctx.restore();
 }
