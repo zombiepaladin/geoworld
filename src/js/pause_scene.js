@@ -31,7 +31,7 @@ PauseScene.prototype.keyUp = function (event) {
     if (this.cursorSelect == 0) {
       Game.popScene();
     }
-    //Quit:
+      //Quit:
     else if (this.cursorSelect == 1) {
       Game.popScene();//Pop the pause scene
       Game.popScene();//Pop the level scene

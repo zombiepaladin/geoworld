@@ -1,12 +1,12 @@
 CyanoEnemy = function (initialParent, initialPosition, scene) {
   Entity.call(this, initialParent, initialPosition, scene);
-  
+
   this.position.y += 3;//Embed into the ground
 
   //Load sprite sheet
   this.spritesheet = new Image();
   this.spritesheet.src = "cyanobacteria.png";
-  
+
   this.spriteWidth = 128;
   this.spriteHeight = 85;
   this.spriteHalfWidth = this.spriteWidth / 2;
@@ -35,7 +35,7 @@ CyanoEnemy.prototype.update = function (timeStep) {
       this.frame = 0;
     }
   }
-  
+
 }
 
 CyanoEnemy.prototype.render = function (timeStep, ctx) {

@@ -1,10 +1,10 @@
 // Handles the rendering of the level
 
-TileEngine = function(tileMapObject) {
+TileEngine = function (tileMapObject) {
   var thisEngine = this;
   this.tilemap = tileMapObject;
   this.scrollPosition = new Vector(0, 0);
-  
+
   assert(this.tilemap.layers.length > 0);//Assert there is at least one layer in the tile map
 
   //Pull out some commonly used varaibles:
@@ -42,10 +42,10 @@ TileEngine = function(tileMapObject) {
   });
 
   assert(this.groundLayer >= 0);//A ground layer is required.
-  
+
   // Load the tileset images
   this.tilesheetTextures = [];
-  tileMapObject.tilesets.forEach(function(tileset, index) {
+  tileMapObject.tilesets.forEach(function (tileset, index) {
     var image = new Image();
     image.src = tileset.image.substring(tileset.image.lastIndexOf('/') + 1);
     thisEngine.tilesheetTextures[index] = image;
@@ -136,7 +136,7 @@ TileEngine.prototype.getPropertiesNear = function (layer, worldX, worldY) {
 }
 
 // Calculate height based on absolute x position, below y position
-TileEngine.prototype.getGroundLevelAt = function(worldX, worldY) {
+TileEngine.prototype.getGroundLevelAt = function (worldX, worldY) {
   var tileX = this.getTileX(worldX);
   // Loop down through the current x that player is on until a ground tile is reached
   for (var tileY = this.getTileY(worldY) - 1; tileY < this.mapHeight; tileY++) {
@@ -144,21 +144,21 @@ TileEngine.prototype.getGroundLevelAt = function(worldX, worldY) {
       //console.log(this.tilemap.tilesets[0].tileproperties);
       var tileProperties = this.getPropertiesAt(this.groundLayer, tileX, tileY);
 
-		  var left = parseFloat(tileProperties.left);
-		  var right = parseFloat(tileProperties.right);
-		  
-		  if (this.isTileFlippedHorizontally(this.groundLayer, tileX, tileY)) {
-		    var temp = left;
-		    left = right;
-		    right = temp;
-		  }
+      var left = parseFloat(tileProperties.left);
+      var right = parseFloat(tileProperties.right);
 
-		  var percent = (worldX - tileX * this.tileWidth) / this.tileWidth;
+      if (this.isTileFlippedHorizontally(this.groundLayer, tileX, tileY)) {
+        var temp = left;
+        left = right;
+        right = temp;
+      }
 
-		  var ret = tileY * this.tileHeight + Math.lerp(left, right, percent);
+      var percent = (worldX - tileX * this.tileWidth) / this.tileWidth;
 
-		  return ret;
-	  }
+      var ret = tileY * this.tileHeight + Math.lerp(left, right, percent);
+
+      return ret;
+    }
   }
 
   // If no ground tiles found, return the bottom of the map
@@ -180,7 +180,7 @@ TileEngine.prototype.isEndAt = function (x, y) {
 }
 
 // Checks if the tile at the specified location is on air
-TileEngine.prototype.isAirAt = function(x, y) {
+TileEngine.prototype.isAirAt = function (x, y) {
   if (this.airLayer < 0) {
     return false;
   }
@@ -189,16 +189,16 @@ TileEngine.prototype.isAirAt = function(x, y) {
 }
 
 // Checks if the ground tile at the specified location contains water
-TileEngine.prototype.isWaterAt = function(x, y) {
+TileEngine.prototype.isWaterAt = function (x, y) {
   var prop = this.getPropertiesNear(this.groundLayer, x, y);
   if (prop === undefined) { return false; }
   return prop.water == "true" || prop.type == "water";
 }
 
-TileEngine.prototype.isHazzardAt = function(x, y){
-	var prop = this.getPropertiesNear(this.groundLayer, x, y);
-	if(prop === undefined) {return false;}
-	return prop.isHazzard == "true";
+TileEngine.prototype.isHazzardAt = function (x, y) {
+  var prop = this.getPropertiesNear(this.groundLayer, x, y);
+  if (prop === undefined) { return false; }
+  return prop.isHazzard == "true";
 }
 
 // Render the tilemap
@@ -233,12 +233,12 @@ TileEngine.prototype.render = function (timestep, ctx, frame) {
 
     for (var x = startX; x <= endX; x++) {
       for (var y = startY; y <= endY; y++) {
-        
+
         var tileId = this.getTileId(layer, x, y);
         var tileset = this.tilemap.tilesets[0];
         var tilesheet = this.tilesheetTextures[0];
         var rowWidth = Math.floor(tileset.imagewidth / tileset.tilewidth);
-        
+
         if (!tilesheet || tileId < 0) {
           continue;
         }
@@ -251,39 +251,39 @@ TileEngine.prototype.render = function (timestep, ctx, frame) {
 
         tileX = tileX * tilewidth + spacing * tileX;
         tileY = tileY * tileheight + spacing * tileY;
-        
+
         if (this.isTileFlippedHorizontally(layer, x, y)) {
           ctx.save();
           ctx.translate(x * tilewidth + tilewidth / 2, 0);
           ctx.scale(-1, 1);
           ctx.translate(-x * tilewidth - tilewidth / 2, 0);
-          ctx.drawImage(tilesheet, 
+          ctx.drawImage(tilesheet,
             tileX, tileY, tilewidth, tileheight,
             x * tilewidth, y * tileheight, tilewidth, tileheight
           );
           ctx.restore();
-        } else if(this.isTileFlippedVertically(layer, x, y)) {
+        } else if (this.isTileFlippedVertically(layer, x, y)) {
           ctx.save();
           ctx.translate(0, y * tileheight + tileheight / 2);
           ctx.scale(1, -1);
           ctx.translate(0, -y * tileheight - tileheight / 2);
-          ctx.drawImage(tilesheet, 
+          ctx.drawImage(tilesheet,
             tileX, tileY, tilewidth, tileheight,
             x * tilewidth, y * tileheight, tilewidth, tileheight
-          );         
+          );
           ctx.restore();
         } else if (this.isTileFlippedDiagonally(layer, x, y)) {
           ctx.save();
           ctx.translate(x * tilewidth + tilewidth, y * tileheight + tileheight / 2);
           ctx.scale(-1, -1);
           ctx.translate(-x * tilewidth - tilewidth, -y * tileheight - tileheight / 2);
-          ctx.drawImage(tilesheet, 
+          ctx.drawImage(tilesheet,
             tileX, tileY, tilewidth, tileheight,
             x * tilewidth, y * tileheight, tilewidth, tileheight
           );
           ctx.restore();
         } else {
-          ctx.drawImage(tilesheet, 
+          ctx.drawImage(tilesheet,
             tileX, tileY, tilewidth, tileheight,
             x * tilewidth, y * tileheight, tilewidth, tileheight
           );
@@ -297,7 +297,7 @@ TileEngine.prototype.render = function (timestep, ctx, frame) {
           ctx.textAlign = "center";
           ctx.textBaseline = "middle";
           ctx.strokeRect(x * tilewidth, y * tileheight, tilewidth, tileheight);
-          ctx.fillText(tileId + (this.isTileFlippedHorizontally(layer, x, y) ? "F": ""),
+          ctx.fillText(tileId + (this.isTileFlippedHorizontally(layer, x, y) ? "F" : ""),
             (x + 0.5) * tilewidth, (y + 0.5) * tileheight);
           ctx.restore();
         }

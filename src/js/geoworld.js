@@ -1,24 +1,24 @@
 
-Geoworld = function() {
+Geoworld = function () {
 
   // Global variables (limited to the scope of 
   // the Geoworld object (function) - essentailly
   // namespacing)
   this.lastTime = 0;
-  
+
   // The game's containing div
   var game = document.getElementById("geoworld");
-  
+
   // The gameplay canvas & context
   var gameplayCanvas = document.getElementById("gameplay-canvas");
   this.width = gameplayCanvas.clientWidth;
   this.height = gameplayCanvas.clientHeight;
   this.gameplayCtx = gameplayCanvas.getContext('2d');
-  
+
   // Set up physics globals
   this.physics = new Object();
   this.physics.gravityConstant = 300 * 1.5;
-  
+
   //Scene stetup:
   //Scenes are stored on a stack, the top-most scene is the one that the player is currently interacting with.
   this.scenes = [];
@@ -44,7 +44,7 @@ Geoworld = function() {
       scene.entityKeyDown(translatedEvent);
     }
   });
-  
+
   document.addEventListener("keyup", function (event) {
     var translatedEvent = jsKeyboardEventToGameKeyEvent(event);
     thisGame.keyHasTriggeredKeyDown[translatedEvent.key] = false;
@@ -67,7 +67,7 @@ Geoworld.prototype.update = function (timeStep) {
 // Render the game
 Geoworld.prototype.render = function (timeStep, ctx) {
   ctx.clearRect(0, 0, this.width, this.height);
-  
+
   var scene = this.getCurrentScene();
   assert(scene);
   scene.render(timeStep, ctx);

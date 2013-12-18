@@ -9,7 +9,7 @@ Player = function (initialParent, initialPosition, scene) {
   //Call base class constructor:
   Entity.call(this, initialParent, initialPosition, scene);
   this.applyModifier(physics_modifier);
-  
+
   // Sprite size constants
   this.spriteWidth = 80;
   this.spriteHeight = 100;
@@ -17,7 +17,7 @@ Player = function (initialParent, initialPosition, scene) {
   this.spriteHalfHeight = this.spriteHeight / 2;
 
   this.facingLeft = false;
-  
+
   // Physics constants:
   this.instantaneousJumpImpulse = -200 * 1.5;
   this.acceleration = 200;  // in pixels per second^2
@@ -37,7 +37,7 @@ Player = function (initialParent, initialPosition, scene) {
   // Multi-jump:
   this.jumpsMax = 2;
   this.jumpsLeft = this.jumpsMax;
-  
+
   // Current animation frame to render
   this.frame = {
     x: 0,
@@ -45,7 +45,7 @@ Player = function (initialParent, initialPosition, scene) {
     width: 80,
     height: 100
   };
-  
+
   // Game state things:
   this.goal = undefined;
   this.goalDestination = undefined;
@@ -117,24 +117,24 @@ Player.prototype.update = function (timeStep) {
   // Determine the current frame of animation
   // Start with a "default" frame
   this.frame = {
-    x: 0, 
-    y: 0, 
-    width: this.spriteWidth, 
+    x: 0,
+    y: 0,
+    width: this.spriteWidth,
     height: this.spriteHeight
   };
-  
-  if(this.isOnGround()) {
-  
+
+  if (this.isOnGround()) {
+
     // Determine the amount of "lean" based on the direction
     // and velocity of the sprite
     if (this.velocity.y < -Math.EPSILON) {
-    
+
       // All ground-based moving animations 
       // fall in the second row
       this.frame.y = this.spriteHeight;
-      
+
       // Determine the frame based on velocity
-      if(this.velocity.x > -0.5) 
+      if (this.velocity.x > -0.5)
         this.frame.x = this.spriteWidth;      // Second Column
       else if (this.velocity.x > -0.5)
         this.frame.x = 2 * this.spriteWidth;  // Third Column
@@ -142,13 +142,13 @@ Player.prototype.update = function (timeStep) {
         this.frame.x = 3 * this.spriteWidth;   // Foruth Column
       else
         this.frame.x = 4 * this.spriteWidth;  // Fifth Column
-    
+
     } else if (this.velocity.y > Math.EPSILON) {
-      
+
       // All ground-based moving animations 
       // fall in the second row
       this.frame.y = this.spriteHeight;
-      
+
       // Determine the frame based on velocity
       if (this.velocity.x < 0.5)
         this.frame.x = this.spriteWidth;      // Second Column
@@ -159,19 +159,19 @@ Player.prototype.update = function (timeStep) {
       else
         this.frame.x = 4 * this.spriteWidth;  // Fifth Column
     }
-    
+
   } else {//Not on ground
 
     // Determine the frame based on velocity
     if (Math.abs(this.velocity.y) < 0.5)
-        this.frame.x = this.spriteWidth;      // Second Column
+      this.frame.x = this.spriteWidth;      // Second Column
     else if (Math.abs(this.velocity.y) < 8)
-        this.frame.x = 2 * this.spriteWidth;  // Third Column
+      this.frame.x = 2 * this.spriteWidth;  // Third Column
     else if (Math.abs(this.velocity.y) < 50)
-        this.frame.x = 3 * this.spriteWidth;   // Foruth Column
+      this.frame.x = 3 * this.spriteWidth;   // Foruth Column
     else
-        this.frame.x = 4 * this.spriteWidth;  // Fifth Column
-    
+      this.frame.x = 4 * this.spriteWidth;  // Fifth Column
+
     if (this.velocity.y < 0.0)//If jumping, rather than falling
     { this.frame.y = 2 * this.spriteHeight; }
     else
@@ -180,7 +180,7 @@ Player.prototype.update = function (timeStep) {
 }
 
 // Render the player's sprite using the provided context
-Player.prototype.render = function(timeStep, ctx) {
+Player.prototype.render = function (timeStep, ctx) {
   ctx.save();
   ctx.translate(this.position.x, this.position.y);
 
@@ -188,11 +188,11 @@ Player.prototype.render = function(timeStep, ctx) {
     ctx.scale(-1, 1);
   }
 
-  ctx.drawImage(this.spritesheet, 
-	  this.frame.x, this.frame.y, this.frame.width, this.frame.height,
-	  -this.spriteHalfWidth, -this.spriteHeight, this.spriteWidth, this.spriteHeight
+  ctx.drawImage(this.spritesheet,
+    this.frame.x, this.frame.y, this.frame.width, this.frame.height,
+    -this.spriteHalfWidth, -this.spriteHeight, this.spriteWidth, this.spriteHeight
   );
-  
+
   this.renderChildren(timeStep, ctx);
   ctx.restore();
 }

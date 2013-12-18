@@ -1,21 +1,21 @@
 // Construct a new player object
 Entity = function (initialParent, initialPosition, scene) {
   this.scene = scene;
-	this.position = initialPosition;
+  this.position = initialPosition;
 
-	this.children = []
-	this.modifiers = []
+  this.children = []
+  this.modifiers = []
 
-	if (this.position === undefined) {
-	  this.position = new Vector(0, 0);
-	}
+  if (this.position === undefined) {
+    this.position = new Vector(0, 0);
+  }
 
-	if (initialParent) {
-	  assert(initialParent instanceof Entity);
-	  initialParent.giveChild(this);
-	}
+  if (initialParent) {
+    assert(initialParent instanceof Entity);
+    initialParent.giveChild(this);
+  }
 
-	//console.log(this);
+  //console.log(this);
 }
 
 //Adds a child to this entity's children list
@@ -117,7 +117,7 @@ Entity.prototype.entityKeyDown = function (event) {
 //  event.ctrl  : True if control is down
 //  event.alt   : True is alt is down
 //  event.shift : True if shift is down
-Entity.prototype.keyDown = function(event) {
+Entity.prototype.keyDown = function (event) {
   //Override me!
   return false;
 }

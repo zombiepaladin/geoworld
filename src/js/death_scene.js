@@ -24,10 +24,10 @@ DeathScene.prototype.keyUp = function (event) {
     //Restart:
     if (this.cursorSelect == 0) {
       Game.popScene();//Pop the death scene
-	  var oldLevel = Game.popScene();//pop + save level scene
-	  Game.pushScene(new Level(oldLevel.tileEngine.tilemap)); //Push new level scene with same tile map
+      var oldLevel = Game.popScene();//pop + save level scene
+      Game.pushScene(new Level(oldLevel.tileEngine.tilemap)); //Push new level scene with same tile map
     }
-    //Quit:
+      //Quit:
     else if (this.cursorSelect == 1) {
       Game.popScene();//Pop the death scene
       Game.popScene();//Pop the level scene

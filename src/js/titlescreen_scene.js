@@ -2,7 +2,7 @@ TitleScreen = function () {
   Scene.call(this);
 
   this.selection = null;
-  
+
   this.logo = new Image();
   this.logo.src = "geoworld_logo.png";
 
@@ -33,8 +33,8 @@ TitleScreen.prototype.keyUp = function (event) {
 TitleScreen.prototype.render = function (timeStep, ctx) {
   // Draw logo
   ctx.drawImage(this.logo,
-	              0, 0, this.logo.width, this.logo.height,
-	             Game.width / 2 - this.logo.width / 2, 40, this.logo.width, this.logo.height
+                0, 0, this.logo.width, this.logo.height,
+               Game.width / 2 - this.logo.width / 2, 40, this.logo.width, this.logo.height
   );
 
   // Draw enterText after certain amount of time

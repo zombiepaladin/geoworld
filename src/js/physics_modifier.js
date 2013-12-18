@@ -1,6 +1,6 @@
 //Modifier for entities, adds physics to an entity
 physics_modifier = function () {
-  this.velocity = new Vector(0,0);
+  this.velocity = new Vector(0, 0);
   this.maxVelocity = undefined;
   this.frictionConstant = 0;
   this.lastAcceleration = new Vector(0, 0);//Used to apply friction
