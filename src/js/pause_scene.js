@@ -9,6 +9,9 @@ PauseScene = function () {
   this.textYDistance = 80;
   this.cursor = new Image();
   this.cursor.src = "cursor.png";
+
+  this.background = new Image();
+  this.background.src = "PauseScreenBackground.png";
 }
 
 PauseScene.prototype = new Scene();
@@ -53,12 +56,14 @@ PauseScene.prototype.keyUp = function (event) {
 
 PauseScene.prototype.render = function (timeStep, ctx) {
   ctx.save();
-  ctx.fillStyle = "blue";
+  ctx.drawImage(this.background, 0, 0, Game.width, Game.height);
+
+  ctx.fillStyle = "red";
   ctx.font = "bold 30px Arial";
   ctx.fillText("Resume", this.left, this.top);
   ctx.fillText("Quit", this.left, this.top + this.textYDistance);
 
-  ctx.drawImage(this.cursor, 0, 0, 47, 45, this.left - 70, this.top - 25 + (this.cursorSelect * this.textYDistance), 47, 45);
+  ctx.drawImage(this.cursor, 0, 0, 47, 45, this.left - 70, this.top - 30 + (this.cursorSelect * this.textYDistance), 47, 45);
 
   this.renderChildren(timeStep, ctx);
   ctx.restore();

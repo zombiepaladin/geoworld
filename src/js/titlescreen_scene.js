@@ -3,6 +3,9 @@ TitleScreen = function () {
 
   this.selection = null;
 
+  this.background = new Image();
+  this.background.src = "TitleScreenBackground.png";
+
   this.logo = new Image();
   this.logo.src = "geoworld_logo.png";
 
@@ -31,6 +34,9 @@ TitleScreen.prototype.keyUp = function (event) {
 }
 
 TitleScreen.prototype.render = function (timeStep, ctx) {
+  // Draw background
+  ctx.drawImage(this.background, 0, 0, Game.width, Game.height);
+
   // Draw logo
   ctx.drawImage(this.logo,
                 0, 0, this.logo.width, this.logo.height,
