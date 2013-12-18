@@ -1,4 +1,4 @@
-Fish1 = function (initialParent, initialPosition, scene, fishType) {
+Fish = function (initialParent, initialPosition, scene, fishType) {
   Entity.call(this, initialParent, initialPosition, scene);
 
   this.fishType = (fishType ? fishType : 1);
@@ -57,14 +57,14 @@ Fish1 = function (initialParent, initialPosition, scene, fishType) {
   };
 }
 
-Fish1.prototype = new Entity();
-Fish1.prototype.constructor = Fish1;
+Fish.prototype = new Entity();
+Fish.prototype.constructor = Fish;
 
-Fish1.createFromLevel = function (info, scene) {
-  return new Fish1(scene, new Vector(info.x + info.width / 2, info.y + info.height / 2), scene, info.properties.fishType);
+Fish.createFromLevel = function (info, scene) {
+  return new Fish(scene, new Vector(info.x + info.width / 2, info.y + info.height / 2), scene, info.properties.fishType);
 }
 
-Fish1.prototype.update = function (timeStep, input) {
+Fish.prototype.update = function (timeStep, input) {
   var seconds = timeStep / 1000; // Convert timestep to seconds
 
   var player = this.scene.player;
@@ -108,7 +108,7 @@ Fish1.prototype.update = function (timeStep, input) {
 }
 
 // Render the player's sprite using the provided context
-Fish1.prototype.render = function (timeStep, ctx) {
+Fish.prototype.render = function (timeStep, ctx) {
   ctx.save();
   ctx.translate(this.position.x, this.position.y);
   if ((this.facingLeft && !this.spriteFacingLeft) ||
