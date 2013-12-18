@@ -1,4 +1,4 @@
-DeathScene = function () {
+DeathScene = function (specialSceneOnRestart) {
   Scene.call(this);
 
   this.cursorSelect = 0;
@@ -12,6 +12,8 @@ DeathScene = function () {
 
   this.background = new Image();
   this.background.src = "Phase6DeathScreen.png";
+
+  this.specialSceneOnRestart = specialSceneOnRestart;
 }
 
 DeathScene.prototype = new Scene();
@@ -34,7 +36,12 @@ DeathScene.prototype.keyUp = function (event) {
     if (this.cursorSelect == 0) {
       Game.popScene();//Pop the death scene
       var oldLevel = Game.popScene();//pop + save level scene
-      Game.pushScene(new Level(oldLevel.tileEngine.tilemap)); //Push new level scene with same tile map
+
+      if (!this.specialSceneOnRestart) {
+        Game.pushScene(new Level(oldLevel.tileEngine.tilemap)); //Push new level scene with same tile map
+      } else {
+        Game.pushScene(new this.specialSceneOnRestart());
+      }
     }
       //Quit:
     else if (this.cursorSelect == 1) {

@@ -1,24 +1,23 @@
-// Generate a random Integer
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min) + min);
-}
+Bubble = function (initialParent, scene, spr) {
+  var initialPosition = new Vector(
+    Math.randomInt(30, 770),
+    Math.randomInt(500, 680)
+  );
 
-Bubble = function (spr) {
+  Entity.call(this, initialParent, initialPosition, scene);
+
   this.spriteSheet = spr;
-  this.position = {
-    x: getRandomInt(30, 770),
-    y: getRandomInt(500, 680)
-  }
   this.diameter = 12;
-  this.shaking = getRandomInt(0, 5);
+  this.shaking = Math.randomInt(0, 5);
   this.upwardSpeed = 0.05;
   this.airProvided = 10;
 }
 
-Bubble.prototype.update = function (timeStep, moveY) {
+Bubble.prototype = new Entity();
+Bubble.prototype.constructor = Bubble;
+
+Bubble.prototype.update = function (timeStep) {
   this.shaking += timeStep / 300;
-  if (moveY)
-    this.position.y += moveY;
   this.position.y -= timeStep * this.upwardSpeed;
   this.position.x += 0.5 * Math.sin(this.shaking);
 }

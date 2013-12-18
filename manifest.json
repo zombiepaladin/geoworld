@@ -32,6 +32,14 @@
         "src/js/level1/cyano_enemy.js",
         "src/js/level1/blob_enemy.js",
 
+        "src/js/level2/phase2_startscreen_scene.js",
+        "src/js/level2/phase2_scene.js",
+        "src/js/level2/bubble.js",
+        "src/js/level2/phase2_robot.js",
+        "src/js/level2/anomalocaris.js",
+        "src/js/level2/pikaia.js",
+        "src/js/level2/trilobite.js",
+
         "src/js/level3/fish.js",
         "src/js/level3/Lizard.js",
         "src/js/level3/level_3_1_tile_animator.js",
@@ -51,6 +59,8 @@
     "levels": [
         [1, 1, "lev_1_1_forming_earth.json"],
         [1, 2, "lev_1_2_precam.json"],
+
+        [2, 1, "special:Phase2StartScreenScene"],
 
         [3, 1, "lev_3_1_watercave.json"],
         [3, 2, "lev_3_2_geysers.json"],

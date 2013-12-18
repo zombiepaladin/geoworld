@@ -1,8 +1,8 @@
-GameStuff = function () {
-  this.robot;
+Phase2Scene = function () {
+  Scene.call(this);
+
+  this.robot = new Phase2Robot(this, new Vector(Game.width / 2, Game.height / 2), this);
   this.cameraPosition = 0; // only y axis
-  this.message = false;
-  this.messageNr = 1;
 
   // water
   this.waterLevel = 0;
@@ -16,8 +16,9 @@ GameStuff = function () {
   this.bubblesNum = 0;
   this.bubblesNumMax = 11;
   this.bubbles = [];
-  for (var i = 0; i < this.bubblesNumMax; i++)
+  for (var i = 0; i < this.bubblesNumMax; i++) {
     this.addBubble();
+  }
 
   // lining
   this.lining = new Image();
@@ -36,24 +37,22 @@ GameStuff = function () {
   this.animalsNum = 0;
   this.animalsNumMax = 5;
   this.animals = [];
-  for (var i = 0; i < this.animalsNumMax; i++)
+  for (var i = 0; i < this.animalsNumMax; i++) {
     this.addAnimal();
+  }
 }
 
-GameStuff.prototype.update = function (timeStep) {
+Phase2Scene.prototype = new Scene();
+Phase2Scene.prototype.constructor = Phase2Scene;
 
-  // move water, bubbles, animals
+Phase2Scene.prototype.update = function (timeStep) {
+  //Move water
   this.waterLevel += timeStep * this.waterDecreasing;
   this.waterDecreased += timeStep * 0.03 * this.waterDecreasing;
-  if (this.waterDecreased >= this.waterDecreaseMax) {
-    this.message = true;
-    this.messageNr = 3;
-  }
-  for (var i = 0; i < this.bubblesNum; i++)
-    this.bubbles[i].update(timeStep, 0);
-  for (var i = 0; i < this.animalsNum; i++)
-    this.animals[i].update(timeStep, 0);
 
+  if (this.waterDecreased >= this.waterDecreaseMax) {
+    this.win();
+  }
 
   // check if bubbles are in, otherwise make new ones
   for (var i = 0; i < this.bubblesNum; i++) {
@@ -78,7 +77,11 @@ GameStuff.prototype.update = function (timeStep) {
         this.animals[i].angle -= Math.PI / 3;
 
     }
-    else if (this.animals[i].position.x < -50 || this.animals[i].position.x > 850 || this.animals[i].position.y < 0 || this.animals[i].position.y > 550) { // animal is out
+    else if (this.animals[i].position.x < -50 ||
+             this.animals[i].position.x > (Game.width + 50) ||
+             this.animals[i].position.y < 0 ||
+             this.animals[i].position.y > (Game.height + 70)
+      ) { // animal is out
       this.deleteAnimal(i);
       this.addAnimal();
     }
@@ -125,30 +128,20 @@ GameStuff.prototype.update = function (timeStep) {
     this.robot.airLevel = this.robot.airLevelMax;
 }
 
-GameStuff.prototype.moveAll = function (timeStep, moveStep) {
-  this.cameraPosition += moveStep;
-  this.waterLevel += moveStep;
-  for (i = 0; i < this.bubblesNum; i++)
-    this.bubbles[i].update(timeStep, moveStep);
-  for (var i = 0; i < this.animalsNum; i++)
-    this.animals[i].update(timeStep, moveStep);
-}
-
-GameStuff.prototype.render = function (timeStep, ctx) {
+Phase2Scene.prototype.render = function (timeStep, ctx) {
   ctx.save();
 
-  // water, bubbles, animals
+  //Draw water:
   ctx.fillStyle = "blue";
-  ctx.fillRect(0, this.waterLevel, 800, 480 - this.waterLevel);
-  for (var i = 0; i < this.bubblesNum; i++)
-    this.bubbles[i].render(timeStep, ctx);
-  for (var i = 0; i < this.animalsNum; i++)
-    this.animals[i].render(timeStep, ctx);
+  ctx.fillRect(0, this.waterLevel, Game.width, Game.height - this.waterLevel);
 
-  // border
+  //Draw children:
+  this.renderChildren(timeStep, ctx);
+
+  //Draw border:
   ctx.drawImage(this.lining, 0, 0, this.lining.width, this.lining.height, 0, 0, this.lining.width, this.lining.height);
 
-  // top bars
+  //Draw HUD:
   ctx.fillStyle = "black";
   ctx.font = "bold 16px Arial";
 
@@ -168,51 +161,88 @@ GameStuff.prototype.render = function (timeStep, ctx) {
   ctx.translate(620, 0);
   ctx.drawImage(this.trilobite, 0, 0, this.trilobite.width, this.trilobite.height, 0, 16, 15, 23);
   ctx.translate(20, 0);
-  ctx.fillText("× " + this.trilobiteCnt, 0, 33);
+  ctx.fillText("x " + this.trilobiteCnt, 0, 33);
   ctx.translate(40, 0);
   ctx.drawImage(this.anomalocaris, 0, 0, this.anomalocaris.width, this.anomalocaris.height, 0, 16, 15, 23);
   ctx.translate(20, 0);
-  ctx.fillText("× " + this.anomalocarisCnt, 0, 33);
+  ctx.fillText("x " + this.anomalocarisCnt, 0, 33);
   ctx.translate(35, 0);
   ctx.drawImage(this.pikaia, 0, 0, this.pikaia.width, this.pikaia.height, 0, 16, 15, 23);
   ctx.translate(20, 0);
-  ctx.fillText("× " + this.pikaiaCnt, 0, 33);
+  ctx.fillText("x " + this.pikaiaCnt, 0, 33);
 
   ctx.restore();
 }
 
-GameStuff.prototype.addBubble = function () {
-  if (this.bubblesNum >= this.bubblesNumMax)
+Phase2Scene.prototype.keyUp = function (event) {
+  if (event.key == Keys.Escape) {
+    Game.pushScene(new PauseScene());
+    return true;
+  }
+
+  return false;
+}
+
+Phase2Scene.prototype.win = function () {
+  Game.popScene();//Remove this level from the stack
+  Game.pushScene(new FinishScene());//Push the end of level screen
+}
+
+Phase2Scene.prototype.moveAll = function (timeStep, moveStep) {
+  this.cameraPosition += moveStep;
+  this.waterLevel += moveStep;
+
+  for (var i = 0; i < this.children.length; i++) {
+    if (this.children[i] == this.robot) {
+      continue;
+    }
+
+    this.children[i].position.y += moveStep;
+  }
+}
+
+Phase2Scene.prototype.addBubble = function () {
+  if (this.bubblesNum >= this.bubblesNumMax) {
     return;
-  this.bubbles[this.bubblesNum] = new Bubble(this.bubble);
+  }
+
+  this.bubbles[this.bubblesNum] = new Bubble(this, this.scene, this.bubble);
   this.bubblesNum++;
 }
 
-GameStuff.prototype.deleteBubble = function (num) {
-  if (this.bubblesNum < 1)
+Phase2Scene.prototype.deleteBubble = function (num) {
+  if (this.bubblesNum < 1) {
     return;
+  }
+
+  this.bubbles[num].destroy();
   this.bubblesNum--;
   for (var i = num; i < this.bubblesNum; i++) {
     this.bubbles[i] = this.bubbles[i + 1];
   }
 }
 
-GameStuff.prototype.addAnimal = function () {
-  if (this.animalsNum >= this.animalsNumMax)
+Phase2Scene.prototype.addAnimal = function () {
+  if (this.animalsNum >= this.animalsNumMax) {
     return;
-  var x = getRandomInt(0, 3);
+  }
+
+  var x = Math.randomInt(0, 3);
   if (x == 0)
-    this.animals[this.animalsNum] = new Trilobite(this.trilobite, this.waterLevel);
+    this.animals[this.animalsNum] = new Trilobite(this, this.scene, this.trilobite, this.waterLevel);
   else if (x == 1)
-    this.animals[this.animalsNum] = new Anomalocaris(this.anomalocaris, this.waterLevel);
+    this.animals[this.animalsNum] = new Anomalocaris(this, this.scene, this.anomalocaris, this.waterLevel);
   else
-    this.animals[this.animalsNum] = new Pikaia(this.pikaia, this.waterLevel);
+    this.animals[this.animalsNum] = new Pikaia(this, this.scene, this.pikaia, this.waterLevel);
   this.animalsNum++;
 }
 
-GameStuff.prototype.deleteAnimal = function (num) {
-  if (this.animalsNum < 1)
+Phase2Scene.prototype.deleteAnimal = function (num) {
+  if (this.animalsNum < 1) {
     return;
+  }
+
+  this.animals[num].destroy();
   this.animalsNum--;
   for (var i = num; i < this.animalsNum; i++) {
     this.animals[i] = this.animals[i + 1];

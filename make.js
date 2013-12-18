@@ -125,8 +125,6 @@ manifest.levels.forEach(function (level, index, array) {
     levels_list[phaseNum] = [];
   }
 
-  levels_list[phaseNum][subphaseNum] = levelName;
-
   if (phaseNum > highestLevel) {
     highestLevel = phaseNum;
   }
@@ -135,16 +133,24 @@ manifest.levels.forEach(function (level, index, array) {
     highestPhases[phaseNum] = subphaseNum;
   }
 
-  // Write the level file to the release directory:
-  var outFile = fs.createWriteStream('release/' + levelFile);
+  var specialPrefix = "special:";
+  if (levelFile.substring(0, specialPrefix.length) == specialPrefix) {//Special levels are ones that launch a scene instead of being created from a tile set
+    levels_list[phaseNum][subphaseNum] = levelFile;
+  }
+  else {
+    levels_list[phaseNum][subphaseNum] = levelName;
 
-  //Pre-pend the level name and an equals sign so the json gets parsed as javascript.
-  //(In the future the json should get loaded when it is neaded using ajax or something similar.)
-  outFile.write(levelName + " = ");
+    // Write the level file to the release directory:
+    var outFile = fs.createWriteStream('release/' + levelFile);
 
-  //Pipe level data to destination file:
-  fs.createReadStream('resources/levels/' + levelFile).pipe(outFile);
-  console.log("wrote file: release/" + levelFile);
+    //Pre-pend the level name and an equals sign so the json gets parsed as javascript.
+    //(In the future the json should get loaded when it is neaded using ajax or something similar.)
+    outFile.write(levelName + " = ");
+
+    //Pipe level data to destination file:
+    fs.createReadStream('resources/levels/' + levelFile).pipe(outFile);
+    console.log("wrote file: release/" + levelFile);
+  }
 });
 
 //Generate level listing and save it to the release directory:

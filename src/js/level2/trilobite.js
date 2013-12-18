@@ -1,28 +1,20 @@
-// Generate a random Integer
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min) + min);
-}
-
-// Generate a random Float
-function getRandomFloat(min, max) {
-  return Math.random() * (max - min) + min;
-}
-
-Trilobite = function (spr, top) {
+Trilobite = function (initialParent, scene, spr, top) {
   var xx;
   var yy;
-  this.spriteSheet = spr;
   do {
-    xx = getRandomInt(0, 900) - 50;
-  } while (xx > 0 && xx < 800);
-  yy = getRandomInt(top + 50, 550);
-  this.position = {
-    x: xx,
-    y: yy
-  }
+    xx = Math.randomInt(-50, Game.width + 50);
+  } while (xx > 0 && xx < Game.width);
+  yy = Math.randomInt(top + 50, Game.height + 70);
+
+  var initialPosition = new Vector(xx, yy);
+
+  Entity.call(this, initialParent, initialPosition, scene);
+
+  this.spriteSheet = spr;
+
   this.diameter = 26;
-  this.angle = getRandomFloat(0, 2 * Math.PI); // in radians
-  this.speed = getRandomFloat(0.03, 0.1);
+  this.angle = Math.random(0, 2 * Math.PI); // in radians
+  this.speed = Math.random(0.03, 0.1);
 
   // when collision with robot
   this.airProvided = -3;
@@ -32,11 +24,10 @@ Trilobite = function (spr, top) {
   this.stopRobot = false;
 }
 
-Trilobite.prototype.update = function (timeStep, moveY) {
-  if (moveY > 0)
-    this.position.y -= moveY;
-  else if (moveY < 0)
-    this.position.y += moveY;
+Trilobite.prototype = new Entity();
+Trilobite.prototype.constructor = Trilobite;
+
+Trilobite.prototype.update = function (timeStep) {
   this.position.x += timeStep * this.speed * Math.sin(this.angle);
   this.position.y -= timeStep * this.speed * Math.cos(this.angle);
 }

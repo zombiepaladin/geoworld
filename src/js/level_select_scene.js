@@ -70,10 +70,23 @@ LevelSelectScene.prototype.keyUp = function (event) {
       }
     }
     else {//else !this.subphaseSelectMode
-      if (levels_list[this.phaseSelect][this.subphaseSelect] != null) {//If the phase is available
-        level_data = window[levels_list[this.phaseSelect][this.subphaseSelect]];
-        assert(level_data != undefined);//Level is not loaded!
-        Game.replaceScene(new Level(level_data));
+      subphaseData = levels_list[this.phaseSelect][this.subphaseSelect];
+
+      if (subphaseData != null) {//If the phase is available
+        var newScene = undefined;
+
+        var specialPrefix = "special:";
+        if (subphaseData.substring(0, specialPrefix.length) == specialPrefix) {
+          phaseScene = window[subphaseData.substring(specialPrefix.length)];
+          assert(phaseScene != undefined);//Level is not loaded!
+          newScene = new phaseScene();
+        } else {
+          level_data = window[subphaseData];
+          assert(level_data != undefined);//Level is not loaded!
+          newScene = new Level(level_data)
+        }
+
+        Game.replaceScene(newScene);
       }
     }
 
