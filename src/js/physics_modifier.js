@@ -49,6 +49,13 @@ physics_modifier = function () {
       this.velocity.y = Math.clamp(this.velocity.y, -this.maxVelocity.y, this.maxVelocity.y);
     }
 
+    //Scale gravity under water
+    if (this.isUnderWater()) {
+      this.gravityScale = 0.5;//Half gravity under water
+    } else {
+      this.gravityScale = 1.0;//Full gravity above water
+    }
+
     //Apply air jets
     if (this.isInAirJet()) {
       this.accelerate(this.airJetSpeed, seconds);

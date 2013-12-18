@@ -64,12 +64,6 @@ Fish.createFromLevel = function (info, scene) {
 Fish.prototype.update = function (timeStep, input) {
   var seconds = timeStep / 1000; // Convert timestep to seconds
 
-  if (this.isUnderWater()) {
-    this.gravityScale = 0.5;//Half gravity under water
-  } else {
-    this.gravityScale = 1.0;//Full gravity above water
-  }
-
   var player = this.scene.player;
   var playerPos = player.position;
   var playDirection = player.facingLeft;
@@ -111,7 +105,6 @@ Fish.prototype.update = function (timeStep, input) {
   }
 }
 
-// Render the player's sprite using the provided context
 Fish.prototype.render = function (timeStep, ctx) {
   ctx.save();
   ctx.translate(this.position.x, this.position.y);

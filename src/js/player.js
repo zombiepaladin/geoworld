@@ -79,14 +79,6 @@ Player.prototype.kill = function () {
 Player.prototype.update = function (timeStep) {
   var seconds = timeStep / 1000; // Convert timestep to seconds
 
-  //Game.setDebugString("Under water: " + this.isUnderWater());
-
-  if (this.isUnderWater()) {
-    this.gravityScale = 0.5;//Half gravity under water
-  } else {
-    this.gravityScale = 1.0;//Full gravity above water
-  }
-
   // Handle user input
   if (this.input.left) {
     this.accelerate(new Vector(-this.acceleration, 0), seconds);

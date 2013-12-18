@@ -42,15 +42,8 @@ Lizard.createFromLevel = function (info, scene) {
   return new Lizard(scene, new Vector(info.x + info.width / 2, info.y + info.height / 2), scene);
 }
 
-// Update the player's sprite given the provided input
 Lizard.prototype.update = function (timeStep, input) {
   var seconds = timeStep / 1000; // Convert timestep to seconds
-
-  if (this.isUnderWater()) {
-    this.gravityScale = 0.5;//Half gravity under water
-  } else {
-    this.gravityScale = 1.0;//Full gravity above water
-  }
 
   var player = this.scene.player;
   var playerPos = player.position;
@@ -93,7 +86,6 @@ Lizard.prototype.update = function (timeStep, input) {
   }
 }
 
-// Render the player's sprite using the provided context
 Lizard.prototype.render = function (timeStep, ctx) {
   ctx.save();
   ctx.translate(this.position.x, this.position.y);
