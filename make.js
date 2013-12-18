@@ -111,16 +111,43 @@ fs.readdir('src/html', function (err, files) {
 //==============================================
 // Level pre-processing
 //----------------------------------------------
+levels_list = [];
+highestLevel = 0;
+highestPhases = [];
 
-//For now, levels are just copied into the release directory
 manifest.levels.forEach(function (level, index, array) {
-  var outFile = fs.createWriteStream('release/' + level[2]);
+  var phaseNum = level[0];
+  var subphaseNum = level[1];
+  var levelFile = level[2];
+  var levelName = "level_" + phaseNum.toString() + "_" + subphaseNum.toString();
+
+  if (levels_list[phaseNum] == undefined) {
+    levels_list[phaseNum] = [];
+  }
+
+  levels_list[phaseNum][subphaseNum] = levelName;
+
+  if (phaseNum > highestLevel) {
+    highestLevel = phaseNum;
+  }
+
+  if (highestPhases[phaseNum] == undefined || subphaseNum > highestPhases[phaseNum]) {
+    highestPhases[phaseNum] = subphaseNum;
+  }
+
+  // Write the level file to the release directory:
+  var outFile = fs.createWriteStream('release/' + levelFile);
 
   //Pre-pend the level name and an equals sign so the json gets parsed as javascript.
   //(In the future the json should get loaded when it is neaded using ajax or something similar.)
-  outFile.write("level_" + level[0].toString() + "_" + level[1].toString() + " = ");
+  outFile.write(levelName + " = ");
 
   //Pipe level data to destination file:
-  fs.createReadStream('resources/levels/' + level[2]).pipe(outFile);
-  console.log("wrote file: release/" + level[2]);
+  fs.createReadStream('resources/levels/' + levelFile).pipe(outFile);
+  console.log("wrote file: release/" + levelFile);
 });
+
+//Generate level listing and save it to the release directory:
+var levelMetaDataFile = fs.createWriteStream('release/levels_list.json');
+levelMetaDataFile.write('levels_list = ' + JSON.stringify(levels_list));
+console.log("write levels list file");

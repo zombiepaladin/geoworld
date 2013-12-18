@@ -1,8 +1,6 @@
 TitleScreen = function () {
   Scene.call(this);
 
-  this.selection = null;
-
   this.background = new Image();
   this.background.src = "TitleScreenBackground.png";
 
@@ -25,7 +23,7 @@ TitleScreen.prototype.update = function (timeStep) {
 
 TitleScreen.prototype.keyUp = function (event) {
   if (event.key == Keys.Enter) {
-    Game.pushScene(new Level(level_1_1));
+    Game.pushScene(new LevelSelectScene());
 
     return true;
   }

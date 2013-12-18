@@ -15,6 +15,7 @@
         "src/js/physics_modifier.js",
 
         "src/js/titlescreen_scene.js",
+        "src/js/level_select_scene.js",
         "src/js/pause_scene.js",
         "src/js/level_scene.js",
         "src/js/tile_engine.js",
@@ -46,6 +47,7 @@
         [4, 2, "lev_4_2_mountain.json"],
 
         [5, 1, "lev_5_1_dead_plains.json"],
+
         [5, 3, "lev_5_3_grassy_plains.json"],
         [5, 4, "lev_5_4_lava_mountain.json"],
 
