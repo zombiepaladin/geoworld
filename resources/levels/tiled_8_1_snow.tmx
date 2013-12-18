@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="256" height="21" tilewidth="24" tileheight="24">
  <properties>
-  <property name="startX" value="75"/>
-  <property name="startY" value="75"/>
+  <property name="animationfunction" value="Level81TileAnimator"/>
+  <property name="backgroundsrc" value="background.png"/>
  </properties>
  <tileset firstgid="1" name="marlen_tiles" tilewidth="24" tileheight="24">
   <image source="../tilesets/marlen_tiles.png" width="168" height="168"/>
@@ -293,4 +293,14 @@
    eJztmNtu2zAMhrntZs3Ntpu0XdKtG9qmRdGiff+Xm4mYGMPoQMlyHNf/DxAIAts6kB9JiQiCIAiCIAiCIKiNnjt7nXoSEASdXMz+XWf3hBwAQUuSsL/tDTkAgpYhyz5yAAQtQzH2x8gBuFuAoPMQs3hDafZb5gDcLUDQ9CrhvlUOwN0CBE2rWu6H5gDcLZxeV7T39aXz+XX/fMk7SxHv5W9l19NOxyXtT7Eh3Ftubzv7o+wvheNmnRkXOWAcPdB+f5/o2FfWbzfqeXnnl7K3keb4QodcnRNfzLzMQ+8N226qSTkk3D9SHds2b1wWvMtxo1l+ds6jNAeMdYfIa7+lQy5KY1HXipZxLPU8NycZ38ZszlLPs39a5wBmP1YXQnyNta92DM38Tv0+J/5tXQ9Zjtt15JnQWmt6A+anpN/w5oAx7hB/0r7OhXJVqa/1/rWME1ufOU4/dfa5ty90nCNa8S/+kX5gM3AtMfaFcb0uWZv2zRO1ywUp5s+Vf48/U9zas15L/lNj5XJVjunQHeLQM+tVYM3aJNZycRaquzpO9Xptvxv7T/8f8svXzi56+0HHuacl/3bs2n4gVfdlDnpdsracf2pzQYr5GP/2PuDUZ5ca/jWHNpfq2GzNvyeu9BjCtOU5do/AtXtDdTlZ/Og5o+wo7V9ZZ2nfXbuPwv/33k7Nf82ZgPc71RPKHL7Rf/Z5bSvnvGpyQQ3/qb0aEodeq+Hf69+p+Wdj1m1vG/sO/69705I+IPRNe860c9QxFrIx+A/1KDwfzcmqfyYWS7nzQCn/W7PvXtsk1hjr/b1riOWClD1SO/5LOS71UYnNmX9+R2qbjm3P9+XuOnVGTd2RxWqodx/G4P8h4pdQ/Y+Nn5t/Df8t4nLb+0N6MNv7rxqNm5sT0XD+h/q+5fo+Cv+h3tbzfU/+D/X9c+Jf6r/0yHPkX7O/pcOexp79wX/9t+bGP8eB8F9S/4fanPgP3f/NjX87ru77UP/D9g6DwRZr/wCO5v5d
   </data>
  </layer>
+ <objectgroup name="Object Layer 1" width="256" height="21">
+  <object name="Player" x="51" y="216" width="48" height="96"/>
+  <object name="Goal" x="6008" y="225" width="134" height="140">
+   <properties>
+    <property name="for" value="Player"/>
+   </properties>
+  </object>
+  <object name="Mastodon" x="2647" y="76" width="48" height="48"/>
+  <object name="Mastodon" x="3976" y="76" width="48" height="48"/>
+ </objectgroup>
 </map>

@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="24" tileheight="24">
- <properties>
-  <property name="endTileX" value="78"/>
-  <property name="endTileY" value="19"/>
-  <property name="startX" value="48"/>
-  <property name="startY" value="525"/>
- </properties>
  <tileset firstgid="1" name="Base" tilewidth="24" tileheight="24">
-  <image source="Phase IV alpha tileset.png" width="191" height="193"/>
+  <image source="../tilesets/Phase IV alpha tileset.png" width="191" height="193"/>
   <tile id="3">
    <properties>
     <property name="type" value="portal"/>
@@ -221,4 +215,12 @@
    eJzt2EtWwjAABdDuwOMCdAOII9n/1qyDYi2lNiGfktx7zhswoDR5SQMMAwBAXacxL2M+a98I1y6mfNS9nW6dx3wNf7vQSR3LPaGTevZ0MeUy9HmmTHOU09bzyV75NV+vOdZjyH7ouZOttZqql1RdtP782jtPsWvykWdTb3sldM2Gjj31nmi5k9i5+m/spTpopZMUz457Yy/ZxZpnO1NyzNfP+M8Zrru3gzXPsFdSdTFXai+EdDG5RLynlNPidc45Kd1DrfMq9v6XXcTOWYhS++HoXSzHsdbFPY/M/57rpeoh52+ZGh09am1Nbp2fve2HvUlxvm3NR67vNC11kHLeSvzvu/Z5PWQu9n059dRFTB+l5P7v8ag5ot72xDyvifIW+LnvCa7RYmp0sdaJLm7npGQXIiIiIiIiIiIiIiIiIiItBwAAAAAAAAAAAAAAAAAAAAAAAAC49Q3CEL3j
   </data>
  </layer>
+ <objectgroup name="Object Layer 1" width="100" height="100">
+  <object name="Player" x="24" y="432" width="48" height="96"/>
+  <object name="Goal" x="2309" y="74" width="88" height="391">
+   <properties>
+    <property name="for" value="Player"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

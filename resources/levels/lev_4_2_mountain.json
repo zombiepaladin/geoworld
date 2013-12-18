@@ -21,20 +21,54 @@
          "width":100,
          "x":0,
          "y":0
+        }, 
+        {
+         "height":100,
+         "name":"Object Layer 1",
+         "objects":[
+                {
+                 "height":96,
+                 "name":"Player",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":24,
+                 "y":432
+                }, 
+                {
+                 "height":391,
+                 "name":"Goal",
+                 "properties":
+                    {
+                     "for":"Player"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":88,
+                 "x":2309,
+                 "y":74
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "width":100,
+         "x":0,
+         "y":0
         }],
  "orientation":"orthogonal",
  "properties":
     {
-     "endTileX":"78",
-     "endTileY":"19",
-     "startX":"48",
-     "startY":"525"
+
     },
  "tileheight":24,
  "tilesets":[
         {
          "firstgid":1,
-         "image":"Phase IV alpha tileset.png",
+         "image":"..\/tilesets\/Phase IV alpha tileset.png",
          "imageheight":193,
          "imagewidth":191,
          "margin":0,

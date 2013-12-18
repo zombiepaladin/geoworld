@@ -5,7 +5,7 @@
   <property name="StratX" value="10"/>
  </properties>
  <tileset firstgid="1" name="IceAge_mountain24x24" tilewidth="24" tileheight="24">
-  <image source="IceAge_mountain24x24.png" width="458" height="229"/>
+  <image source="../tilesets/IceAge_mountain.png" width="458" height="229"/>
   <tile id="30">
    <properties>
     <property name="Left" value="0"/>
@@ -79,7 +79,7 @@
   </tile>
  </tileset>
  <tileset firstgid="172" name="IceAge24_24" tilewidth="24" tileheight="24">
-  <image source="IceAge24_24.png" width="442" height="262"/>
+  <image source="../tilesets/IceAge.png" width="442" height="262"/>
   <tile id="21">
    <properties>
     <property name="Left" value="0"/>
@@ -160,7 +160,7 @@
   </tile>
  </tileset>
  <tileset firstgid="352" name="IceAge_Sea" tilewidth="24" tileheight="24">
-  <image source="IceAge_Sea.png" width="326" height="194"/>
+  <image source="../tilesets/IceAge_Sea.png" width="326" height="194"/>
   <tile id="27">
    <properties>
     <property name="Type" value="Sea"/>
@@ -193,10 +193,10 @@
   </tile>
  </tileset>
  <tileset firstgid="456" name="SeaBack" tilewidth="24" tileheight="24">
-  <image source="SeaBack.png" width="2400" height="1800"/>
+  <image source="../tilesets/SeaBack.png" width="2400" height="1800"/>
  </tileset>
  <tileset firstgid="7956" name="NewBack" tilewidth="24" tileheight="24">
-  <image source="NewBack.png" width="2400" height="1800"/>
+  <image source="../tilesets/NewBack.png" width="2400" height="1800"/>
  </tileset>
  <layer name="Background Layer" width="100" height="75">
   <data encoding="base64" compression="zlib">

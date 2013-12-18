@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="360" height="35" tilewidth="24" tileheight="24">
- <properties>
-  <property name="startX" value="200"/>
-  <property name="startY" value="300"/>
- </properties>
  <tileset firstgid="1" name="TILES" tilewidth="24" tileheight="24">
-  <image source="../tilesets/TILES.png" width="145" height="192"/>
+  <image source="../tilesets/TILES.png" width="144" height="192"/>
   <tile id="0">
    <properties>
     <property name="isHazzard" value="false"/>

@@ -89,8 +89,7 @@
  "orientation":"orthogonal",
  "properties":
     {
-     "startX":"200",
-     "startY":"300"
+
     },
  "tileheight":24,
  "tilesets":[

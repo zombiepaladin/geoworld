@@ -6,7 +6,7 @@
          "name":"Air",
          "opacity":0.449999988079071,
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":200,
          "x":0,
          "y":0
@@ -21,12 +21,87 @@
          "width":200,
          "x":0,
          "y":0
+        }, 
+        {
+         "height":20,
+         "name":"Object Layer 1",
+         "objects":[
+                {
+                 "height":96,
+                 "name":"Player",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":48,
+                 "y":240
+                }, 
+                {
+                 "height":102,
+                 "name":"Goal",
+                 "properties":
+                    {
+                     "for":"Player"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":72,
+                 "x":4734,
+                 "y":-3
+                }, 
+                {
+                 "height":48,
+                 "name":"Alphadon",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":72,
+                 "y":276
+                }, 
+                {
+                 "height":48,
+                 "name":"Mososaur",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":1776,
+                 "y":336
+                }, 
+                {
+                 "height":48,
+                 "name":"Asteroid_Phase6",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":2976,
+                 "y":76
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "width":200,
+         "x":0,
+         "y":0
         }],
  "orientation":"orthogonal",
  "properties":
     {
-     "startX":"72",
-     "startY":"296"
+
     },
  "tileheight":24,
  "tilesets":[

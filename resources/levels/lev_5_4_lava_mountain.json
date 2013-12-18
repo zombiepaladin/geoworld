@@ -32,12 +32,48 @@
          "width":257,
          "x":0,
          "y":0
+        }, 
+        {
+         "height":80,
+         "name":"Object Layer 1",
+         "objects":[
+                {
+                 "height":96,
+                 "name":"Player",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":24,
+                 "y":1440
+                }, 
+                {
+                 "height":394,
+                 "name":"Goal",
+                 "properties":
+                    {
+                     "for":"Player"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":112,
+                 "x":6030,
+                 "y":1200
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "width":257,
+         "x":0,
+         "y":0
         }],
  "orientation":"orthogonal",
  "properties":
     {
-     "startX":"50",
-     "startY":"1512"
+
     },
  "tileheight":24,
  "tilesets":[

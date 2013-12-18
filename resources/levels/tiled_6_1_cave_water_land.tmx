@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="200" height="20" tilewidth="24" tileheight="24">
- <properties>
-  <property name="startX" value="72"/>
-  <property name="startY" value="296"/>
- </properties>
  <tileset firstgid="1" name="phase6TileSetpng" tilewidth="24" tileheight="24">
   <image source="../tilesets/phase6TileSetpng.png" width="384" height="168"/>
   <tile id="0">
@@ -613,7 +609,7 @@
    </properties>
   </tile>
  </tileset>
- <layer name="Air" width="200" height="20" visible="0" opacity="0.45">
+ <layer name="Air" width="200" height="20" opacity="0.45">
   <data encoding="base64" compression="zlib">
    eJztmslygzAMhmm65Ny9PXZvr11C+gLtOZfk3Fzy/m9QeWrPeFQMXoRlQIdvIOCA5fy/jURWVVXtNFtrX7FCn00b3A63bTq/9bhu273nmj0hO/vAAXBYQF9y81P916qh7VzfbVWbjcb2xylwBpwX8BvH9kU0+8cxcNLRZsZwT5vNQDD+uAPugQei8UoZf+q+TI0b4LbQex7pLbfuQ/3hiod6nqGmhPk+xxiZOA1DXt8U3LqP9Qf2iuQmguECuCS6FrfuU/0xR/Qx3jnmfq5cZqG3pa+/ITwCT0TX4tZ9ij9ccObNseTIZa6Aa3SsLiD2VBYotnfgwxFvKNy6p3y+6iuHD6HkefgZeEHHlD8WHt/NGVfoel2j2Iw/muINhVv3Mf6YVe7nK9dzlo8Gxs4S+ETH1hruvqWwRrF9Ad+OeEPh1n3s+mHTlXsob9QF/I7C8ODWPYU/uuoVsXPka4Fw62VqcOs+xh/YJ5T1Cpu3AuHWSyoqtyjhnYhvPsWt+1B/NK0jJh8Tfwip4Nont+4p/GHyMfFHWdj1VbNPUXPtE1z79P1PocJHx7HXaGu3Yxorbi8M3R92fdXsU9RcczIlf4TW1bm9MHR/2PVVs09RcxV/yPoxBn+MAfGH+EMQf4g/xkeO903iD/HHUMkx3r/FdJsn
   </data>
@@ -623,4 +619,15 @@
    eJztmktOwzAQQL1CBYTEmt8BoDt2EBYsC/QAQHOAAlG5/wpHisUw2PE4sZ1xOpWenDrJJP48nAldKaVWBbDU7AQhM1PPeyoXDPpK2D+mnvfih8CRg66sNeuuNNtrUGfbV6MSn+OKVTti4ti2a4kfaXjSPDO4Dy5UiKarb8D2DtTZ9jWoxOe4YjWOmDi27VriRxreNO8M7iMVFP8rsP2ImPr+qYgfaTjSHDO4j1T4/D9Rfz3I5Qf8xIiX2g+znk49nqk405yDsq1bqLL9wGsDbJuhr33GDfGjH9hPp5nGNjfXmhtQtnWHqmw/8Npg2rYAda72wTEv6TnKhc+PoXkm7qe5OnKnuQdlu1ZuNR+aT1Xe2lmhe69A27agrtT2heLzY0ieaXODuyOhz4GXmquedpbQ5qHtmSrXhp+xMajH+/xwraPwXR3e5+vPB4ZQ5/LQeRTqSK68bYwXc3mGiuEHztH6+sfXn7cM8c3lGPOI6kiOvC1Ge8SPXz9g/jl3P8y8bP9+x5xHlPlOzduG5oWx27PPfsA8zORolJhz8CMlLkdC8jaYF9rev+bwYowfrwHEiEc9j7rPNc/FjzRzqs8NmyMwL8RrewmE/EYwRjzqedR94kdeP0LWHvx+Fb5bLuX/sSF+bMB5GxRnQ4xnjsWxbNdyxRQ/8oHHKXZ87u+UQ/z40rx0wG343RfDHItj2a7lipnLD+H/OKW4hllrQuHmBxfED4E6xvvoxzfC1nf4GBtTj6/A348f1MOaew==
   </data>
  </layer>
+ <objectgroup name="Object Layer 1" width="200" height="20">
+  <object name="Player" x="48" y="240" width="48" height="96"/>
+  <object name="Goal" x="4734" y="-3" width="72" height="102">
+   <properties>
+    <property name="for" value="Player"/>
+   </properties>
+  </object>
+  <object name="Alphadon" x="72" y="276" width="48" height="48"/>
+  <object name="Mososaur" x="1776" y="336" width="48" height="48"/>
+  <object name="Asteroid_Phase6" x="2976" y="76" width="48" height="48"/>
+ </objectgroup>
 </map>

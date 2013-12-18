@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="150" height="40" tilewidth="24" tileheight="24">
- <properties>
-  <property name="startX" value="72"/>
-  <property name="startY" value="648"/>
- </properties>
  <tileset firstgid="1" name="grassy_plains" tilewidth="24" tileheight="24" spacing="2">
   <image source="../tilesets/dead_plains.png" width="180" height="102"/>
   <tile id="5">
@@ -134,4 +130,12 @@
    eJzt2EsOgCAMBUBuoIne/6zu0QUx1CLMHIBP+ppQSgEAAAAAAAAAAGpH9gFYluwRSb4AYB5n4t7eFPPJzFNNvv5vpDxx11ofvUiLt/0uXwAApWyJe+8d18q8B8+iavL1vC9b4+lZk+z/I3MpkaLzld0/AAAAALCaC9K+Aac=
   </data>
  </layer>
+ <objectgroup name="Object Layer 1" width="150" height="40">
+  <object name="Player" x="48" y="552" width="48" height="96"/>
+  <object name="Goal" x="2970" y="754" width="82" height="95">
+   <properties>
+    <property name="for" value="Player"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

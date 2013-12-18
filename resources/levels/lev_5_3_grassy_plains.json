@@ -32,12 +32,35 @@
          "width":250,
          "x":0,
          "y":0
+        }, 
+        {
+         "height":40,
+         "name":"Object Layer 1",
+         "objects":[
+                {
+                 "height":96,
+                 "name":"Player",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":48,
+                 "y":552
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "width":250,
+         "x":0,
+         "y":0
         }],
  "orientation":"orthogonal",
  "properties":
     {
-     "startX":"72",
-     "startY":"648"
+
     },
  "tileheight":24,
  "tilesets":[

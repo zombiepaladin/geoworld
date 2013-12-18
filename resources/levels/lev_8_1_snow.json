@@ -10,12 +10,75 @@
          "width":256,
          "x":0,
          "y":0
+        }, 
+        {
+         "height":21,
+         "name":"Object Layer 1",
+         "objects":[
+                {
+                 "height":96,
+                 "name":"Player",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":51,
+                 "y":216
+                }, 
+                {
+                 "height":140,
+                 "name":"Goal",
+                 "properties":
+                    {
+                     "for":"Player"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":134,
+                 "x":6008,
+                 "y":225
+                }, 
+                {
+                 "height":48,
+                 "name":"Mastodon",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":2647,
+                 "y":76
+                }, 
+                {
+                 "height":48,
+                 "name":"Mastodon",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":3976,
+                 "y":76
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "width":256,
+         "x":0,
+         "y":0
         }],
  "orientation":"orthogonal",
  "properties":
     {
-     "startX":"75",
-     "startY":"75"
+     "animationfunction":"Level81TileAnimator",
+     "backgroundsrc":"background.png"
     },
  "tileheight":24,
  "tilesets":[
@@ -271,8 +334,5 @@
         }],
  "tilewidth":24,
  "version":1,
- "width":256,
- "valid": 1,
- "backgroundsrc": "background.png",
- "animatedtiles": "true"
+ "width":256
 }
