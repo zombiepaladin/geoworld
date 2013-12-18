@@ -182,6 +182,20 @@
     <property name="for" value="Player"/>
    </properties>
   </object>
-  <object name="Fish1" x="888" y="1038" width="24" height="24"/>
+  <object name="Fish" x="888" y="1038" width="24" height="24">
+   <properties>
+    <property name="fishType" value="1"/>
+   </properties>
+  </object>
+  <object name="Fish" x="7980" y="1038" width="24" height="24">
+   <properties>
+    <property name="fishType" value="2"/>
+   </properties>
+  </object>
+  <object name="Fish" x="9972" y="990" width="24" height="24">
+   <properties>
+    <property name="fishType" value="3"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

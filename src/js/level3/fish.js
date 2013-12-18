@@ -39,10 +39,7 @@ Fish = function (initialParent, initialPosition, scene, fishType) {
 
   this.maxVelocity = new Vector(100, 400);
   this.frictionConstant = 200;
-
   this.hangTimeEnabled = false;
-  this.hangTimeVelocityThreshold = 30;
-  this.hangTimeMinimum = 0.1;
 
   // Multi-jump:
   this.jumpsMax = 2;
@@ -67,6 +64,12 @@ Fish.createFromLevel = function (info, scene) {
 Fish.prototype.update = function (timeStep, input) {
   var seconds = timeStep / 1000; // Convert timestep to seconds
 
+  if (this.isUnderWater()) {
+    this.gravityScale = 0.5;//Half gravity under water
+  } else {
+    this.gravityScale = 1.0;//Full gravity above water
+  }
+
   var player = this.scene.player;
   var playerPos = player.position;
   var playDirection = player.facingLeft;
@@ -85,6 +88,7 @@ Fish.prototype.update = function (timeStep, input) {
       this.facingLeft = true;
       this.accelerate(new Vector(-this.acceleration, 0), seconds);
     }
+
     if (playerPos.y + 10 < this.position.y && this.isOnGround()) {
       this.accelerate(new Vector(0, this.instantaneousJumpImpulse * this.gravityScale));
     }
@@ -111,8 +115,7 @@ Fish.prototype.update = function (timeStep, input) {
 Fish.prototype.render = function (timeStep, ctx) {
   ctx.save();
   ctx.translate(this.position.x, this.position.y);
-  if ((this.facingLeft && !this.spriteFacingLeft) ||
-    (!this.facingLeft && this.spriteFacingLeft)) {
+  if (!this.facingLeft) {
     ctx.scale(-1, 1);
   }
 

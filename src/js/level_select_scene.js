@@ -72,7 +72,7 @@ LevelSelectScene.prototype.keyUp = function (event) {
     else {//else !this.subphaseSelectMode
       if (levels_list[this.phaseSelect][this.subphaseSelect] != null) {//If the phase is available
         level_data = window[levels_list[this.phaseSelect][this.subphaseSelect]];
-        assert(level_data != undefined);
+        assert(level_data != undefined);//Level is not loaded!
         Game.replaceScene(new Level(level_data));
       }
     }

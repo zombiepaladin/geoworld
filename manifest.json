@@ -31,9 +31,7 @@
         "src/js/level1/cyano_enemy.js",
         "src/js/level1/blob_enemy.js",
 
-        "src/js/level3/fish1.js",
-        "src/js/level3/fish2.js",
-        "src/js/level3/fish3.js",
+        "src/js/level3/fish.js",
         "src/js/level3/Lizard.js",
 
         "src/js/level6/Alphadon.js",

@@ -21,12 +21,87 @@
          "width":500,
          "x":0,
          "y":0
+        }, 
+        {
+         "height":40,
+         "name":"Object Layer 1",
+         "objects":[
+                {
+                 "height":96,
+                 "name":"Player",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":24,
+                 "y":672
+                }, 
+                {
+                 "height":331,
+                 "name":"Goal",
+                 "properties":
+                    {
+                     "for":"Player"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":99,
+                 "x":11894,
+                 "y":249
+                }, 
+                {
+                 "height":24,
+                 "name":"Lizard",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":468,
+                 "y":744
+                }, 
+                {
+                 "height":24,
+                 "name":"Lizard",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":1980,
+                 "y":744
+                }, 
+                {
+                 "height":24,
+                 "name":"Lizard",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":3972,
+                 "y":744
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "width":500,
+         "x":0,
+         "y":0
         }],
  "orientation":"orthogonal",
  "properties":
     {
-     "startX":"50",
-     "startY":"800"
+
     },
  "tileheight":24,
  "tilesets":[

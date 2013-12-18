@@ -65,16 +65,42 @@
                 }, 
                 {
                  "height":24,
-                 "name":"Fish1",
+                 "name":"Fish",
                  "properties":
                     {
-
+                     "fishType":"1"
                     },
                  "type":"",
                  "visible":true,
                  "width":24,
                  "x":888,
                  "y":1038
+                }, 
+                {
+                 "height":24,
+                 "name":"Fish",
+                 "properties":
+                    {
+                     "fishType":"2"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":7980,
+                 "y":1038
+                }, 
+                {
+                 "height":24,
+                 "name":"Fish",
+                 "properties":
+                    {
+                     "fishType":"3"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":24,
+                 "x":9972,
+                 "y":990
                 }],
          "opacity":1,
          "type":"objectgroup",

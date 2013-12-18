@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="500" height="40" tilewidth="24" tileheight="24">
- <properties>
-  <property name="startX" value="50"/>
-  <property name="startY" value="800"/>
- </properties>
  <tileset firstgid="1" name="dev_tiles" tilewidth="24" tileheight="24">
   <image source="../tilesets/dev_tiles.png" width="120" height="240"/>
   <tile id="0">
@@ -314,4 +310,15 @@
    eJzt2sGO0zAQBuC+AEJw4EAvA2hBXPcJ++gELaCqbL1JGnsc5/ukXwhSESczzkC2pxMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABzX++wFAACbiNPp8jTlU/ZCAIDF4s8cf55ynn5/zl7QQt+m/JyR6XOXpCUCQDXxyhzf4zwfjX+fADBHFOa4eQ4AfYsZc9w8B6jv85QPL79eanyeMcWCOW6eA6wXV98r7iFPL2ti52LFHN/jPN/Dz5trrXEP135Updqox3q93td44HlbOb/XtHiu17rPvdavV7FBX8GS93veBXJU0e8c/zfP/2bNXCdHbNhXHE9s/J7Qc4ORRf9z/L95bq73Lyr0FccR9Z5LnhsMJ/Yzx+3PHYmKfcX4ov5z6XJ+4P8Da97he++/XM2fq4xUjxhnjm+yP2+NVOuWokFftfje5bUvU77eud7Xjm19/jXrKH02+zutc9LguXS5zXMH132v/qV6zjneek0t1pOdrexkv6TN8x7351Z75a19clpwjjl/571jo/fVu6t8n/Lj5s9Kx7Y+/5p1lD6bfW9lef1L9ZxzvPWaWqwnO/eubWmyr0Pq98a9/fDWPin1x5pnwb1j2ferdj4+kOzzt1if9Nt/e+jJ7Pvb0/3Ivg7ptzdK/WE/tqlH9vmPXrsR0mPNe1tPdtwLqd0bpf6wH9vUI/v8R6/dCOmx5r2tJzvuhdTujVJ/2I9t6pF9/qPXboT0WPPe1pMd90Jq90apP+zHNvXIPv/RazdCeqx5b+vJjnshtXuj1B+j7Meas05ERETa5Bf96+s3
   </data>
  </layer>
+ <objectgroup name="Object Layer 1" width="500" height="40">
+  <object name="Player" x="24" y="672" width="48" height="96"/>
+  <object name="Goal" x="11894" y="249" width="99" height="331">
+   <properties>
+    <property name="for" value="Player"/>
+   </properties>
+  </object>
+  <object name="Lizard" x="468" y="744" width="24" height="24"/>
+  <object name="Lizard" x="1980" y="744" width="24" height="24"/>
+  <object name="Lizard" x="3972" y="744" width="24" height="24"/>
+ </objectgroup>
 </map>
