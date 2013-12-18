@@ -12,4 +12,10 @@ There are certain things that have to be done for the levels to work with the ti
    Goal can also have an property named "destination". If it is given, it will warp the player to the specified
    level name (in the form "level_#_#") instead of kicking them back to the main menu when they win.
 
-Additionally, you can change the background color and image in the map properties. The background image, if needed, is loaded from a property named "backgroundsrc".
+=== Background Color / Image ===
+
+You can change the background color and image in the map properties. The background image, if needed, is loaded from a property named "backgroundsrc".
+
+=== Animated Tiles ===
+
+You can animate your tiles by deriving a class from TileAnimator and putting its name in the 'tileAnimator' property of your map.

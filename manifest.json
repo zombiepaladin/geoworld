@@ -11,6 +11,7 @@
 
         "src/js/entity.js",
         "src/js/scene.js",
+        "src/js/tile_animator.js",
 
         "src/js/physics_modifier.js",
 
@@ -33,12 +34,14 @@
 
         "src/js/level3/fish.js",
         "src/js/level3/Lizard.js",
+        "src/js/level3/level_3_1_tile_animator.js",
 
         "src/js/level6/Alphadon.js",
         "src/js/level6/Asteroid_Phase6.js",
         "src/js/level6/Mososaur.js",
 
         "src/js/level8/Mastodon.js",
+        "src/js/level8/level_8_1_tile_animator.js",
         
         "src/js/geoworld.js"
     ],

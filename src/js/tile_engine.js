@@ -57,6 +57,20 @@ TileEngine = function (tileMapObject) {
     this.backgroundImage = new Image();
     this.backgroundImage.src = this.tilemap.properties.backgroundsrc;
   }
+
+  // Create tile animator
+  this.tileAnimator = undefined;
+  if (this.tilemap.properties && this.tilemap.properties.tileAnimator) {
+    if (!window[this.tilemap.properties.tileAnimator]) {
+      console.warning("Tilemap tried to use tile animator '%s', which does not exist!", this.tilemap.properties.tileAnimator);
+    }
+    else {
+      this.tileAnimator = new window[this.tilemap.properties.tileAnimator]();
+      if (!(this.tileAnimator instanceof TileAnimator)) {
+        console.warning("Tilemap tried to use the tile animator '%s' which does not appear to be an implementation of TileAnimator!", this.tilemap.properties.tileAnimator);
+      }
+    }
+  }
 }
 
 // Set the current scrolling position for the tile engine
@@ -217,6 +231,10 @@ TileEngine.prototype.isHazzardAt = function (x, y) {
 //  timestep - the time between frames
 //  ctx - the rendering context
 TileEngine.prototype.render = function (timestep, ctx, frame) {
+  if (this.tileAnimator) {
+    this.tileAnimator.update(timestep);
+  }
+
   ctx.save();
 
   //Draw background color:
@@ -264,6 +282,10 @@ TileEngine.prototype.render = function (timestep, ctx, frame) {
         var tileset = this.tilemap.tilesets[0];
         var tilesheet = this.tilesheetTextures[0];
         var rowWidth = Math.floor(tileset.imagewidth / tileset.tilewidth);
+
+        if (this.tileAnimator) {
+          tileId = this.tileAnimator.translateTileId(tileId + 1) - 1;
+        }
 
         if (!tilesheet || tileId < 0) {
           continue;

@@ -112,7 +112,7 @@
  "orientation":"orthogonal",
  "properties":
     {
-
+     "tileAnimator":"Level31TileAnimator"
     },
  "tileheight":24,
  "tilesets":[

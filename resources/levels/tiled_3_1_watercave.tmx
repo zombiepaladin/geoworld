@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="1000" height="54" tilewidth="24" tileheight="24">
+ <properties>
+  <property name="tileAnimator" value="Level31TileAnimator"/>
+ </properties>
  <tileset firstgid="1" name="water_cave" tilewidth="24" tileheight="24">
   <image source="../tilesets/water_cave.png" width="120" height="120"/>
   <tile id="0">
