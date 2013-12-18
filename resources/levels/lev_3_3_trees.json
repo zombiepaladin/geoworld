@@ -1,5 +1,4 @@
 { "backgroundcolor":"#1fbdfb",
-	"backgroundsrc":"level_3_3_sky.png",
  "height":100,
  "layers":[
         {
@@ -30,7 +29,8 @@
      "endTileX":"994",
      "endTileY":"57",
      "startX":"72",
-     "startY":"2200"
+     "startY":"2200",
+     "backgroundsrc":"level_3_3_sky.png"
     },
  "tileheight":24,
  "tilesets":[

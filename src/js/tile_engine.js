@@ -50,6 +50,13 @@ TileEngine = function (tileMapObject) {
     image.src = tileset.image.substring(tileset.image.lastIndexOf('/') + 1);
     thisEngine.tilesheetTextures[index] = image;
   });
+
+  // Load optional background image
+  this.backgroundImage = undefined;
+  if (this.tilemap.properties && this.tilemap.properties.backgroundsrc) {
+    this.backgroundImage = new Image();
+    this.backgroundImage.src = this.tilemap.properties.backgroundsrc;
+  }
 }
 
 // Set the current scrolling position for the tile engine
@@ -211,6 +218,20 @@ TileEngine.prototype.isHazzardAt = function (x, y) {
 //  ctx - the rendering context
 TileEngine.prototype.render = function (timestep, ctx, frame) {
   ctx.save();
+
+  //Draw background color:
+  if (this.tilemap.backgroundcolor) {
+    ctx.fillStyle = this.tilemap.backgroundcolor;
+    ctx.fillRect(0, 0, Game.width, Game.height);
+  }
+
+  //Draw background image:
+  if (this.backgroundImage) {
+    ctx.drawImage(this.backgroundImage,
+      (this.backgroundImage.width - Game.width) * ((this.scrollPosition.x) / (this.getLevelWidth() - Game.width)), 0);
+  }
+
+  //Draw tile map:
   ctx.translate(this.scrollPosition.x, this.scrollPosition.y);
 
   //Handle optional frame argument:
