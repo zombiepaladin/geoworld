@@ -36,8 +36,8 @@ level_5_4 = { "height":80,
  "orientation":"orthogonal",
  "properties":
     {
-     "startX":"1512",
-     "startY":"50"
+     "startX":"50",
+     "startY":"1512"
     },
  "tileheight":24,
  "tilesets":[
@@ -109,6 +109,12 @@ level_5_4 = { "height":80,
                  "left":"12",
                  "right":"0",
                  "type":"ceiling"
+                },
+             "3":
+                {
+                 "left":"0",
+                 "right":"0",
+                 "type":"portal"
                 },
              "4":
                 {

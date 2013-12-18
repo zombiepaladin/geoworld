@@ -9,8 +9,8 @@ var fs = require('fs'),
 //-------------------------------------------	
 
 if (!fs.existsSync('release')) {
-    console.log("Creating release directory since it does not exist yet...");
-    fs.mkdirSync('release');
+  console.log("Creating release directory since it does not exist yet...");
+  fs.mkdirSync('release');
 }
 
 // ==========================================
@@ -18,7 +18,8 @@ if (!fs.existsSync('release')) {
 //-------------------------------------------	
 
 //Disabling this for now because it make debugging a nightmare.
-//Should probably add a command line switch in the future so you can toggle between a debug and release html file + js handling.
+//TODO: Add source map generation and have people use that.
+//      (I am refraining from doing that for now because some people complained about source maps not working right.)
 
 // Combine JavaScript files with uglify-js
 // File list is pulled from the manifest.json file
@@ -47,7 +48,7 @@ manifest.javascripts.forEach(function (fileName, index, array) {
 
 // Read CSS from files listed in manifest object (currently only geoworld.css)
 var cssSource = "";
-manifest.stylesheets.forEach(function(fileName, index, array) {
+manifest.stylesheets.forEach(function (fileName, index, array) {
   cssSource = cssSource.concat(fs.readFileSync('src/css/geoworld.css', 'utf8'));
 });
 
@@ -55,8 +56,8 @@ manifest.stylesheets.forEach(function(fileName, index, array) {
 var minifiedCSS = cleanCSS().minify(cssSource);
 
 // Write the finalized CSS code to the release directory
-fs.writeFile('release/geoworld.css', minifiedCSS, function(err) {
-  if(err) {
+fs.writeFile('release/geoworld.css', minifiedCSS, function (err) {
+  if (err) {
     console.error("Could not write release/geoworld.css file\n" + err);
     return;
   }
@@ -94,14 +95,14 @@ processImageDirectory('resources/backgrounds');
 //----------------------------------------------
 
 // For now just copy all HTML files from the src directory
-fs.readdir('src/html', function(err, files) {
-  
-  if(err) {
+fs.readdir('src/html', function (err, files) {
+
+  if (err) {
     console.error("Could not read from directory src/html\n" + err);
     return;
   }
-  
-  files.forEach(function(fileName, index, array) {
+
+  files.forEach(function (fileName, index, array) {
     fs.createReadStream('src/html/' + fileName).pipe(fs.createWriteStream('release/' + fileName));
     console.log("wrote file: release/" + fileName);
   });

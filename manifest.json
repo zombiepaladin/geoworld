@@ -1,10 +1,10 @@
 {
-	"javascripts": [
+    "javascripts": [
         "src/js/polyfills/animation_polyfill.js",
         "src/js/polyfills/array_polyfill.js",
         
         "src/js/math_helper_library.js",
-		"src/js/vector_library.js",
+        "src/js/vector_library.js",
         "src/js/utilities.js",
         "src/js/rect.js",
         "src/js/key_util.js",
@@ -18,29 +18,29 @@
         "src/js/pause_scene.js",
         "src/js/level_scene.js",
         "src/js/tile_engine.js",
-		"src/js/death_scene.js",
+        "src/js/death_scene.js",
         "src/js/finish_scene.js",
 
         "src/js/sounds.js",
         
-		"src/js/player.js",
+        "src/js/player.js",
         "src/js/level1/asteroid_field.js",
         "src/js/level1/asteroid.js",
         "src/js/level1/lava_flow.js",
         "src/js/level1/cyano_enemy.js",
         "src/js/level1/blob_enemy.js",
         
-		"src/js/geoworld.js"
-	],
-	"stylesheets": [
-		"src/css/geoworld.css"
-	],
+        "src/js/geoworld.js"
+    ],
+    "stylesheets": [
+        "src/css/geoworld.css"
+    ],
     "levels": [
         "lev_1_1_forming_earth.json",
         "lev_1_2_precam.json",
         "lev_3_1_watercave.json",
-		"lev_5_1_dead_plains.json",
+        "lev_5_1_dead_plains.json",
         "lev_5_3_grassy_plains.json",
-		"lev_5_4_lava_mountain.json"
+        "lev_5_4_lava_mountain.json"
     ]
 }
