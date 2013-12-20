@@ -22,21 +22,54 @@
          "width":1000,
          "x":0,
          "y":0
+        }, 
+        {
+         "height":100,
+         "name":"Object Layer 1",
+         "objects":[
+                {
+                 "height":96,
+                 "name":"Player",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":48,
+                 "y":2232
+                }, 
+                {
+                 "height":256,
+                 "name":"Goal",
+                 "properties":
+                    {
+                     "for":"Player"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":240,
+                 "x":23475,
+                 "y":1209
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "width":1000,
+         "x":0,
+         "y":0
         }],
  "orientation":"orthogonal",
  "properties":
     {
-     "endTileX":"994",
-     "endTileY":"57",
-     "startX":"72",
-     "startY":"2200",
      "backgroundsrc":"level_3_3_sky.png"
     },
  "tileheight":24,
  "tilesets":[
         {
          "firstgid":1,
-         "image":"..\/..\/..\/..\/level_3_2.png",
+         "image":"..\/tilesets\/level_3_2.png",
          "imageheight":144,
          "imagewidth":240,
          "margin":0,
